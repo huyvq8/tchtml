@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trade Coin88 - Register</title>
+    <link rel="stylesheet" href="../../css/mobile/login.css" />
+  </head>
+  <body>
+    <div class="screen-container">
+      <div class="brand-header">
+        <!-- Logo: top center, always above title -->
+        <img
+          src="../../images/logo tradecoin88.png"
+          alt="Trade Coin88"
+          class="brand-logo"
+        />
+      </div>
+
+      <!-- Title directly under brand header -->
+      <h1 class="screen-title">Sign up create<br>your account with us</h1>
+
+      <!-- Main content area -->
+      <main class="content">
+        <form class="auth-form" autocomplete="on">
+          <!-- Email -->
+          <div class="form-row">
+            <input
+              type="email"
+              id="reg-email"
+              name="email"
+              class="form-input"
+              placeholder="Email"
+              required
+            />
+          </div>
+
+          <!-- Country code + Phone number -->
+          <div class="form-row form-row-inline">
+            <select
+              id="country-code"
+              name="countryCode"
+              class="form-input input-country"
+            >
+              <option value="+234">Nigeria +234</option>
+              <option value="+1">United States +1</option>
+              <option value="+44">United Kingdom +44</option>
+            </select>
+
+            <input
+              type="tel"
+              id="reg-phone"
+              name="phone"
+              class="form-input input-phone"
+              placeholder="Phone Number"
+              required
+            />
+          </div>
+
+          <!-- Verify via -->
+          <div class="verify-section">
+            <span class="verify-label">Verify via</span>
+            <div class="verify-options">
+              <label class="verify-option">
+                <input
+                  type="radio"
+                  name="verifyVia"
+                  value="phone"
+                  checked
+                />
+                <span class="custom-radio"></span>
+                <span class="verify-text">Phone (default)</span>
+              </label>
+              <label class="verify-option">
+                <input type="radio" name="verifyVia" value="email" />
+                <span class="custom-radio"></span>
+                <span class="verify-text">Email</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Nick name -->
+          <div class="form-row">
+            <input
+              type="text"
+              id="nickname"
+              name="nickname"
+              class="form-input"
+              placeholder="Nick name"
+              required
+            />
+          </div>
+
+          <!-- Password -->
+          <div class="form-row">
+            <div class="password-field">
+              <input
+                type="password"
+                id="reg-password"
+                name="password"
+                class="form-input"
+                placeholder="Password"
+                required
+              />
+              <span class="password-eye" aria-hidden="true">👁</span>
+            </div>
+          </div>
+
+          <!-- Bank account checkbox -->
+          <div class="checkbox-row">
+            <label class="checkbox-label">
+              <input type="checkbox" name="hasBankAccount" checked />
+              <span class="custom-checkbox"></span>
+              <span class="checkbox-text">I have a bank account now</span>
+            </label>
+          </div>
+
+          <!-- Referral code -->
+          <div class="form-row">
+            <input
+              type="text"
+              id="referralCode"
+              name="referralCode"
+              class="form-input"
+              placeholder="Referral code/Promo code"
+            />
+          </div>
+
+          <p class="referral-hint">
+            Referral code from <span class="referral-username">User123</span>
+          </p>
+
+          <button type="submit" class="primary-button">Register</button>
+
+          <p class="alt-action">
+            Already have account ?
+            <a href="login.html" class="alt-link">Login to your account</a>
+          </p>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>
+
+

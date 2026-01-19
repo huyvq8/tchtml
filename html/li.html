@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SVG Icons</title>
+  <style>
+    :root{
+      --bg:#0b0b0b;
+      --fg:#ffffff;
+    }
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:var(--bg);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+    .rail{
+      width:220px;
+      padding:26px 0;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:36px;
+    }
+    svg{
+      display:block;
+      overflow:visible;
+    }
+  </style>
+</head>
+<body>
+  <div class="rail">
+
+    <!-- 1) Bank/Temple in circle -->
+    <svg width="110" height="110" viewBox="0 0 120 120" aria-label="bank icon" role="img">
+      <!-- outer ring -->
+      <circle cx="60" cy="60" r="46" fill="none" stroke="white" stroke-width="4"/>
+      <!-- roof -->
+      <path d="M34 48 L60 34 L86 48 Z" fill="white"/>
+      <!-- entablature -->
+      <rect x="34" y="48" width="52" height="8" rx="2" fill="white"/>
+      <!-- columns -->
+      <rect x="40" y="58" width="8" height="30" rx="2" fill="white"/>
+      <rect x="56" y="58" width="8" height="30" rx="2" fill="white"/>
+      <rect x="72" y="58" width="8" height="30" rx="2" fill="white"/>
+      <!-- base -->
+      <rect x="36" y="90" width="48" height="6" rx="2" fill="white"/>
+    </svg>
+
+    <!-- 2) Circle of stars (12) -->
+    <svg width="110" height="110" viewBox="0 0 120 120" aria-label="stars circle" role="img">
+      <g fill="white" transform="translate(60 60)">
+        <!-- 12 stars around a circle -->
+        <!-- star path centered at (0, -38) then rotated -->
+        <defs>
+          <path id="star"
+                d="M 0 -6
+                   L 1.8 -1.8
+                   L 6 0
+                   L 1.8 1.8
+                   L 0 6
+                   L -1.8 1.8
+                   L -6 0
+                   L -1.8 -1.8 Z"/>
+        </defs>
+
+        <!-- place stars at radius 38 -->
+        <g>
+          <!-- each star group: translate up then rotate around center -->
+          <g transform="rotate(0) translate(0,-38)"><use href="#star"/></g>
+          <g transform="rotate(30) translate(0,-38)"><use href="#star"/></g>
+          <g transform="rotate(60) translate(0,-38)"><use href="#star"/></g>
+          <g transform="rotate(90) translate(0,-38)"><use href="#star"/></g>
+          <g transform="rotate(120) translate(0,-38)"><use href="#star"/></g>
+          <g transform="rotate(150) translate(0,-38)"><use href="#star"/></g>
+          <g transform="rotate(180) translate(0,-38)"><use href="#star"/></g>
+          <g transform="rotate(210) translate(0,-38)"><use href="#star"/></g>
+          <g transform="rotate(240) translate(0,-38)"><use href="#star"/></g>
+          <g transform="rotate(270) translate(0,-38)"><use href="#star"/></g>
+          <g transform="rotate(300) translate(0,-38)"><use href="#star"/></g>
+          <g transform="rotate(330) translate(0,-38)"><use href="#star"/></g>
+        </g>
+      </g>
+    </svg>
+
+    <!-- 3) Shield SSL -->
+    <svg width="110" height="110" viewBox="0 0 120 120" aria-label="ssl shield" role="img">
+      <!-- shield outline -->
+      <path d="M60 18
+               C78 18 92 26 92 26
+               V56
+               C92 84 72 96 60 102
+               C48 96 28 84 28 56
+               V26
+               C28 26 42 18 60 18 Z"
+            fill="none" stroke="white" stroke-width="4" />
+      <!-- inner inset (optional subtle) -->
+      <path d="M60 24
+               C74 24 86 30 86 30
+               V56
+               C86 78 70 88 60 94
+               C50 88 34 78 34 56
+               V30
+               C34 30 46 24 60 24 Z"
+            fill="none" stroke="white" stroke-width="2" opacity="0.55"/>
+
+      <!-- SSL text -->
+      <text x="60" y="64"
+            text-anchor="middle"
+            font-size="22"
+            font-weight="700"
+            fill="white"
+            font-family="system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif">
+        SSL
+      </text>
+    </svg>
+
+  </div>
+</body>
+</html>
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SVG Icons</title>
+  <style>
+    :root{
+      --bg:#0b0b0b;
+      --fg:#ffffff;
+    }
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:var(--bg);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+    .rail{
+      width:220px;
+      padding:26px 0;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:36px;
+    }
+    svg{
+      display:block;
+      overflow:visible;
+    }
+  </style>
+</head>
+<body>
+  <div class="rail">
+
+    <!-- 1) Bank/Temple in circle -->
+    <svg width="110" height="110" viewBox="0 0 120 120" aria-label="bank icon" role="img">
+      <!-- outer ring -->
+      <circle cx="60" cy="60" r="46" fill="none" stroke="white" stroke-width="4"/>
+      <!-- roof -->
+      <path d="M34 48 L60 34 L86 48 Z" fill="white"/>
+      <!-- entablature -->
+      <rect x="34" y="48" width="52" height="8" rx="2" fill="white"/>
+      <!-- columns -->
+      <rect x="40" y="58" width="8" height="30" rx="2" fill="white"/>
+      <rect x="56" y="58" width="8" height="30" rx="2" fill="white"/>
+      <rect x="72" y="58" width="8" height="30" rx="2" fill="white"/>
+      <!-- base -->
+      <rect x="36" y="90" width="48" height="6" rx="2" fill="white"/>
+    </svg>
+
+    <!-- 2) Circle of stars (12) -->
+    <svg width="110" height="110" viewBox="0 0 120 120" aria-label="stars circle" role="img">
+      <g fill="white" transform="translate(60 60)">
+        <!-- 12 stars around a circle -->
+        <!-- star path centered at (0, -38) then rotated -->
+        <defs>
+          <path id="star"
+                d="M 0 -6
+                   L 1.8 -1.8
+                   L 6 0
+                   L 1.8 1.8
+                   L 0 6
+                   L -1.8 1.8
+                   L -6 0
+                   L -1.8 -1.8 Z"/>
+        </defs>
+
+        <!-- place stars at radius 38 -->
+        <g>
+          <!-- each star group: translate up then rotate around center -->
+          <g transform="rotate(0) translate(0,-38)"><use href="#star"/></g>
+          <g transform="rotate(30) translate(0,-38)"><use href="#star"/></g>
+          <g transform="rotate(60) translate(0,-38)"><use href="#star"/></g>
+          <g transform="rotate(90) translate(0,-38)"><use href="#star"/></g>
+          <g transform="rotate(120) translate(0,-38)"><use href="#star"/></g>
+          <g transform="rotate(150) translate(0,-38)"><use href="#star"/></g>
+          <g transform="rotate(180) translate(0,-38)"><use href="#star"/></g>
+          <g transform="rotate(210) translate(0,-38)"><use href="#star"/></g>
+          <g transform="rotate(240) translate(0,-38)"><use href="#star"/></g>
+          <g transform="rotate(270) translate(0,-38)"><use href="#star"/></g>
+          <g transform="rotate(300) translate(0,-38)"><use href="#star"/></g>
+          <g transform="rotate(330) translate(0,-38)"><use href="#star"/></g>
+        </g>
+      </g>
+    </svg>
+
+    <!-- 3) Shield SSL -->
+    <svg width="110" height="110" viewBox="0 0 120 120" aria-label="ssl shield" role="img">
+      <!-- shield outline -->
+      <path d="M60 18
+               C78 18 92 26 92 26
+               V56
+               C92 84 72 96 60 102
+               C48 96 28 84 28 56
+               V26
+               C28 26 42 18 60 18 Z"
+            fill="none" stroke="white" stroke-width="4" />
+      <!-- inner inset (optional subtle) -->
+      <path d="M60 24
+               C74 24 86 30 86 30
+               V56
+               C86 78 70 88 60 94
+               C50 88 34 78 34 56
+               V30
+               C34 30 46 24 60 24 Z"
+            fill="none" stroke="white" stroke-width="2" opacity="0.55"/>
+
+      <!-- SSL text -->
+      <text x="60" y="64"
+            text-anchor="middle"
+            font-size="22"
+            font-weight="700"
+            fill="white"
+            font-family="system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif">
+        SSL
+      </text>
+    </svg>
+
+  </div>
+</body>
+</html>

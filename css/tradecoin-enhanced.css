@@ -1,0 +1,348 @@
+/* Enhanced Styles - Modern UI Improvements */
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Header Enhanced - Glass morphism effect on scroll */
+.header-enhanced {
+    backdrop-filter: blur(10px);
+    background: rgba(5, 15, 45, 0.8);
+    transition: all 0.3s ease;
+}
+
+.header-enhanced.scrolled {
+    background: rgba(5, 15, 45, 0.95);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Button Enhanced Styles */
+.btn-enhanced {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-enhanced .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(0);
+    animation: ripple-animation 0.6s ease-out;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+.btn-enhanced::before {
+    display: none;
+}
+
+.btn-enhanced:hover {
+    transform: none;
+}
+
+.btn-enhanced-pulse,
+.btn-enhanced-pulse:hover {
+    box-shadow: none !important;
+}
+
+.btn-card.btn-enhanced:hover {
+    transform: none;
+}
+
+.btn-enhanced:active {
+    transform: none;
+}
+
+/* Pulse Animation for Hero Button */
+.btn-enhanced-pulse {
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: none;
+    }
+    50% {
+        box-shadow: none;
+    }
+}
+
+/* Card Enhanced - 3D Hover Effect */
+.card-enhanced {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+.card-enhanced:hover {
+    transform: translateY(-8px) rotateX(2deg);
+    box-shadow: 0 20px 40px rgba(114, 127, 255, 0.3);
+}
+
+.benefit-card.card-enhanced:hover {
+    border-color: rgba(185, 171, 223, 0.8);
+}
+
+.explore-card.card-enhanced:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Fade In Animations */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+}
+
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.fade-in-down {
+    opacity: 0;
+    transform: translateY(-30px);
+    animation: fadeInDown 0.8s ease-out forwards;
+}
+
+.fade-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: fadeInLeft 0.8s ease-out forwards;
+}
+
+.fade-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+    animation: fadeInRight 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Hero Enhanced */
+.hero-enhanced {
+    position: relative;
+}
+
+.hero-enhanced .hero-content {
+    animation-delay: 0.2s;
+}
+
+.hero-enhanced .hero-image {
+    animation-delay: 0.4s;
+}
+
+/* Icon Animation on Card Hover */
+.card-enhanced:hover .card-icon-wrapper {
+    animation: iconFloat 2s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+.card-enhanced:hover .card-icon-bg {
+    animation: iconGlow 2s ease-in-out infinite;
+}
+
+@keyframes iconGlow {
+    0%, 100% {
+        opacity: 0.5;
+        filter: blur(50px);
+    }
+    50% {
+        opacity: 0.8;
+        filter: blur(60px);
+    }
+}
+
+/* Social Icons Enhanced */
+.social-icon {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.social-icon::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.4s, height 0.4s;
+}
+
+.social-icon:hover::after {
+    width: 100%;
+    height: 100%;
+}
+
+.social-icon:hover {
+    transform: translateY(-3px) scale(1.1);
+}
+
+/* Scroll Reveal Animation (using Intersection Observer via JS) */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Loading Animation for Images */
+img {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+img.loaded {
+    opacity: 1;
+}
+
+/* Smooth Gradient Animation */
+.hero-bg-gradient {
+    animation: gradientShift 8s ease infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* Text Gradient Animation */
+.title-yellow {
+    background: linear-gradient(90deg, #FFC83B 0%, #FFD700 50%, #FFC83B 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+    to {
+        background-position: 200% center;
+    }
+}
+
+/* Enhanced Focus States for Accessibility */
+.btn-enhanced:focus-visible,
+.card-enhanced:focus-visible {
+    outline: 2px solid var(--yellow-main);
+    outline-offset: 4px;
+}
+
+/* Smooth Page Transitions */
+body {
+    transition: opacity 0.3s ease;
+}
+
+body.loaded {
+    opacity: 1;
+}
+
+/* Footer Background Override */
+.footer {
+    background-color: #000000;
+}
+
+/* Responsive Enhancements */
+@media (max-width: 768px) {
+    .card-enhanced:hover {
+        transform: translateY(-5px);
+    }
+    
+    .fade-in-left,
+    .fade-in-right {
+        transform: translateY(30px);
+        animation-name: fadeInUp;
+    }
+    
+    .btn-enhanced-pulse {
+        animation: none;
+    }
+}
+
+/* Performance Optimizations */
+.card-enhanced,
+.btn-enhanced,
+.social-icon {
+    will-change: transform;
+}
+
+.card-enhanced:hover,
+.btn-enhanced:hover,
+.social-icon:hover {
+    will-change: auto;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    html {
+        scroll-behavior: auto;
+    }
+}

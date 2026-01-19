@@ -39,12 +39,45 @@ body {
 
 .screen-container {
   width: 100%;
-  max-width: 440px;
+  max-width: 396px;
   min-height: 100vh;
-  padding: 18px 24px 32px;
+  padding: 16px 22px 29px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  position: relative;
+}
+
+.cancel-button {
+  position: absolute;
+  top: 16px;
+  right: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.cancel-button:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+
+.cancel-button:active {
+  transform: scale(0.95);
+}
+
+.cancel-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .brand-header {
@@ -53,24 +86,24 @@ body {
   align-items: center;
   justify-content: flex-start;
   /* Y position of logo: 86px from top (padding-top 18px + margin-top 68px = 86px) */
-  margin-top: 68px;
+  margin-top: 61px;
 }
 
 .brand-logo {
-  width: min(180px, 60vw);
-  max-width: 180px;
+  width: min(162px, 54vw);
+  max-width: 162px;
   height: auto;
-  max-height: 64px;
+  max-height: 58px;
   object-fit: contain;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .brand-illustration {
-  max-width: 375px;
+  max-width: 338px;
   width: 100%;
-  max-height: 220px;
+  max-height: 198px;
   object-fit: contain;
-  filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.6));
+  filter: drop-shadow(0 14px 29px rgba(0, 0, 0, 0.6));
   /* Illustration gần sát title phía dưới */
   margin-bottom: 4px;
 }
@@ -79,16 +112,16 @@ body {
   text-align: center;
   font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  font-size: 32px;
+  font-size: 29px;
   font-weight: 700;
   line-height: 1.2;
   /* Gần như chạm illustration phía trên */
-  margin: 0 0 16px;
+  margin: 0 0 14px;
 }
 
 /* OTP page: logo -> title distance = 69px */
 .otp-page .brand-logo {
-  margin-bottom: 69px;
+  margin-bottom: 62px;
 }
 
 .content {
@@ -101,16 +134,16 @@ body {
 /* Active Account screen */
 /* Logo -> Title = 69px */
 .active-account-page .brand-logo {
-  margin-bottom: 69px;
+  margin-bottom: 62px;
 }
 
 /* Title -> Message box = 25px */
 .active-card {
-  width: 375px;
+  width: 338px;
   max-width: 100%;
-  margin: 25px auto 0;
-  padding: 18px 24px;
-  border-radius: 14px;
+  margin: 23px auto 0;
+  padding: 16px 22px;
+  border-radius: 13px;
   background: rgba(62, 51, 146, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.35);
   box-sizing: border-box;
@@ -121,7 +154,7 @@ body {
   text-align: center;
   font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.5;
   color: var(--text-primary);
 }
@@ -136,29 +169,29 @@ body {
 
 /* Message box -> Resend = 15px */
 .active-resend {
-  margin: 15px 0 0;
+  margin: 14px 0 0;
   text-align: center;
   font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.5;
   color: var(--text-secondary);
 }
 
 /* Resend -> Footer = 41px */
 .active-footer {
-  margin: 41px 0 0;
+  margin: 37px 0 0;
   text-align: center;
   font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.5;
   color: var(--text-secondary);
 }
 
 .auth-form {
-  padding-top: 6px;
-  max-width: 375px;
+  padding-top: 5px;
+  max-width: 338px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -167,11 +200,11 @@ body {
 
 .login-toggle {
   /* 18px down to Email input */
-  margin: 0 4px 18px;
+  margin: 0 4px 16px;
   text-align: right;
   font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.5;
   font-weight: 400;
   color: var(--accent-yellow);
@@ -198,48 +231,48 @@ body {
 /* OTP form: label left-aligned */
 .otp-description + .form-row {
   align-items: flex-start;
-  width: 375px;
+  width: 338px;
   max-width: 100%;
   /* OTP: description -> label distance = 85px */
-  margin: 85px auto 0;
+  margin: 77px auto 0;
   /* OTP: label -> input distance = 18px */
-  gap: 18px;
+  gap: 16px;
 }
 
 /* Vertical spacing between Email and Password fields: 28px */
 .form-row + .form-row {
-  margin-top: 28px;
+  margin-top: 25px;
 }
 
 /* Register form: Title to Email = 18px */
 .auth-form > .form-row:first-child {
-  margin-top: 18px;
+  margin-top: 16px;
 }
 
 /* Register form: Phone row to Verify via = 13px */
 .form-row-inline + .verify-section {
-  margin-top: 13px;
+  margin-top: 12px;
 }
 
 /* Register form: Verify via to Nick name = 15px */
 .verify-section + .form-row {
-  margin-top: 15px;
+  margin-top: 14px;
 }
 
 /* Register form: Nick name to Password = 18px (override 28px) */
 /* Nick name is immediately after verify-section, Password is next form-row */
 .verify-section + .form-row + .form-row {
-  margin-top: 18px;
+  margin-top: 16px;
 }
 
 /* Register form: Password to Checkbox = 19px */
 .form-row + .checkbox-row {
-  margin-top: 19px;
+  margin-top: 17px;
 }
 
 /* Register form: Checkbox to Referral code = 18px */
 .checkbox-row + .form-row {
-  margin-top: 18px;
+  margin-top: 16px;
 }
 
 .form-label {
@@ -250,7 +283,7 @@ body {
 /* OTP form: label color white */
 .otp-description + .form-row .form-label {
   color: var(--text-primary);
-  font-size: 16px;
+  font-size: 14px;
   font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   line-height: 1.5;
@@ -258,30 +291,30 @@ body {
 
 /* OTP input: larger font size and white text */
 .otp-description + .form-row .form-input {
-  font-size: 24px !important;
+  font-size: 22px !important;
   color: #ffffff;
   text-align: center;
-  letter-spacing: 8px;
+  letter-spacing: 7px;
   font-weight: 600;
 }
 
 /* OTP form: Register button font size (and spacing from OTP input = 18px) */
 .otp-description + .form-row + .primary-button {
-  font-size: 24px;
-  margin-top: 18px;
+  font-size: 22px;
+  margin-top: 16px;
 }
 
 .form-input {
-  width: 375px;
+  width: 338px;
   max-width: 100%;
   border-radius: var(--radius-md);
   border: 1px solid rgba(124, 105, 255, 0.55);
   /* Figma: top light (#B3AAF7) -> bottom dark (#2C0077) */
   background: linear-gradient(to bottom, #b3aaf7 0%, #2c0077 100%);
   color: var(--text-primary);
-  height: 50px;
-  padding: 0 16px;
-  font-size: 0.95rem;
+  height: 45px;
+  padding: 0 14px;
+  font-size: 0.86rem;
   outline: none;
   transition: border-color var(--transition-fast),
     box-shadow var(--transition-fast), transform var(--transition-fast);
@@ -291,15 +324,15 @@ body {
 .form-row-inline {
   flex-direction: row;
   justify-content: center;
-  gap: 11px;
+  gap: 10px;
 }
 
 .input-country {
-  width: 135px;
+  width: 122px;
 }
 
 .input-phone {
-  width: 229px;
+  width: 206px;
 }
 
 .form-input::placeholder {
@@ -317,19 +350,19 @@ body {
 }
 
 .password-field .form-input {
-  padding-right: 40px;
+  padding-right: 36px;
 }
 
 .password-eye {
   position: absolute;
-  right: 14px;
+  right: 13px;
   top: 50%;
   transform: translateY(-50%);
   display: inline-block;
-  width: 18.7px;
-  height: 16px;
-  font-size: 16px;
-  line-height: 16px;
+  width: 16.8px;
+  height: 14px;
+  font-size: 14px;
+  line-height: 14px;
   color: #ffffff;
   opacity: 0.9;
   cursor: default;
@@ -337,12 +370,12 @@ body {
 
 /* Verify via section (Register) */
 .verify-section {
-  width: 375px;
+  width: 338px;
   max-width: 100%;
   margin: 0 auto;
   font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.5;
   color: var(--text-secondary);
 }
@@ -354,7 +387,7 @@ body {
 
 .verify-options {
   display: flex;
-  gap: 28px;
+  gap: 25px;
 }
 
 .verify-option {
@@ -370,8 +403,8 @@ body {
 }
 
 .custom-radio {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   border: 2px solid #ffc72c;
   background: transparent;
@@ -386,21 +419,21 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   color: #ffffff;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
   line-height: 1;
 }
 
 .verify-text {
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .primary-button {
-  margin-top: 16px;
+  margin-top: 14px;
   border: none;
   border-radius: var(--radius-md);
-  padding: 14px 16px;
-  font-size: 1.05rem;
+  padding: 13px 14px;
+  font-size: 0.95rem;
   font-weight: 600;
   color: #ffffff;
   cursor: pointer;
@@ -413,7 +446,7 @@ body {
 
 /* Register form: Referral hint to Register button = 20px */
 .referral-hint + .primary-button {
-  margin-top: 20px;
+  margin-top: 18px;
 }
 
 .primary-button:hover {
@@ -434,7 +467,7 @@ body {
   color: var(--accent-yellow);
   font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.5;
   cursor: pointer;
   align-self: flex-end;
@@ -450,24 +483,24 @@ body {
 
 .alt-action {
   /* 75px from Login text to "Need an account? Register" (approx) */
-  margin: 75px 0 0;
+  margin: 68px 0 0;
   text-align: center;
   font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.5;
   color: var(--text-secondary);
 }
 
 /* Register form: Register button to "Already have account" = 49px */
 .auth-form .primary-button + .alt-action {
-  margin-top: 49px;
+  margin-top: 44px;
 }
 
 .forgot-link {
   align-self: flex-end;
   /* Vertical spacing from bottom of Password input: 25px (Figma) */
-  margin-top: 25px;
+  margin-top: 23px;
   color: var(--text-secondary);
 }
 
@@ -485,12 +518,12 @@ body {
 
 /* Register screen: checkbox + referral text */
 .checkbox-row {
-  width: 375px;
+  width: 338px;
   max-width: 100%;
   margin: 0 auto;
   font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   color: #ffffff;
 }
 
@@ -506,8 +539,8 @@ body {
 }
 
 .custom-checkbox {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   border: 2px solid #ffc72c;
   background: transparent;
@@ -522,22 +555,22 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   color: #ffffff;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: bold;
   line-height: 1;
 }
 
 .checkbox-text {
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .referral-hint {
   /* Register form: Referral code to hint = 9px */
-  margin: 9px 0 0;
+  margin: 8px 0 0;
   text-align: right;
   font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   color: #ffffff;
 }
 
@@ -549,11 +582,11 @@ body {
 /* OTP screen styles */
 .otp-description {
   /* Title -> description distance = 15px */
-  margin: 15px 0 18px;
+  margin: 14px 0 16px;
   text-align: center;
   font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  font-size: 16px !important;
+  font-size: 14px !important;
   line-height: 1.5;
   color: var(--text-primary);
 }
@@ -565,11 +598,11 @@ body {
 
 .resend-text {
   /* Button -> Resend distance = 21px */
-  margin: 21px 0 0;
+  margin: 19px 0 0;
   text-align: center;
   font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.5;
   color: var(--text-secondary);
 }
@@ -593,17 +626,17 @@ body {
 /* Forgot Password screen */
 /* Logo -> Title = 69px */
 .forgot-password-page .brand-logo {
-  margin-bottom: 69px;
+  margin-bottom: 62px;
 }
 
 /* Title -> Phone number fields = 41px */
 .forgot-password-page .auth-form > .form-row:first-child {
-  margin-top: 41px;
+  margin-top: 37px;
 }
 
 /* Phone number -> OTP code = 17px */
 .forgot-password-page .form-row-inline + .form-row {
-  margin-top: 17px;
+  margin-top: 15px;
 }
 
 /* Label "OTP code" -> OTP input = 4px */
@@ -614,14 +647,14 @@ body {
 /* OTP input: center, size 24, white */
 .forgot-password-page #forgot-otp {
   text-align: center;
-  font-size: 24px;
+  font-size: 22px;
   color: #ffffff;
-  letter-spacing: 8px;
+  letter-spacing: 7px;
 }
 
 /* OTP input -> Enter new password label = 17px */
 .forgot-password-page .form-row:nth-of-type(2) + .form-row {
-  margin-top: 17px;
+  margin-top: 15px;
 }
 
 /* Label -> Password input = 8px */
@@ -641,19 +674,19 @@ body {
 
 /* Password input -> Register button = 26px */
 .forgot-password-page .form-row + .primary-button {
-  margin-top: 26px;
-  font-size: 24px;
+  margin-top: 23px;
+  font-size: 22px;
 }
 
 /* Register button -> Resend = 33px */
 .forgot-password-page .primary-button + .resend-text {
-  margin-top: 33px;
+  margin-top: 30px;
 }
 
 .forgot-password-page .form-label {
   align-self: flex-start;
   color: var(--text-secondary);
-  font-size: 16px;
+  font-size: 14px;
   font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   line-height: 1.5;

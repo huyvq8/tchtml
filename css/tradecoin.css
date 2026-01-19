@@ -1,0 +1,901 @@
+/* Reset và base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-primary: #050F2D;
+    --yellow-main: #FFC83B;
+    --yellow-dark: #EF9000;
+    --text-white: #FFFFFF;
+    --text-gray: #CBCBCB;
+    --card-border: #B9ABDF;
+    --card-bg-gradient: linear-gradient(180deg, rgba(133.96, 91.26, 233.59, 0.50) 0%, rgba(0, 25.15, 100.62, 0.50) 100%);
+    --button-bg: #08184E;
+    --explore-gradient: linear-gradient(180deg, rgba(74, 64, 154, 0.50) 0%, rgba(5, 15, 45, 0.50) 100%);
+    --explore-border: #D6C097;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-white);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1728px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+/* Header */
+.header {
+    background-color: var(--bg-primary);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1728px;
+    margin: 0 auto;
+    padding: 0 186px 0 186px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 72px;
+    width: auto;
+    object-fit: contain;
+}
+
+.header-actions {
+    display: flex;
+    gap: 25px;
+}
+
+.btn-login,
+.btn-register {
+    padding: 18px 40px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-login {
+    background: linear-gradient(180deg, var(--yellow-main) 0%, var(--yellow-dark) 100%);
+    color: #000;
+    box-shadow: 2px 3px 4px 2px rgba(255, 239.60, 23.97, 0.25) inset;
+}
+
+.btn-register {
+    background: var(--button-bg);
+    color: var(--yellow-main);
+    border: 1px solid var(--yellow-main);
+}
+
+.btn-login:hover,
+.btn-register:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    min-height: 840px;
+    padding: 120px 0;
+    overflow: hidden;
+}
+
+.hero-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+
+.hero-bg-gradient {
+    position: absolute;
+    width: 816px;
+    height: 816px;
+    left: 50%;
+    top: -172px;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, #0E7BF8 0%, rgba(14, 123, 248, 0) 86%);
+    border-radius: 9999px;
+    filter: blur(200px);
+    z-index: 1;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-subtitle {
+    font-size: 44px;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.hero-title {
+    font-size: 88px;
+    font-weight: 700;
+    color: var(--yellow-main);
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.hero-description {
+    font-size: 36px;
+    color: var(--text-white);
+    margin-bottom: 40px;
+    line-height: 1.3;
+}
+
+.btn-trading {
+    background-image: url('../images/btn01.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #FFFFFF;
+    padding: 28px 80px;
+    border-radius: 60px;
+    font-size: 36px;
+    font-weight: 700;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-trading:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.hero-image {
+    position: relative;
+}
+
+.hero-img {
+    width: 100%;
+    max-width: 633px;
+    height: auto;
+    border-radius: 20px;
+    object-fit: contain;
+}
+
+/* Platform Benefits Section */
+.platform-benefits {
+    padding: 100px 0;
+    background-color: var(--bg-primary);
+    overflow: visible;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 60px;
+    margin-bottom: 30px;
+}
+
+.title-white {
+    color: var(--text-white);
+}
+
+.title-yellow {
+    color: var(--yellow-main);
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 32px;
+    color: var(--text-gray);
+    line-height: 48px;
+    margin-bottom: 80px;
+    max-width: 1226px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    overflow: visible;
+}
+
+.benefit-card {
+    background: var(--card-bg-gradient);
+    border: 2px solid var(--card-border);
+    border-radius: 17px;
+    padding: 40px 30px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    text-align: center;
+    position: relative;
+    min-height: 414px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    overflow: visible;
+}
+
+.card-icon-wrapper {
+    position: absolute;
+    top: -88px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 177px;
+    height: 177px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.card-icon-bg {
+    position: absolute;
+    width: 177px;
+    height: 177px;
+    background: #694EFF;
+    border-radius: 50%;
+    filter: blur(50px);
+    opacity: 0.5;
+}
+
+.card-icon {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-icon svg {
+    width: 131px;
+    height: 131px;
+}
+
+.card-icon-inner {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+}
+
+.card-icon-inner svg {
+    width: 100%;
+    height: 100%;
+}
+
+.card-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 20px;
+    margin-top: 100px;
+    line-height: 38.4px;
+}
+
+.card-description {
+    font-size: 22px;
+    color: var(--text-white);
+    line-height: 26.4px;
+    margin-bottom: 30px;
+    flex-grow: 1;
+}
+
+.btn-card {
+    background: var(--button-bg);
+    border: 1px solid var(--yellow-main);
+    border-radius: 12px;
+    color: var(--yellow-main);
+    padding: 16px 30px;
+    font-size: 26px;
+    font-weight: 400;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 5;
+    margin-top: auto;
+    margin-bottom: -30px;
+}
+
+.btn-card:hover {
+    background: rgba(8, 24, 78, 0.8);
+}
+
+.btn-card svg {
+    width: 21px;
+    height: 12px;
+}
+
+/* Convenient Trading Section */
+.convenient-trading {
+    padding: 120px 0;
+    background-color: var(--bg-primary);
+}
+
+.trading-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.trading-image {
+    position: relative;
+}
+
+.trading-img {
+    width: 100%;
+    max-width: 605px;
+    height: auto;
+    border-radius: 20px;
+    object-fit: contain;
+}
+
+.trading-title {
+    font-size: 63px;
+    font-weight: 700;
+    line-height: 75.6px;
+    margin-bottom: 60px;
+    text-transform: capitalize;
+}
+
+.trading-features {
+    list-style: none;
+    margin-bottom: 50px;
+}
+
+.trading-features li {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 32px;
+    color: var(--text-white);
+    margin-bottom: 30px;
+    text-transform: capitalize;
+}
+
+.trading-features li svg {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+}
+
+.btn-try {
+    background: var(--button-bg);
+    border: 1px solid var(--yellow-main);
+    border-radius: 12px;
+    color: var(--yellow-main);
+    padding: 16px 40px;
+    font-size: 26px;
+    font-weight: 400;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-try:hover {
+    background: rgba(8, 24, 78, 0.8);
+}
+
+/* Explore Section */
+.explore-section {
+    padding: 100px 0;
+    background-color: var(--bg-primary);
+    position: relative;
+}
+
+.section-title-white {
+    text-align: center;
+    font-size: 63px;
+    font-weight: 700;
+    color: var(--text-white);
+    line-height: 75.6px;
+    margin-bottom: 80px;
+    text-transform: capitalize;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.explore-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.explore-card {
+    background: var(--explore-gradient);
+    border: 2px solid var(--explore-border);
+    border-radius: 18px;
+    padding: 40px 30px;
+    text-align: center;
+    box-shadow: 0px 4px 4px rgba(169.18, 97.87, 220.11, 0.25);
+    min-height: 232px;
+    display: flex;
+    flex-direction: column;
+}
+
+.explore-card-image {
+    width: 100%;
+    height: 120px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.explore-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.explore-card-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    line-height: 48px;
+}
+
+.explore-card-desc {
+    font-size: 22px;
+    color: var(--text-white);
+    line-height: 26px;
+    margin-bottom: 25px;
+    flex-grow: 1;
+}
+
+.btn-explore {
+    background: linear-gradient(180deg, #492DE1 0%, #25256B 100%);
+    border: none;
+    border-radius: 8px;
+    color: var(--text-white);
+    padding: 12px 30px;
+    font-size: 22px;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: center;
+}
+
+.btn-explore:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+/* No Commission Section */
+.no-commission {
+    padding: 120px 0;
+    background-color: var(--bg-primary);
+}
+
+.commission-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.commission-title {
+    font-size: 63px;
+    font-weight: 700;
+    line-height: 94.5px;
+    margin-bottom: 50px;
+}
+
+.commission-description {
+    font-size: 32px;
+    color: var(--text-gray);
+    line-height: 38.4px;
+    letter-spacing: 0.64px;
+}
+
+.commission-image {
+    position: relative;
+}
+
+.commission-img {
+    width: 100%;
+    max-width: 667px;
+    height: auto;
+    border-radius: 20px;
+    object-fit: contain;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--bg-primary);
+    padding: 60px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.footer-logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-white);
+}
+
+.footer-text {
+    text-align: right;
+    color: var(--text-gray);
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.footer-text p {
+    margin-bottom: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+    .header-container {
+        padding: 0 40px;
+    }
+    
+    .hero-title {
+        font-size: 64px;
+        line-height: 1.1;
+    }
+    
+    .hero-subtitle {
+        font-size: 36px;
+        line-height: 1.2;
+    }
+    
+    .benefits-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .header-container {
+        padding: 0 40px;
+    }
+    
+    .hero .container,
+    .trading-content,
+    .commission-content {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+    
+    .hero-image,
+    .trading-image,
+    .commission-image {
+        order: -1;
+    }
+    
+    .benefits-grid,
+    .explore-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+    
+    .hero-title {
+        font-size: 48px;
+        line-height: 1.1;
+    }
+    
+    .hero-subtitle {
+        font-size: 28px;
+        line-height: 1.2;
+    }
+    
+    .section-title {
+        font-size: 32px;
+        line-height: 48px;
+    }
+    
+    .trading-title,
+    .commission-title {
+        font-size: 42px;
+        line-height: 54px;
+    }
+    
+    .section-title-white {
+        font-size: 42px;
+        line-height: 54px;
+        margin-bottom: 60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        padding: 0 20px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .logo-img {
+        height: 60px;
+    }
+    
+    .header-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+        flex-shrink: 0;
+    }
+    
+    .btn-login,
+    .btn-register {
+        padding: 12px 20px;
+        font-size: 14px;
+        white-space: nowrap;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+    
+    .hero {
+        padding: 60px 0;
+        min-height: auto;
+    }
+    
+    .hero-title {
+        font-size: 36px;
+        line-height: 1.1;
+    }
+    
+    .hero-subtitle {
+        font-size: 24px;
+        line-height: 1.2;
+    }
+    
+    .hero-description {
+        font-size: 24px;
+        line-height: 1.3;
+    }
+    
+    .btn-trading {
+        padding: 20px 40px;
+        font-size: 24px;
+    }
+    
+    .platform-benefits,
+    .convenient-trading,
+    .explore-section,
+    .no-commission {
+        padding: 60px 0;
+    }
+    
+    .benefits-grid,
+    .explore-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+        line-height: 42px;
+    }
+    
+    .section-title-white {
+        font-size: 32px;
+        line-height: 42px;
+        margin-bottom: 50px;
+    }
+    
+    .section-subtitle {
+        font-size: 20px;
+        line-height: 30px;
+    }
+    
+    .benefit-card {
+        min-height: auto;
+        padding: 30px 20px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    
+    .card-icon-wrapper {
+        top: -70px;
+        width: 140px;
+        height: 140px;
+    }
+    
+    .card-icon svg {
+        width: 105px;
+        height: 105px;
+    }
+    
+    .card-icon-inner {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .card-title {
+        font-size: 24px;
+        line-height: 32px;
+        margin-top: 80px;
+    }
+    
+    .btn-card {
+        margin-bottom: -20px;
+        padding: 12px 24px;
+        font-size: 20px;
+    }
+    
+    .card-description {
+        font-size: 18px;
+        line-height: 24px;
+    }
+    
+    .trading-title,
+    .commission-title {
+        font-size: 32px;
+        line-height: 42px;
+    }
+    
+    .trading-features li {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .trading-features li svg {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .commission-description {
+        font-size: 20px;
+        line-height: 28px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-text {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-img {
+        height: 50px;
+    }
+    
+    .hero-title {
+        font-size: 28px;
+        line-height: 1.1;
+    }
+    
+    .hero-subtitle {
+        font-size: 18px;
+        line-height: 1.2;
+    }
+    
+    .hero-description {
+        font-size: 18px;
+        line-height: 1.3;
+    }
+    
+    .btn-trading {
+        padding: 16px 30px;
+        font-size: 18px;
+    }
+    
+    .section-title {
+        font-size: 24px;
+        line-height: 36px;
+    }
+    
+    .section-title-white {
+        font-size: 28px;
+        line-height: 36px;
+        margin-bottom: 40px;
+    }
+    
+    .card-icon-wrapper {
+        top: -60px;
+        width: 120px;
+        height: 120px;
+    }
+    
+    .card-icon {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .card-icon svg {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .card-icon-inner {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .card-title {
+        margin-top: 70px;
+    }
+    
+    .btn-card {
+        margin-bottom: -15px;
+        padding: 10px 20px;
+        font-size: 18px;
+    }
+    
+    .trading-title,
+    .commission-title {
+        font-size: 24px;
+        line-height: 32px;
+    }
+    
+    .trading-features li {
+        font-size: 16px;
+    }
+}

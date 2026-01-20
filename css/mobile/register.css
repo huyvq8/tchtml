@@ -97,15 +97,6 @@ body {
   margin-bottom: 14px;
 }
 
-.brand-illustration {
-  max-width: 100%;
-  width: 100%;
-  max-height: 198px;
-  object-fit: contain;
-  filter: drop-shadow(0 14px 29px rgba(0, 0, 0, 0.6));
-  margin-bottom: 4px;
-}
-
 .screen-title {
   text-align: center;
   font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -178,6 +169,27 @@ body {
   transform: translateY(-1px);
 }
 
+.form-row-inline {
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.input-country {
+  width: 35%;
+  min-width: 100px;
+  max-width: 140px;
+  flex-shrink: 0;
+}
+
+.input-phone {
+  width: 65%;
+  flex: 1;
+  min-width: 0;
+}
+
 .password-field {
   position: relative;
   width: 100%;
@@ -231,27 +243,6 @@ body {
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.55);
 }
 
-.link-button {
-  margin-top: 4px;
-  border: none;
-  background: transparent;
-  color: var(--accent-yellow);
-  font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-  cursor: pointer;
-  align-self: flex-end;
-  padding: 4px 2px 0;
-  text-decoration: none;
-  transition: color var(--transition-fast), opacity var(--transition-fast);
-}
-
-.link-button:hover {
-  color: #ffe068;
-  opacity: 0.9;
-}
-
 .alt-action {
   margin: 68px 0 0;
   text-align: center;
@@ -274,34 +265,154 @@ body {
   text-shadow: 0 0 10px rgba(255, 231, 130, 0.6);
 }
 
-/* Login page specific styles */
+/* Register page specific styles */
 
-.login-toggle {
-  margin: 0 4px 16px;
+.auth-form > .form-row:first-child {
+  margin-top: 16px;
+}
+
+.form-row-inline + .verify-section {
+  margin-top: 12px;
+}
+
+.verify-section + .form-row {
+  margin-top: 14px;
+}
+
+.verify-section + .form-row + .form-row {
+  margin-top: 16px;
+}
+
+.form-row + .checkbox-row {
+  margin-top: 17px;
+}
+
+.checkbox-row + .form-row {
+  margin-top: 16px;
+}
+
+.verify-section {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.verify-label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.verify-options {
+  display: flex;
+  gap: 25px;
+}
+
+.verify-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.verify-option input[type="radio"] {
+  display: none;
+}
+
+.custom-radio {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #ffc72c;
+  background: transparent;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.verify-option input[type="radio"]:checked + .custom-radio::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.verify-text {
+  font-size: 13px;
+}
+
+.checkbox-row {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-size: 13px;
+  color: #ffffff;
+}
+
+.checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  display: none;
+}
+
+.custom-checkbox {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #ffc72c;
+  background: transparent;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.checkbox-label input[type="checkbox"]:checked + .custom-checkbox::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.checkbox-text {
+  font-size: 13px;
+}
+
+.referral-hint {
+  margin: 8px 0 0;
   text-align: right;
   font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-  font-weight: 400;
-  color: var(--accent-yellow);
+  font-size: 13px;
+  color: #ffffff;
 }
 
-.inline-link {
-  border: none;
-  background: transparent;
-  color: var(--accent-yellow);
-  font-weight: 400;
-  cursor: pointer;
-  padding: 0 2px;
-  font-size: inherit;
-  text-decoration: none;
+.referral-username {
+  color: #ffc72c;
+  font-weight: 600;
 }
 
-.forgot-link {
-  align-self: flex-end;
-  margin-top: 23px;
-  color: var(--text-secondary);
+.referral-hint + .primary-button {
+  margin-top: 18px;
 }
 
 .auth-form .primary-button + .alt-action {
@@ -323,11 +434,6 @@ body {
   .brand-logo {
     max-width: 140px;
     max-height: 50px;
-  }
-
-  .brand-illustration {
-    max-width: 100%;
-    max-height: 180px;
   }
 
   .screen-title {
@@ -355,11 +461,40 @@ body {
     align-items: stretch;
   }
 
+  .form-row-inline {
+    width: 100%;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .input-country {
+    width: 35%;
+    min-width: 100px;
+    max-width: 120px;
+    flex-shrink: 0;
+  }
+
+  .input-phone {
+    width: 65%;
+    flex: 1;
+    min-width: 150px;
+  }
+
   .cancel-button {
     top: 14px;
     right: 16px;
     width: 28px;
     height: 28px;
+  }
+
+  .verify-section {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .checkbox-row {
+    width: 100%;
+    max-width: 100%;
   }
 }
 
@@ -384,6 +519,37 @@ body {
   .form-row {
     width: 100%;
     align-items: stretch;
+  }
+
+  .form-row-inline {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .input-country {
+    width: 35%;
+    min-width: 110px;
+    max-width: 130px;
+  }
+
+  .input-phone {
+    width: 65%;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .password-field {
+    width: 100%;
+  }
+
+  .verify-section {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .checkbox-row {
+    width: 100%;
+    max-width: 100%;
   }
 }
 

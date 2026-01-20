@@ -1,0 +1,241 @@
+:root {
+  --bg-main: #020923;
+  --bg-card: rgba(34, 20, 87, 0.9);
+  --accent-yellow: #ffc72c;
+  --accent-orange: #ff8d1a;
+  --accent-purple: #7a3cff;
+  --text-primary: #ffffff;
+  --text-secondary: #a4b0d0;
+  --error: #ff4b6a;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --radius-pill: 999px;
+  --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.45);
+  --shadow-button: 0 10px 24px rgba(0, 0, 0, 0.5);
+  --transition-fast: 0.18s ease-out;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  color: var(--text-primary);
+  background-color: #020923;
+  background-image: url("../../images/iPhone 16 Pro Max - 4.png");
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.screen-container {
+  width: 90%;
+  max-width: 90%;
+  min-height: 100vh;
+  padding: 16px 22px 29px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.cancel-button {
+  position: absolute;
+  top: 16px;
+  right: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.cancel-button:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+
+.cancel-button:active {
+  transform: scale(0.95);
+}
+
+.cancel-button img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.brand-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 61px;
+}
+
+.brand-logo {
+  width: min(162px, 54vw);
+  max-width: 162px;
+  height: auto;
+  max-height: 58px;
+  object-fit: contain;
+  margin-bottom: 14px;
+}
+
+.screen-title {
+  text-align: center;
+  font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-size: 29px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 14px;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.alt-link {
+  color: var(--accent-yellow);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--transition-fast), text-shadow var(--transition-fast);
+}
+
+.alt-link:hover {
+  color: #ffe068;
+  text-shadow: 0 0 10px rgba(255, 231, 130, 0.6);
+}
+
+/* Active Account page specific styles */
+
+.active-account-page .brand-logo {
+  margin-bottom: 62px;
+}
+
+.active-card {
+  width: 100%;
+  max-width: 100%;
+  margin: 23px auto 0;
+  padding: 16px 22px;
+  border-radius: 13px;
+  background: rgba(62, 51, 146, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-sizing: border-box;
+}
+
+.active-text {
+  margin: 0;
+  text-align: center;
+  font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+.active-email-label {
+  font-weight: 400;
+}
+
+.active-email {
+  color: var(--accent-yellow);
+}
+
+.active-resend {
+  margin: 14px 0 0;
+  text-align: center;
+  font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.active-footer {
+  margin: 37px 0 0;
+  text-align: center;
+  font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+/* Responsive for small mobile devices */
+@media (max-width: 375px) {
+  .screen-container {
+    width: 90%;
+    max-width: 90%;
+    padding: 14px 16px 26px;
+  }
+
+  .brand-header {
+    margin-top: 50px;
+  }
+
+  .brand-logo {
+    max-width: 140px;
+    max-height: 50px;
+  }
+
+  .screen-title {
+    font-size: 26px;
+    margin-bottom: 12px;
+  }
+
+  .cancel-button {
+    top: 14px;
+    right: 16px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .active-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 14px 18px;
+  }
+}
+
+/* Responsive for medium mobile devices */
+@media (min-width: 376px) and (max-width: 414px) {
+  .screen-container {
+    width: 90%;
+    max-width: 90%;
+    padding: 15px 18px 28px;
+  }
+
+  .active-card {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* Responsive for larger screens */
+@media (min-width: 480px) {
+  .screen-container {
+    width: 90%;
+    max-width: 90%;
+    justify-content: center;
+  }
+}

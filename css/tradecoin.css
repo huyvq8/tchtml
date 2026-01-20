@@ -21,21 +21,26 @@
 body {
     font-family: Arial, sans-serif;
     background-color: var(--bg-primary);
+    background-image: url('../images/bg-desktop-full.png');
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     color: var(--text-white);
     line-height: 1.6;
     overflow-x: hidden;
+    min-height: 100vh;
 }
 
 .container {
-    max-width: 1728px;
+    max-width: 1328px;
     margin: 0 auto;
     padding: 0 20px;
     width: 100%;
 }
 
 /* Header */
-.header {
-    background-color: var(--bg-primary);
+.header {    
     padding: 20px 0;
     position: sticky;
     top: 0;
@@ -46,9 +51,9 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1728px;
+    max-width: 1328px;
     margin: 0 auto;
-    padding: 0 186px 0 186px;
+    padding: 0 16px;
 }
 
 .logo-container {
@@ -99,22 +104,8 @@ body {
 /* Hero Section */
 .hero {
     position: relative;
-    min-height: 840px;
-    padding: 120px 0;
+    min-height: 580px;    
     overflow: hidden;
-}
-
-.hero-bg-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('../images/hero-bg.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: 0;
 }
 
 .hero-bg-gradient {
@@ -123,8 +114,7 @@ body {
     height: 816px;
     left: 50%;
     top: -172px;
-    transform: translateX(-50%);
-    background: linear-gradient(180deg, #0E7BF8 0%, rgba(14, 123, 248, 0) 86%);
+    transform: translateX(-50%);    
     border-radius: 9999px;
     filter: blur(200px);
     z-index: 1;
@@ -135,19 +125,19 @@ body {
     z-index: 1;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    gap: 100px;
     align-items: center;
 }
 
 .hero-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
 }
 
 .hero-subtitle {
-    font-size: 44px;
+    font-size: 40px;
     font-weight: 700;
     color: var(--text-white);
     margin-bottom: 10px;
@@ -155,36 +145,37 @@ body {
 }
 
 .hero-title {
-    font-size: 88px;
+    font-size: 76px;
     font-weight: 700;
     color: var(--yellow-main);
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     line-height: 1.1;
 }
 
 .hero-description {
-    font-size: 36px;
+    font-size: 32px;
     color: var(--text-white);
-    margin-bottom: 40px;
+    margin-bottom: 36px;
     line-height: 1.3;
 }
 
 .btn-trading {
     background-image: url('../images/btn01.png');
-    background-size: cover;
-    background-position: center;
+    background-size: cover;  
     background-repeat: no-repeat;
+    background-color: transparent;
     color: #FFFFFF;
-    padding: 28px 80px;
+    padding: 26px 48px;
     border-radius: 60px;
-    font-size: 36px;
+    font-size: 26px;
+    line-height: 32px;
     font-weight: 700;
-    border: 2px solid rgba(255, 255, 255, 0.8);
+    border: none;
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;    
     text-transform: uppercase;
     letter-spacing: 1px;
+    display: inline-block;
 }
 
 .btn-trading:hover {
@@ -194,6 +185,10 @@ body {
 
 .hero-image {
     position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
 }
 
 .hero-img {
@@ -206,8 +201,7 @@ body {
 
 /* Platform Benefits Section */
 .platform-benefits {
-    padding: 100px 0;
-    background-color: var(--bg-primary);
+    padding: 50px 0;    
     overflow: visible;
 }
 
@@ -216,7 +210,7 @@ body {
     font-size: 40px;
     font-weight: 700;
     line-height: 60px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .title-white {
@@ -226,13 +220,18 @@ body {
 .title-yellow {
     color: var(--yellow-main);
 }
-
+.commission-content .title-yellow {
+    font-size: 62px;
+}
+.commission-content .title-white {
+    font-size: 40px;
+}
 .section-subtitle {
     text-align: center;
-    font-size: 32px;
+    font-size:  24px;
     color: var(--text-gray);
-    line-height: 48px;
-    margin-bottom: 80px;
+    line-height: 28px;
+    margin-bottom: 30px;
     max-width: 1226px;
     margin-left: auto;
     margin-right: auto;
@@ -244,6 +243,7 @@ body {
     gap: 40px;
     max-width: 1400px;
     margin: 0 auto;
+    padding-top: 110px;
     overflow: visible;
 }
 
@@ -251,26 +251,25 @@ body {
     background: var(--card-bg-gradient);
     border: 2px solid var(--card-border);
     border-radius: 17px;
-    padding: 40px 30px;
-    padding-top: 60px;
-    padding-bottom: 60px;
+    padding: 30px 30px;   
     text-align: center;
     position: relative;
-    min-height: 414px;
+    min-height: 225px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
     overflow: visible;
+    margin-bottom: 65px;
 }
 
 .card-icon-wrapper {
     position: absolute;
-    top: -88px;
+    top: -80px;
     left: 50%;
     transform: translateX(-50%);
-    width: 177px;
-    height: 177px;
+    width: 160px;
+    height: 160px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -279,8 +278,8 @@ body {
 
 .card-icon-bg {
     position: absolute;
-    width: 177px;
-    height: 177px;
+    width: 160px;
+    height: 160px;
     background: #694EFF;
     border-radius: 50%;
     filter: blur(50px);
@@ -296,8 +295,8 @@ body {
 }
 
 .card-icon svg {
-    width: 131px;
-    height: 131px;
+    width: 120px;
+    height: 120px;
 }
 
 .card-icon-inner {
@@ -306,8 +305,8 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
 }
 
 .card-icon-inner svg {
@@ -316,19 +315,19 @@ body {
 }
 
 .card-title {
-    font-size: 32px;
+    font-size: 22px;
     font-weight: 700;
     color: var(--text-white);
     margin-bottom: 20px;
-    margin-top: 100px;
+    margin-top: 32px;
     line-height: 38.4px;
 }
 
 .card-description {
-    font-size: 22px;
+    font-size: 16px;
     color: var(--text-white);
     line-height: 26.4px;
-    margin-bottom: 30px;
+    margin-bottom: 68px;
     flex-grow: 1;
 }
 
@@ -337,22 +336,19 @@ body {
     border: 1px solid var(--yellow-main);
     border-radius: 12px;
     color: var(--yellow-main);
-    padding: 16px 30px;
-    font-size: 26px;
+    padding: 8px 24px;
+    font-size: 18px;
     font-weight: 400;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     gap: 10px;
     transition: all 0.3s ease;
-    position: relative;
+    position: absolute;
+    bottom: 40px;
     z-index: 5;
     margin-top: auto;
-    margin-bottom: -30px;
-}
-
-.btn-card:hover {
-    background: rgba(8, 24, 78, 0.8);
+    margin-bottom: -88px;
 }
 
 .btn-card svg {
@@ -362,8 +358,7 @@ body {
 
 /* Convenient Trading Section */
 .convenient-trading {
-    padding: 120px 0;
-    background-color: var(--bg-primary);
+    padding: 50px 0;    
 }
 
 .trading-content {
@@ -375,6 +370,14 @@ body {
 
 .trading-image {
     position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.trading-text {      
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .trading-img {
@@ -383,28 +386,30 @@ body {
     height: auto;
     border-radius: 20px;
     object-fit: contain;
+    margin-bottom: 20px;
 }
 
 .trading-title {
     font-size: 63px;
     font-weight: 700;
     line-height: 75.6px;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
     text-transform: capitalize;
 }
 
 .trading-features {
     list-style: none;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .trading-features li {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     gap: 20px;
     font-size: 32px;
     color: var(--text-white);
-    margin-bottom: 30px;
+    margin-bottom: 22px;
     text-transform: capitalize;
 }
 
@@ -419,8 +424,8 @@ body {
     border: 1px solid var(--yellow-main);
     border-radius: 12px;
     color: var(--yellow-main);
-    padding: 16px 40px;
-    font-size: 26px;
+    padding: 10px 32px;
+    font-size: 24px;
     font-weight: 400;
     cursor: pointer;
     display: inline-flex;
@@ -435,7 +440,7 @@ body {
 
 /* Explore Section */
 .explore-section {
-    padding: 100px 0;
+    padding: 50px 0;
     background-color: var(--bg-primary);
     position: relative;
 }
@@ -460,35 +465,20 @@ body {
 }
 
 .explore-card {
-    background: var(--explore-gradient);
-    border: 2px solid var(--explore-border);
+    background-image: url('../images/Rectangle-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;    
     border-radius: 18px;
-    padding: 40px 30px;
-    text-align: center;
-    box-shadow: 0px 4px 4px rgba(169.18, 97.87, 220.11, 0.25);
-    min-height: 232px;
+    padding: 22px 30px;
+    text-align: center;    
+    min-height: 212px;
     display: flex;
     flex-direction: column;
 }
 
-.explore-card-image {
-    width: 100%;
-    height: 120px;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    overflow: hidden;
-    position: relative;
-}
-
-.explore-card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
 .explore-card-title {
-    font-size: 32px;
+    font-size: 25px;
     font-weight: 700;
     color: var(--text-white);
     margin-bottom: 15px;
@@ -497,11 +487,10 @@ body {
 }
 
 .explore-card-desc {
-    font-size: 22px;
+    font-size: 18px;
     color: var(--text-white);
-    line-height: 26px;
-    margin-bottom: 25px;
-    flex-grow: 1;
+    line-height: 20px;
+    margin-bottom: 20px;    
 }
 
 .btn-explore {
@@ -509,8 +498,8 @@ body {
     border: none;
     border-radius: 8px;
     color: var(--text-white);
-    padding: 12px 30px;
-    font-size: 22px;
+    padding: 10px 30px;
+    font-size: 20px;
     font-weight: 400;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -524,8 +513,7 @@ body {
 
 /* No Commission Section */
 .no-commission {
-    padding: 120px 0;
-    background-color: var(--bg-primary);
+    padding: 50px 0;    
 }
 
 .commission-content {
@@ -539,11 +527,11 @@ body {
     font-size: 63px;
     font-weight: 700;
     line-height: 94.5px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .commission-description {
-    font-size: 32px;
+    font-size: 24px;
     color: var(--text-gray);
     line-height: 38.4px;
     letter-spacing: 0.64px;
@@ -577,13 +565,42 @@ body {
 }
 
 .footer-logo {
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--text-white);
+    display: flex;
+    align-items: center;
 }
 
-.footer-text {
-    text-align: right;
+.footer-logo-img {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+}
+
+.footer-social {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-2px);
+    opacity: 0.8;
+}
+
+.social-icon svg {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    fill: rgba(255, 255, 255, 0.6);
+}
+
+.footer-text {    
     color: var(--text-gray);
     font-size: 14px;
     line-height: 1.8;
@@ -591,6 +608,48 @@ body {
 
 .footer-text p {
     margin-bottom: 8px;
+}
+
+.footer-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.footer-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    flex: 1;
+    min-width: 280px;
+}
+
+.footer-info-icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top: 2px;
+}
+
+.footer-info-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.footer-info-text {
+    color: var(--text-gray);
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0;
+    text-align: left;
 }
 
 /* Responsive Design */
@@ -620,23 +679,25 @@ body {
         padding: 0 40px;
     }
     
-    .hero .container,
     .trading-content,
     .commission-content {
         grid-template-columns: 1fr;
-        gap: 60px;
+        gap: 32px;
     }
     
-    .hero-image,
     .trading-image,
     .commission-image {
-        order: -1;
+        order: 1;
     }
     
     .benefits-grid,
     .explore-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 30px;
+    }
+    
+    .benefits-grid {
+        padding-top: 110px;
     }
     
     .hero-title {
@@ -668,6 +729,11 @@ body {
 }
 
 @media (max-width: 768px) {
+    body {
+        background-image: url('../images/bg-mobile-full.png');
+        background-attachment: scroll;
+    }
+    
     .header-container {
         padding: 0 20px;
         flex-direction: row;
@@ -688,8 +754,8 @@ body {
     
     .btn-login,
     .btn-register {
-        padding: 12px 20px;
-        font-size: 14px;
+        padding: 6px 20px;
+        font-size: 12px;
         white-space: nowrap;
     }
     
@@ -698,22 +764,36 @@ body {
     }
     
     .hero {
-        padding: 60px 0;
+        padding: 30px 0;
         min-height: auto;
     }
     
+    .hero .container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .hero-content {
+        align-items: center;
+        text-align: center;
+    }
+    
+    .hero-image {
+        justify-content: center;
+    }
+    
     .hero-title {
-        font-size: 36px;
+        font-size: 48px;
         line-height: 1.1;
     }
     
     .hero-subtitle {
-        font-size: 24px;
+        font-size: 32px;
         line-height: 1.2;
     }
     
     .hero-description {
-        font-size: 24px;
+        font-size: 28px;
         line-height: 1.3;
     }
     
@@ -726,13 +806,17 @@ body {
     .convenient-trading,
     .explore-section,
     .no-commission {
-        padding: 60px 0;
+        padding: 25px 0;
     }
     
     .benefits-grid,
     .explore-grid {
         grid-template-columns: 1fr;
         gap: 30px;
+    }
+    
+    .benefits-grid {
+        padding-top: 100px;
     }
     
     .section-title {
@@ -747,15 +831,13 @@ body {
     }
     
     .section-subtitle {
-        font-size: 20px;
-        line-height: 30px;
+        font-size: 18px;
+        line-height: 24px;
     }
     
     .benefit-card {
         min-height: auto;
-        padding: 30px 20px;
-        padding-top: 50px;
-        padding-bottom: 50px;
+        padding: 30px 20px;       
     }
     
     .card-icon-wrapper {
@@ -791,15 +873,31 @@ body {
         line-height: 24px;
     }
     
+    .trading-text {
+        text-align: center;
+        align-items: center;
+    }
+    
     .trading-title,
     .commission-title {
         font-size: 32px;
         line-height: 42px;
+        text-align: center;
+    }
+    
+    .trading-features {
+        align-items: center;
     }
     
     .trading-features li {
         font-size: 20px;
         margin-bottom: 20px;
+        justify-content: center;
+    }
+    
+    .btn-try {
+        margin: 0 auto;
+        display: block;
     }
     
     .trading-features li svg {
@@ -815,9 +913,27 @@ body {
     .footer-content {
         flex-direction: column;
         text-align: center;
+        gap: 30px;
+    }
+    
+    .footer-social {
+        justify-content: center;
     }
     
     .footer-text {
+        text-align: center;
+    }
+    
+    .footer-info {
+        flex-direction: column;
+        gap: 30px;
+        margin-top: 40px;
+        padding-top: 30px;
+    }
+    
+    .footer-info-item {
+        min-width: auto;
+        justify-content: center;
         text-align: center;
     }
 }
@@ -828,12 +944,12 @@ body {
     }
     
     .hero-title {
-        font-size: 28px;
+        font-size: 40px;
         line-height: 1.1;
     }
     
     .hero-subtitle {
-        font-size: 18px;
+        font-size: 20px;
         line-height: 1.2;
     }
     
@@ -843,12 +959,12 @@ body {
     }
     
     .btn-trading {
-        padding: 16px 30px;
+        padding: 10px 30px;
         font-size: 18px;
     }
     
     .section-title {
-        font-size: 24px;
+        font-size: 22px;
         line-height: 36px;
     }
     
@@ -856,6 +972,10 @@ body {
         font-size: 28px;
         line-height: 36px;
         margin-bottom: 40px;
+    }
+    
+    .benefits-grid {
+        padding-top: 80px;
     }
     
     .card-icon-wrapper {
@@ -880,11 +1000,11 @@ body {
     }
     
     .card-title {
-        margin-top: 70px;
+        margin-top: 25px;
     }
     
     .btn-card {
-        margin-bottom: -15px;
+        margin-bottom: -88px;
         padding: 10px 20px;
         font-size: 18px;
     }
@@ -897,5 +1017,16 @@ body {
     
     .trading-features li {
         font-size: 16px;
+    }
+
+    .commission-description {
+       text-align: center;
+       font-size: 18px;
+    }
+    .commission-content .title-yellow {
+        font-size: 32px;
+    }
+    .commission-content .title-white{
+        font-size: 20px;
     }
 }

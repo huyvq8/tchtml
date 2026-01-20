@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - TradeCoin88</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="header-content">
+            <div class="header-logo">
+                <img src="../images/logo_tradecoin88.png" alt="Trade Coin88" class="logo-img">
+            </div>
+            <div class="header-right">
+                <div class="account-dropdown">
+                    <button class="account-toggle">
+                        <span class="account-type">Live account</span>
+                        <span class="account-balance">$10.200,50</span>
+                        <span class="live-dot"></span>
+                        <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1L6 6L11 1" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="user-info">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" fill="white"/>
+                        <path d="M10 12C5.58172 12 2 13.7909 2 16V20H18V16C18 13.7909 14.4183 12 10 12Z" fill="white"/>
+                    </svg>
+                    <span class="username">Abc123</span>
+                </div>
+                <button class="icon-btn notification-btn">
+                    <svg width="20" height="22" viewBox="0 0 20 22" fill="none">
+                        <path d="M10 0C6.68629 0 4 2.68629 4 6V9C4 10.6569 3.32843 12.2243 2.17157 13.3812L1.5 14.0528V16H18.5V14.0528L17.8284 13.3812C16.6716 12.2243 16 10.6569 16 9V6C16 2.68629 13.3137 0 10 0Z" fill="white"/>
+                        <path d="M7 18H13C13 19.6569 11.6569 21 10 21C8.34315 21 7 19.6569 7 18Z" fill="white"/>
+                    </svg>
+                    <span class="badge">0</span>
+                </button>
+                <button class="icon-btn settings-btn">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 12.5C11.3807 12.5 12.5 11.3807 12.5 10C12.5 8.61929 11.3807 7.5 10 7.5C8.61929 7.5 7.5 8.61929 7.5 10C7.5 11.3807 8.61929 12.5 10 12.5Z" fill="white"/>
+                        <path d="M10 0L12.58 6.26L19.51 7.36L14.75 12.14L15.51 19.02L10 15.77L4.49 19.02L5.25 12.14L0.49 7.36L7.42 6.26L10 0Z" fill="none" stroke="white" stroke-width="1.5"/>
+                    </svg>
+                </button>
+                <button class="icon-btn logout-btn">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7 17L2 12M2 12L7 7M2 12H18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <a href="trade.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 8L10 2L16 8M10 2V18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M4 12L10 18L16 12M10 18V2" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Trade</span>
+                </a>
+                <a href="referral.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M13 7C14.6569 7 16 5.65685 16 4C16 2.34315 14.6569 1 13 1C11.3431 1 10 2.34315 10 4C10 5.65685 11.3431 7 13 7Z" fill="white"/>
+                        <path d="M7 7C8.65685 7 10 5.65685 10 4C10 2.34315 8.65685 1 7 1C5.34315 1 4 2.34315 4 4C4 5.65685 5.34315 7 7 7Z" fill="white"/>
+                        <path d="M13 19C14.6569 19 16 17.6569 16 16C16 14.3431 14.6569 13 13 13C11.3431 13 10 14.3431 10 16C10 17.6569 11.3431 19 13 19Z" fill="white"/>
+                        <path d="M7 19C8.65685 19 10 17.6569 10 16C10 14.3431 8.65685 13 7 13C5.34315 13 4 14.3431 4 16C4 17.6569 5.34315 19 7 19Z" fill="white"/>
+                        <path d="M7 7V13M13 7V13M10 4V16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Referral</span>
+                </a>
+                <a href="wallet.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M1 5H19V15H1V5Z" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M1 7H15V9H1V7Z" fill="white"/>
+                        <circle cx="17" cy="10" r="2" fill="white"/>
+                    </svg>
+                    <span>Wallet</span>
+                </a>
+                <a href="dashboard.html" class="nav-item active">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M2 10L6 6L10 10L18 2" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M2 18H18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+                <a href="faq.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 18C14.4183 18 18 14.4183 18 10C18 5.58172 14.4183 2 10 2C5.58172 2 2 5.58172 2 10C2 14.4183 5.58172 18 10 18Z" stroke="white" stroke-width="2"/>
+                        <path d="M10 14V10M10 6H10.01" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>FAQ</span>
+                </a>
+                <a href="about.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 1L2 4V9C2 13.5 5.5 17.7 10 19C14.5 17.7 18 13.5 18 9V4L10 1Z" stroke="white" stroke-width="2"/>
+                        <path d="M10 10V14M10 6H10.01" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>About Us</span>
+                </a>
+                <a href="command.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M2 3H18V17H2V3Z" stroke="white" stroke-width="2"/>
+                        <path d="M6 7H14M6 11H14M6 15H10" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Command</span>
+                    <span class="nav-badge">1</span>
+                </a>
+                <a href="settings.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 12C11.1046 12 12 11.1046 12 10C12 8.89543 11.1046 8 10 8C8.89543 8 8 8.89543 8 10C8 11.1046 8.89543 12 10 12Z" fill="white"/>
+                        <path d="M10 0L12.58 6.26L19.51 7.36L14.75 12.14L15.51 19.02L10 15.77L4.49 19.02L5.25 12.14L0.49 7.36L7.42 6.26L10 0Z" fill="none" stroke="white" stroke-width="1.5"/>
+                    </svg>
+                    <span>Settings</span>
+                </a>
+                <a href="logout.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7 17L2 12M2 12L7 7M2 12H18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Account Type Toggle -->
+            <div class="account-type-toggle">
+                <button class="toggle-btn active">Live Account</button>
+                <button class="toggle-btn">Demo Account</button>
+            </div>
+
+            <!-- Performance Cards -->
+            <div class="performance-cards">
+                <div class="stat-card net-profit">
+                    <div class="stat-header">
+                        <h3 class="stat-title">Net profit</h3>
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <rect x="4" y="12" width="8" height="16" rx="1" fill="#FFC83B"/>
+                            <rect x="14" y="8" width="8" height="20" rx="1" fill="#FFC83B"/>
+                            <rect x="24" y="16" width="8" height="12" rx="1" fill="#FFC83B"/>
+                        </svg>
+                    </div>
+                    <div class="stat-value">$756.50</div>
+                </div>
+                <div class="stat-card total-revenue">
+                    <div class="stat-header">
+                        <h3 class="stat-title">Total revenue</h3>
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <path d="M4 26L16 6L28 26H4Z" fill="#FFC83B"/>
+                        </svg>
+                    </div>
+                    <div class="stat-value">$1,650.50</div>
+                </div>
+            </div>
+
+            <!-- Trading Statistics -->
+            <div class="trading-stats">
+                <div class="stats-card">
+                    <div class="stats-content">
+                        <div class="donut-chart-container">
+                            <svg class="donut-chart" viewBox="0 0 120 120">
+                                <circle cx="60" cy="60" r="50" fill="none" stroke="#1a1a2e" stroke-width="20"/>
+                                <circle cx="60" cy="60" r="50" fill="none" stroke="#4CAF50" stroke-width="20" 
+                                    stroke-dasharray="283 94" stroke-dashoffset="0" transform="rotate(-90 60 60)"/>
+                                <circle cx="60" cy="60" r="50" fill="none" stroke="#F44336" stroke-width="20" 
+                                    stroke-dasharray="94 283" stroke-dashoffset="-283" transform="rotate(-90 60 60)"/>
+                            </svg>
+                            <div class="chart-center">
+                                <span class="chart-label">Total Win</span>
+                                <span class="chart-label">Total Lose</span>
+                            </div>
+                        </div>
+                        <div class="stats-info">
+                            <div class="stats-item">
+                                <span class="stats-label">All rounds</span>
+                                <span class="stats-value">14</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-label">Profit rate (%)</span>
+                                <span class="stats-value">92.19%</span>
+                            </div>
+                            <div class="stats-item">
+                                <span class="stats-label">Total transactions</span>
+                                <span class="stats-value">$940</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stats-legend">
+                        <div class="legend-item">
+                            <span class="legend-dot win"></span>
+                            <span class="legend-text">• Total Win</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="legend-dot lose"></span>
+                            <span class="legend-text">• Total Lose</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Buy/Sell Ratio -->
+            <div class="ratio-bar">
+                <div class="ratio-item buy">
+                    <span class="ratio-label">BUY</span>
+                    <span class="ratio-value">60%</span>
+                </div>
+                <div class="ratio-bar-visual">
+                    <div class="ratio-segment buy-segment" style="width: 60%"></div>
+                    <div class="ratio-segment sell-segment" style="width: 40%"></div>
+                </div>
+                <div class="ratio-item sell">
+                    <span class="ratio-label">SELL</span>
+                    <span class="ratio-value">40%</span>
+                </div>
+            </div>
+
+            <!-- Trade History -->
+            <div class="trade-history">
+                <div class="history-header">
+                    <h2 class="history-title">Trade history</h2>
+                    <div class="history-filters">
+                        <select class="filter-select">
+                            <option>11/2025</option>
+                        </select>
+                        <select class="filter-select">
+                            <option>11/2025</option>
+                        </select>
+                        <button class="search-btn">Search</button>
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table class="trade-table">
+                        <thead>
+                            <tr>
+                                <th>Start time</th>
+                                <th>Selected</th>
+                                <th>Value</th>
+                                <th>Payment</th>
+                                <th>Balance</th>
+                                <th>Open price</th>
+                                <th>Close price</th>
+                                <th>Order ID</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>11/21/2025 18:38:31</td>
+                                <td><span class="badge sell">SELL</span></td>
+                                <td>$100</td>
+                                <td class="profit">+$190</td>
+                                <td>12,666.000</td>
+                                <td>$82700.17</td>
+                                <td>$82679.14</td>
+                                <td>185983</td>
+                            </tr>
+                            <tr>
+                                <td>11/21/2025 18:38:31</td>
+                                <td><span class="badge sell">SELL</span></td>
+                                <td>$100</td>
+                                <td class="loss">-$90</td>
+                                <td>12,456.000</td>
+                                <td>$82700.17</td>
+                                <td>$82679.14</td>
+                                <td>185983</td>
+                            </tr>
+                            <tr>
+                                <td>11/21/2025 18:38:31</td>
+                                <td><span class="badge sell">SELL</span></td>
+                                <td>$100</td>
+                                <td class="profit">+$10</td>
+                                <td>12,466.000</td>
+                                <td>$82700.17</td>
+                                <td>$82679.14</td>
+                                <td>185983</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>

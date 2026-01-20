@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Command - TradeCoin88</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <style>
+        /* Command Page Specific Styles */
+        .command-header {
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .command-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-white);
+        }
+
+        .command-filters {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 8px 16px;
+            color: var(--text-gray);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: var(--purple);
+            color: var(--text-white);
+            border-color: var(--purple);
+        }
+
+        .command-list {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .command-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .command-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .command-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--purple);
+        }
+
+        .command-item.unread {
+            background: rgba(73, 45, 225, 0.2);
+            border-color: var(--purple);
+        }
+
+        .command-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+
+        .command-title-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+
+        .command-badge {
+            background: var(--red);
+            color: var(--text-white);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 12px;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .command-title-text {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-white);
+        }
+
+        .command-date {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        .command-content {
+            font-size: 14px;
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .command-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .command-status {
+            font-size: 12px;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .status-pending {
+            background: rgba(255, 200, 59, 0.2);
+            color: var(--yellow-main);
+        }
+
+        .status-completed {
+            background: rgba(76, 175, 80, 0.2);
+            color: var(--green);
+        }
+
+        .command-action {
+            background: var(--purple);
+            border: none;
+            border-radius: 8px;
+            padding: 8px 16px;
+            color: var(--text-white);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .command-action:hover {
+            background: #5a3ef0;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-gray);
+        }
+
+        .empty-state-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            opacity: 0.5;
+        }
+
+        .empty-state-text {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .empty-state-subtext {
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .command-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .command-filters {
+                width: 100%;
+                flex-wrap: wrap;
+            }
+
+            .command-item {
+                padding: 16px;
+            }
+
+            .command-header-row {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .command-footer {
+                flex-direction: column;
+                gap: 12px;
+                align-items: flex-start;
+            }
+
+            .command-action {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="header-content">
+            <div class="header-logo">
+                <img src="../images/logo_tradecoin88.png" alt="Trade Coin88" class="logo-img">
+            </div>
+            <div class="header-right">
+                <div class="account-dropdown">
+                    <button class="account-toggle">
+                        <span class="account-type">Live account</span>
+                        <span class="account-balance">$10.200,50</span>
+                        <span class="live-dot"></span>
+                        <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1L6 6L11 1" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="user-info">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" fill="white"/>
+                        <path d="M10 12C5.58172 12 2 13.7909 2 16V20H18V16C18 13.7909 14.4183 12 10 12Z" fill="white"/>
+                    </svg>
+                    <span class="username">Abc123</span>
+                </div>
+                <button class="icon-btn notification-btn">
+                    <svg width="20" height="22" viewBox="0 0 20 22" fill="none">
+                        <path d="M10 0C6.68629 0 4 2.68629 4 6V9C4 10.6569 3.32843 12.2243 2.17157 13.3812L1.5 14.0528V16H18.5V14.0528L17.8284 13.3812C16.6716 12.2243 16 10.6569 16 9V6C16 2.68629 13.3137 0 10 0Z" fill="white"/>
+                        <path d="M7 18H13C13 19.6569 11.6569 21 10 21C8.34315 21 7 19.6569 7 18Z" fill="white"/>
+                    </svg>
+                    <span class="badge">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <a href="trade.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 8L10 2L16 8M10 2V18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M4 12L10 18L16 12M10 18V2" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Trade</span>
+                </a>
+                <a href="referral.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M13 7C14.6569 7 16 5.65685 16 4C16 2.34315 14.6569 1 13 1C11.3431 1 10 2.34315 10 4C10 5.65685 11.3431 7 13 7Z" fill="white"/>
+                        <path d="M7 7C8.65685 7 10 5.65685 10 4C10 2.34315 8.65685 1 7 1C5.34315 1 4 2.34315 4 4C4 5.65685 5.34315 7 7 7Z" fill="white"/>
+                        <path d="M13 19C14.6569 19 16 17.6569 16 16C16 14.3431 14.6569 13 13 13C11.3431 13 10 14.3431 10 16C10 17.6569 11.3431 19 13 19Z" fill="white"/>
+                        <path d="M7 19C8.65685 19 10 17.6569 10 16C10 14.3431 8.65685 13 7 13C5.34315 13 4 14.3431 4 16C4 17.6569 5.34315 19 7 19Z" fill="white"/>
+                        <path d="M7 7V13M13 7V13M10 4V16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Referral</span>
+                </a>
+                <a href="wallet.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <rect x="1" y="5" width="18" height="10" rx="2" stroke="white" stroke-width="2"/>
+                        <rect x="1" y="7" width="14" height="2" fill="white"/>
+                        <circle cx="17" cy="10" r="2" fill="white"/>
+                    </svg>
+                    <span>Wallet</span>
+                </a>
+                <a href="dashboard.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M2 10L6 6L10 10L18 2" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M2 18H18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+                <a href="faq.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="10" r="8" stroke="white" stroke-width="2"/>
+                        <path d="M10 14V10M10 6H10.01" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>FAQ</span>
+                </a>
+                <a href="about.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 1L2 4V9C2 13.5 5.5 17.7 10 19C14.5 17.7 18 13.5 18 9V4L10 1Z" stroke="white" stroke-width="2"/>
+                        <path d="M10 10V14M10 6H10.01" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>About Us</span>
+                </a>
+                <a href="command.html" class="nav-item active">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <rect x="2" y="3" width="16" height="14" rx="2" stroke="white" stroke-width="2"/>
+                        <path d="M6 7H14M6 11H14M6 15H10" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Command</span>
+                    <span class="nav-badge">1</span>
+                </a>
+                <a href="settings.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="10" r="2.5" fill="white"/>
+                        <path d="M10 0V4M10 16V20M4 10H0M20 10H16M3.05 3.05L5.66 5.66M14.34 14.34L16.95 16.95M3.05 16.95L5.66 14.34M14.34 5.66L16.95 3.05" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Settings</span>
+                </a>
+                <a href="logout.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7 17L2 12M2 12L7 7M2 12H18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <div class="command-header">
+                <div class="command-title">Command</div>
+                <div class="command-filters">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">Unread</button>
+                    <button class="filter-btn">Read</button>
+                </div>
+            </div>
+
+            <div class="command-list">
+                <div class="command-item unread">
+                    <div class="command-header-row">
+                        <div class="command-title-row">
+                            <span class="command-badge">New</span>
+                            <span class="command-title-text">Welcome Bonus Available</span>
+                        </div>
+                        <span class="command-date">11/23/2025 15:09:27</span>
+                    </div>
+                    <div class="command-content">
+                        Congratulations! You have received a welcome bonus of $50. Start trading now to make the most of your bonus. Terms and conditions apply.
+                    </div>
+                    <div class="command-footer">
+                        <span class="command-status status-pending">Pending</span>
+                        <button class="command-action">View Details</button>
+                    </div>
+                </div>
+
+                <div class="command-item">
+                    <div class="command-header-row">
+                        <div class="command-title-row">
+                            <span class="command-title-text">Account Verification Required</span>
+                        </div>
+                        <span class="command-date">11/20/2025 10:30:15</span>
+                    </div>
+                    <div class="command-content">
+                        Please complete your account verification to enable withdrawals. Upload your ID documents in the Settings section.
+                    </div>
+                    <div class="command-footer">
+                        <span class="command-status status-completed">Completed</span>
+                        <button class="command-action">View Details</button>
+                    </div>
+                </div>
+
+                <div class="command-item">
+                    <div class="command-header-row">
+                        <div class="command-title-row">
+                            <span class="command-title-text">System Maintenance Notice</span>
+                        </div>
+                        <span class="command-date">11/18/2025 08:00:00</span>
+                    </div>
+                    <div class="command-content">
+                        Scheduled system maintenance will take place on November 20, 2025 from 02:00 AM to 04:00 AM (GMT). Trading will be temporarily unavailable during this time.
+                    </div>
+                    <div class="command-footer">
+                        <span class="command-status status-completed">Completed</span>
+                        <button class="command-action">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/dashboard.js"></script>
+    <script>
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const commandItems = document.querySelectorAll('.command-item');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const filter = this.textContent.trim();
+                    
+                    commandItems.forEach(item => {
+                        if (filter === 'All') {
+                            item.style.display = 'block';
+                        } else if (filter === 'Unread') {
+                            if (item.classList.contains('unread')) {
+                                item.style.display = 'block';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        } else if (filter === 'Read') {
+                            if (!item.classList.contains('unread')) {
+                                item.style.display = 'block';
+                            } else {
+                                item.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

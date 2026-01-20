@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - TradeCoin88</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <style>
+        /* FAQ Page Specific Styles */
+        .faq-header {
+            margin-bottom: 24px;
+        }
+
+        .faq-title-section {
+            margin-bottom: 24px;
+        }
+
+        .faq-brand {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--yellow-main);
+            margin-bottom: 8px;
+        }
+
+        .faq-main-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 16px;
+        }
+
+        .faq-summary {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-bottom: 24px;
+        }
+
+        .faq-summary-item {
+            display: inline-block;
+            margin-right: 16px;
+        }
+
+        .faq-search {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .faq-search-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: var(--text-white);
+            font-size: 14px;
+        }
+
+        .faq-search-input::placeholder {
+            color: var(--text-gray);
+        }
+
+        .faq-search-btn {
+            background: var(--purple);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            color: var(--text-white);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-search-btn:hover {
+            background: #5a3ef0;
+        }
+
+        .faq-category {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .category-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        .category-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-white);
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            margin-bottom: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-question {
+            padding: 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-question-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-white);
+            flex: 1;
+        }
+
+        .faq-toggle {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-gray);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 16px;
+            font-size: 14px;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        .back-to-trade-btn {
+            background: var(--purple);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            color: var(--text-white);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 24px;
+        }
+
+        .back-to-trade-btn:hover {
+            background: #5a3ef0;
+        }
+
+        @media (max-width: 768px) {
+            .faq-brand {
+                font-size: 24px;
+            }
+
+            .faq-main-title {
+                font-size: 20px;
+            }
+
+            .faq-search {
+                flex-direction: column;
+            }
+
+            .faq-search-btn {
+                width: 100%;
+            }
+
+            .faq-summary {
+                font-size: 12px;
+            }
+
+            .faq-summary-item {
+                display: block;
+                margin-bottom: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="header-content">
+            <div class="header-logo">
+                <img src="../images/logo_tradecoin88.png" alt="Trade Coin88" class="logo-img">
+            </div>
+            <div class="header-right">
+                <div class="account-dropdown">
+                    <button class="account-toggle">
+                        <span class="account-type">Live account</span>
+                        <span class="account-balance">$10.200,50</span>
+                        <span class="live-dot"></span>
+                        <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1L6 6L11 1" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="user-info">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" fill="white"/>
+                        <path d="M10 12C5.58172 12 2 13.7909 2 16V20H18V16C18 13.7909 14.4183 12 10 12Z" fill="white"/>
+                    </svg>
+                    <span class="username">Abc123</span>
+                </div>
+                <button class="icon-btn notification-btn">
+                    <svg width="20" height="22" viewBox="0 0 20 22" fill="none">
+                        <path d="M10 0C6.68629 0 4 2.68629 4 6V9C4 10.6569 3.32843 12.2243 2.17157 13.3812L1.5 14.0528V16H18.5V14.0528L17.8284 13.3812C16.6716 12.2243 16 10.6569 16 9V6C16 2.68629 13.3137 0 10 0Z" fill="white"/>
+                        <path d="M7 18H13C13 19.6569 11.6569 21 10 21C8.34315 21 7 19.6569 7 18Z" fill="white"/>
+                    </svg>
+                    <span class="badge">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <a href="trade.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 8L10 2L16 8M10 2V18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M4 12L10 18L16 12M10 18V2" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Trade</span>
+                </a>
+                <a href="referral.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M13 7C14.6569 7 16 5.65685 16 4C16 2.34315 14.6569 1 13 1C11.3431 1 10 2.34315 10 4C10 5.65685 11.3431 7 13 7Z" fill="white"/>
+                        <path d="M7 7C8.65685 7 10 5.65685 10 4C10 2.34315 8.65685 1 7 1C5.34315 1 4 2.34315 4 4C4 5.65685 5.34315 7 7 7Z" fill="white"/>
+                        <path d="M13 19C14.6569 19 16 17.6569 16 16C16 14.3431 14.6569 13 13 13C11.3431 13 10 14.3431 10 16C10 17.6569 11.3431 19 13 19Z" fill="white"/>
+                        <path d="M7 19C8.65685 19 10 17.6569 10 16C10 14.3431 8.65685 13 7 13C5.34315 13 4 14.3431 4 16C4 17.6569 5.34315 19 7 19Z" fill="white"/>
+                        <path d="M7 7V13M13 7V13M10 4V16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Referral</span>
+                </a>
+                <a href="wallet.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <rect x="1" y="5" width="18" height="10" rx="2" stroke="white" stroke-width="2"/>
+                        <rect x="1" y="7" width="14" height="2" fill="white"/>
+                        <circle cx="17" cy="10" r="2" fill="white"/>
+                    </svg>
+                    <span>Wallet</span>
+                </a>
+                <a href="dashboard.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M2 10L6 6L10 10L18 2" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M2 18H18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+                <a href="faq.html" class="nav-item active">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="10" r="8" stroke="white" stroke-width="2"/>
+                        <path d="M10 14V10M10 6H10.01" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>FAQ</span>
+                </a>
+                <a href="about.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 1L2 4V9C2 13.5 5.5 17.7 10 19C14.5 17.7 18 13.5 18 9V4L10 1Z" stroke="white" stroke-width="2"/>
+                        <path d="M10 10V14M10 6H10.01" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>About Us</span>
+                </a>
+                <a href="command.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <rect x="2" y="3" width="16" height="14" rx="2" stroke="white" stroke-width="2"/>
+                        <path d="M6 7H14M6 11H14M6 15H10" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Command</span>
+                    <span class="nav-badge">1</span>
+                </a>
+                <a href="settings.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="10" r="2.5" fill="white"/>
+                        <path d="M10 0V4M10 16V20M4 10H0M20 10H16M3.05 3.05L5.66 5.66M14.34 14.34L16.95 16.95M3.05 16.95L5.66 14.34M14.34 5.66L16.95 3.05" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Settings</span>
+                </a>
+                <a href="logout.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7 17L2 12M2 12L7 7M2 12H18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <button class="back-to-trade-btn">Back to trade</button>
+
+            <div class="faq-title-section">
+                <div class="faq-brand">TradeCoin88</div>
+                <div class="faq-main-title">FREQUENTLY ASKED QUESTIONS (FAQ)</div>
+                <div class="faq-summary">
+                    <span class="faq-summary-item">Asset: Bitcoin</span>
+                    <span class="faq-summary-item">•</span>
+                    <span class="faq-summary-item">Expiry: 1 minute</span>
+                    <span class="faq-summary-item">•</span>
+                    <span class="faq-summary-item">Payout: 95%</span>
+                    <span class="faq-summary-item">•</span>
+                    <span class="faq-summary-item">Currency: NGN</span>
+                    <span class="faq-summary-item">•</span>
+                    <span class="faq-summary-item">Payments: Paystack</span>
+                </div>
+            </div>
+
+            <div class="faq-search">
+                <input type="text" class="faq-search-input" placeholder="Search question">
+                <button class="faq-search-btn">Search</button>
+            </div>
+
+            <div class="faq-category">
+                <div class="category-header">
+                    <svg class="category-icon" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1Z" stroke="#FFC83B" stroke-width="2"/>
+                        <path d="M12 12V16M12 8H12.01" stroke="#FFC83B" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <div class="category-title">Account & Verification</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="faq-question-text">How can I verify my account if I do not receive the OTP?</div>
+                        <svg class="faq-toggle" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Please check your network connection and ensure the phone number/email matches your registered information. If you still do not receive the code, contact our Support via the "Help" section on the website.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="faq-question-text">Can I change my phone number or email after registration?</div>
+                        <svg class="faq-toggle" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            No. Registration details are bound to your account for security. If you need changes, contact 24/7 Customer Support and provide the requested information to verify ownership. After successful verification, Support will update your details as requested.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category">
+                <div class="category-header">
+                    <svg class="category-icon" viewBox="0 0 24 24" fill="none">
+                        <rect x="2" y="6" width="20" height="12" rx="2" stroke="#FFC83B" stroke-width="2"/>
+                        <path d="M2 10H22" stroke="#FFC83B" stroke-width="2"/>
+                        <circle cx="20" cy="14" r="2" fill="#FFC83B"/>
+                    </svg>
+                    <div class="category-title">Deposits / Withdrawals & Payments</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="faq-question-text">How long does a withdrawal take?</div>
+                        <svg class="faq-toggle" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Typically 5-15 minutes. During peak times, it may take up to 1 hour.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="faq-question-text">Which e-wallets can I use on TradeCoin88?</div>
+                        <svg class="faq-toggle" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            TradeCoin88 supports payments via Paystack with multiple options: bank cards, bank transfer, USSD, and linked Paystack wallets. Please check the Deposit / Withdraw pages for the currently supported methods.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-category">
+                <div class="category-header">
+                    <svg class="category-icon" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="#FFC83B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 17L12 22L22 17" stroke="#FFC83B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 12L12 17L22 12" stroke="#FFC83B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <div class="category-title">Disclaimer</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="faq-question-text">General disclaimer</div>
+                        <svg class="faq-toggle" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Trading involves substantial risk of loss and is not suitable for every investor. Please ensure you understand the risks involved.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="faq-question-text">No investment advice</div>
+                        <svg class="faq-toggle" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            The information provided on this platform does not constitute investment advice. All trading decisions are your own responsibility.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div class="faq-question-text">Risk</div>
+                        <svg class="faq-toggle" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Trading binary options involves significant risk. You may lose some or all of your invested capital. Only trade with funds you can afford to lose.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/dashboard.js"></script>
+    <script>
+        // FAQ Toggle Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', function() {
+                    item.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

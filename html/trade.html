@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade - TradeCoin88</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/tradecoin.css">
+    <style>
+        /* Trade Page Specific Styles */
+        .trade-container {
+            display: flex;
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .chart-section {
+            flex: 1;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .asset-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .asset-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .asset-pair {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-white);
+        }
+
+        .asset-price {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--green);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .asset-details {
+            display: flex;
+            gap: 16px;
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .chart-wrapper {
+            width: 100%;
+            height: 400px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            margin: 24px 0;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chart-placeholder {
+            color: var(--text-gray);
+            font-size: 16px;
+        }
+
+        .chart-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .chart-tab {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 8px 16px;
+            color: var(--text-gray);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .chart-tab.active {
+            background: var(--yellow-main);
+            color: #000;
+            border-color: var(--yellow-main);
+        }
+
+        .indicators-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .indicator-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .indicator-title {
+            font-size: 12px;
+            color: var(--text-gray);
+            margin-bottom: 12px;
+        }
+
+        .indicator-gauge {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 12px;
+            position: relative;
+        }
+
+        .gauge-needle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform-origin: bottom center;
+            width: 2px;
+            height: 40px;
+            background: var(--yellow-main);
+            transform: translateX(-50%) rotate(-90deg);
+        }
+
+        .indicator-result {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-white);
+        }
+
+        .trading-panel {
+            width: 320px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .trading-money {
+            margin-bottom: 24px;
+        }
+
+        .trading-money-label {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-bottom: 8px;
+        }
+
+        .money-input-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 8px 16px;
+        }
+
+        .money-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--text-white);
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .money-input:focus {
+            outline: none;
+        }
+
+        .money-buttons {
+            display: flex;
+            gap: 4px;
+        }
+
+        .money-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-white);
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .money-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .quick-amounts {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .quick-amount {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 8px;
+            text-align: center;
+            color: var(--text-white);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quick-amount:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .profit-section {
+            margin-bottom: 24px;
+        }
+
+        .profit-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .profit-label {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .profit-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--green);
+        }
+
+        .profit-slider {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .profit-slider-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--green) 0%, var(--yellow-main) 50%, var(--red) 100%);
+            border-radius: 4px;
+        }
+
+        .result-timer {
+            text-align: center;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin-bottom: 24px;
+        }
+
+        .timer-text {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-bottom: 8px;
+        }
+
+        .timer-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--red);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 16px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-buy {
+            background: var(--green);
+            color: var(--text-white);
+        }
+
+        .btn-buy:hover {
+            background: #45a049;
+        }
+
+        .btn-sell {
+            background: var(--red);
+            color: var(--text-white);
+        }
+
+        .btn-sell:hover {
+            background: #da190b;
+        }
+
+        .holdings-section {
+            border-top: 1px solid var(--border-color);
+            padding-top: 24px;
+        }
+
+        .holdings-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-gray);
+            margin-bottom: 16px;
+        }
+
+        .holding-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .holding-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .holding-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .holding-dot.live {
+            background: var(--yellow-main);
+        }
+
+        .holding-dot.demo {
+            background: var(--text-gray);
+        }
+
+        .holding-label {
+            font-size: 14px;
+            color: var(--text-white);
+        }
+
+        .holding-amount {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-white);
+        }
+
+        @media (max-width: 1024px) {
+            .trade-container {
+                flex-direction: column;
+            }
+
+            .trading-panel {
+                width: 100%;
+            }
+
+            .indicators-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .chart-wrapper {
+                height: 300px;
+            }
+
+            .indicators-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="header-content">
+            <div class="header-logo">
+                <img src="../images/logo_tradecoin88.png" alt="Trade Coin88" class="logo-img">
+            </div>
+            <div class="header-right">
+                <div class="account-dropdown">
+                    <button class="account-toggle">
+                        <span class="account-type">Live account</span>
+                        <span class="account-balance">$10.200,50</span>
+                        <span class="live-dot"></span>
+                        <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                            <path d="M1 1L6 6L11 1" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="user-info">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" fill="white"/>
+                        <path d="M10 12C5.58172 12 2 13.7909 2 16V20H18V16C18 13.7909 14.4183 12 10 12Z" fill="white"/>
+                    </svg>
+                    <span class="username">Abc123</span>
+                </div>
+                <button class="icon-btn notification-btn">
+                    <svg width="20" height="22" viewBox="0 0 20 22" fill="none">
+                        <path d="M10 0C6.68629 0 4 2.68629 4 6V9C4 10.6569 3.32843 12.2243 2.17157 13.3812L1.5 14.0528V16H18.5V14.0528L17.8284 13.3812C16.6716 12.2243 16 10.6569 16 9V6C16 2.68629 13.3137 0 10 0Z" fill="white"/>
+                        <path d="M7 18H13C13 19.6569 11.6569 21 10 21C8.34315 21 7 19.6569 7 18Z" fill="white"/>
+                    </svg>
+                    <span class="badge">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <a href="trade.html" class="nav-item active">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M4 8L10 2L16 8M10 2V18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M4 12L10 18L16 12M10 18V2" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Trade</span>
+                </a>
+                <a href="referral.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M13 7C14.6569 7 16 5.65685 16 4C16 2.34315 14.6569 1 13 1C11.3431 1 10 2.34315 10 4C10 5.65685 11.3431 7 13 7Z" fill="white"/>
+                        <path d="M7 7C8.65685 7 10 5.65685 10 4C10 2.34315 8.65685 1 7 1C5.34315 1 4 2.34315 4 4C4 5.65685 5.34315 7 7 7Z" fill="white"/>
+                        <path d="M13 19C14.6569 19 16 17.6569 16 16C16 14.3431 14.6569 13 13 13C11.3431 13 10 14.3431 10 16C10 17.6569 11.3431 19 13 19Z" fill="white"/>
+                        <path d="M7 19C8.65685 19 10 17.6569 10 16C10 14.3431 8.65685 13 7 13C5.34315 13 4 14.3431 4 16C4 17.6569 5.34315 19 7 19Z" fill="white"/>
+                        <path d="M7 7V13M13 7V13M10 4V16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Referral</span>
+                </a>
+                <a href="wallet.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <rect x="1" y="5" width="18" height="10" rx="2" stroke="white" stroke-width="2"/>
+                        <rect x="1" y="7" width="14" height="2" fill="white"/>
+                        <circle cx="17" cy="10" r="2" fill="white"/>
+                    </svg>
+                    <span>Wallet</span>
+                </a>
+                <a href="dashboard.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M2 10L6 6L10 10L18 2" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M2 18H18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+                <a href="faq.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="10" r="8" stroke="white" stroke-width="2"/>
+                        <path d="M10 14V10M10 6H10.01" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>FAQ</span>
+                </a>
+                <a href="about.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M10 1L2 4V9C2 13.5 5.5 17.7 10 19C14.5 17.7 18 13.5 18 9V4L10 1Z" stroke="white" stroke-width="2"/>
+                        <path d="M10 10V14M10 6H10.01" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>About Us</span>
+                </a>
+                <a href="command.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <rect x="2" y="3" width="16" height="14" rx="2" stroke="white" stroke-width="2"/>
+                        <path d="M6 7H14M6 11H14M6 15H10" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Command</span>
+                    <span class="nav-badge">1</span>
+                </a>
+                <a href="settings.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="10" r="2.5" fill="white"/>
+                        <path d="M10 0V4M10 16V20M4 10H0M20 10H16M3.05 3.05L5.66 5.66M14.34 14.34L16.95 16.95M3.05 16.95L5.66 14.34M14.34 5.66L16.95 3.05" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Settings</span>
+                </a>
+                <a href="logout.html" class="nav-item">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7 17L2 12M2 12L7 7M2 12H18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <div class="trade-container">
+                <!-- Chart Section -->
+                <div class="chart-section">
+                    <div class="asset-header">
+                        <div class="asset-info">
+                            <div class="asset-pair">BTC/USDT</div>
+                            <div class="asset-price">
+                                92.319,8
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                    <path d="M6 2L10 6H7V10H5V6H2L6 2Z" fill="#4CAF50"/>
+                                </svg>
+                            </div>
+                            <div class="asset-details">
+                                <span>Open: 92.212,8</span>
+                                <span>Close: 92.212,4</span>
+                                <span>High: 92.412,4</span>
+                                <span>Low: 91.312,4</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-wrapper">
+                        <div class="chart-placeholder">Trading Chart - Integration with TradingView or similar charting library</div>
+                    </div>
+
+                    <div class="chart-tabs">
+                        <button class="chart-tab active">INDICATORS</button>
+                        <button class="chart-tab">LAST RESULTS</button>
+                        <button class="chart-tab">COMMANDS</button>
+                    </div>
+
+                    <div class="indicators-grid">
+                        <div class="indicator-card">
+                            <div class="indicator-title">Oscillators?</div>
+                            <div class="indicator-gauge">
+                                <div class="gauge-needle" style="transform: translateX(-50%) rotate(-150deg);"></div>
+                            </div>
+                            <div class="indicator-result">STRONG SELL</div>
+                            <div style="margin-top: 8px; font-size: 12px; color: var(--text-gray);">
+                                <div>Sell: 9</div>
+                                <div>Neutral: 3</div>
+                                <div>Buy: 7</div>
+                            </div>
+                        </div>
+                        <div class="indicator-card">
+                            <div class="indicator-title">Summary?</div>
+                            <div class="indicator-gauge">
+                                <div class="gauge-needle" style="transform: translateX(-50%) rotate(-150deg);"></div>
+                            </div>
+                            <div class="indicator-result">STRONG SELL</div>
+                            <div style="margin-top: 8px; font-size: 12px; color: var(--text-gray);">
+                                <div>Sell: 17</div>
+                                <div>Neutral: 3</div>
+                                <div>Buy: 10</div>
+                            </div>
+                        </div>
+                        <div class="indicator-card">
+                            <div class="indicator-title">Moving Averages?</div>
+                            <div class="indicator-gauge">
+                                <div class="gauge-needle" style="transform: translateX(-50%) rotate(-150deg);"></div>
+                            </div>
+                            <div class="indicator-result">STRONG SELL</div>
+                            <div style="margin-top: 8px; font-size: 12px; color: var(--text-gray);">
+                                <div>Sell: 8</div>
+                                <div>Neutral: 0</div>
+                                <div>Buy: 3</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trading Panel -->
+                <div class="trading-panel">
+                    <div class="trading-money">
+                        <div class="trading-money-label">Trading money</div>
+                        <div class="money-input-group">
+                            <input type="number" class="money-input" value="10">
+                            <div class="money-buttons">
+                                <button class="money-btn">-</button>
+                                <button class="money-btn">+</button>
+                            </div>
+                        </div>
+                        <div class="quick-amounts">
+                            <button class="quick-amount">+50</button>
+                            <button class="quick-amount">+100</button>
+                            <button class="quick-amount">All</button>
+                        </div>
+                    </div>
+
+                    <div class="profit-section">
+                        <div class="profit-header">
+                            <span class="profit-label">Profit 95%</span>
+                            <span class="profit-value">+$9.5</span>
+                        </div>
+                        <div class="profit-slider">
+                            <div class="profit-slider-bar" style="width: 50%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="result-timer">
+                        <div class="timer-text">Wait for the result</div>
+                        <div class="timer-value">11S</div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="action-btn btn-buy">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M10 4L4 10H7V16H13V10H16L10 4Z" fill="white"/>
+                            </svg>
+                            BUY
+                        </button>
+                        <button class="action-btn btn-sell">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M10 16L16 10H13V4H7V10H4L10 16Z" fill="white"/>
+                            </svg>
+                            SELL
+                        </button>
+                    </div>
+
+                    <div class="holdings-section">
+                        <div class="holdings-title">HOLDINGS</div>
+                        <div class="holding-item">
+                            <div class="holding-info">
+                                <span class="holding-dot live"></span>
+                                <span class="holding-label">Live account</span>
+                            </div>
+                            <div class="holding-amount">Buy $10000</div>
+                        </div>
+                        <div class="holding-item">
+                            <div class="holding-info">
+                                <span class="holding-dot demo"></span>
+                                <span class="holding-label">Demo account</span>
+                            </div>
+                            <div class="holding-amount">Sell $10000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>

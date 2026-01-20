@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Trade Coin88 - VIP Wallet</title>
+    <!-- CSS riêng cho VIP Wallet -->
+    <link rel="stylesheet" href="../../css/mobile/vip-wallet.css" />
+  </head>
+  <body>
+    <div class="screen-container vip-page">
+      <!-- Top Navigation Bar (giống wallet-1) -->
+      <header class="top-nav">
+        <button class="menu-button" aria-label="Menu">
+          <span class="hamburger-icon">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </span>
+        </button>
+
+        <div class="header-right">
+          <div class="live-account">
+            <img src="../../images/a3 3.png" alt="Wallet" class="wallet-icon" />
+            <div class="live-divider"></div>
+            <div class="live-content">
+              <div class="live-label-wrapper">
+                <span class="live-dot"></span>
+                <span class="live-label">Live account</span>
+              </div>
+              <span class="live-amount">$10.200,50</span>
+            </div>
+            <span class="dropdown-icon">⌄</span>
+          </div>
+
+          <button class="notification-button" aria-label="Notifications">
+            <div class="bell-wrapper">
+              <img
+                src="../../images/Vector.png"
+                alt="Notifications"
+                class="bell-icon"
+              />
+              <span class="notification-badge">0</span>
+            </div>
+          </button>
+        </div>
+      </header>
+
+      <!-- Total Assets Section -->
+      <section class="total-assets">
+        <p class="total-label">Total assets</p>
+        <div class="total-amount-wrapper">
+          <span class="total-amount">$12.200,50</span>
+          <span class="total-currency">USDT</span>
+        </div>
+      </section>
+
+      <!-- Wallet Selection Tabs -->
+      <div class="wallet-tabs">
+        <button class="wallet-tab" data-wallet="main">Main Wallet</button>
+        <button class="wallet-tab" data-wallet="promotion">Promotion Wallet</button>
+        <button class="wallet-tab active" data-wallet="vip">Vip Wallet</button>
+        <button class="wallet-tab" data-wallet="demo">Demo Wallet</button>
+      </div>
+
+      <!-- VIP wallet box -->
+      <section class="wallet-details">
+        <div class="wallet-header">
+          <div class="wallet-info">
+            <span class="wallet-bullet">•</span>
+            <span class="wallet-name">VIP wallet</span>
+          </div>
+          <button class="reload-button" type="button">Tranfer To Live</button>
+        </div>
+
+        <div class="wallet-balance">
+          <span class="balance-amount">$12.200,50</span>
+          <span class="balance-currency">USDT</span>
+        </div>
+      </section>
+
+      <!-- VIP wallet leder title & filters -->
+      <section class="vip-ledger-section">
+        <div class="vip-ledger-header-row">
+          <h2 class="vip-ledger-title">VIP wallet leder</h2>
+
+          <div class="vip-filter-row">
+            <button class="vip-filter-button" type="button">Date</button>
+            <span class="vip-filter-dash">-</span>
+            <button class="vip-filter-button" type="button">Date</button>
+            <button class="vip-filter-button vip-filter-search" type="button">
+              Seach
+            </button>
+          </div>
+        </div>
+
+        <!-- Ledger table: reuse history styles -->
+        <div class="history-table vip-ledger-table">
+          <div class="history-header">
+            <div class="history-cell">Time</div>
+            <div class="history-cell">Amount</div>
+            <div class="history-cell">Reason</div>
+            <div class="history-cell">Current balance</div>
+          </div>
+
+          <div class="history-row">
+            <div class="history-cell">
+              11/23/2025<br />
+              15:09:27
+            </div>
+            <div class="history-cell value-positive">+1200</div>
+            <div class="history-cell">Commission from user123...</div>
+            <div class="history-cell">$11.200</div>
+          </div>
+
+          <div class="history-row">
+            <div class="history-cell">
+              11/23/2025<br />
+              15:09:27
+            </div>
+            <div class="history-cell value-negative">-10.000</div>
+            <div class="history-cell">Tranfer to live</div>
+            <div class="history-cell">$10.000</div>
+          </div>
+
+          <div class="history-row">
+            <div class="history-cell">
+              11/23/2025<br />
+              15:09:27
+            </div>
+            <div class="history-cell value-positive">+20.000</div>
+            <div class="history-cell">Rebate from downline trader</div>
+            <div class="history-cell">$20.000</div>
+          </div>
+        </div>
+
+        <div class="vip-reset-row">
+          <button class="vip-reset-button" type="button">Reset filter</button>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
+
+

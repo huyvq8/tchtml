@@ -1,0 +1,86 @@
+/* VIP Wallet ledger page CSS – tách riêng khỏi wallet-1.css */
+
+@import url("./wallet-1.css");
+
+/* Giữ nguyên các tinh chỉnh VIP đã dùng trước đó */
+
+.vip-page .vip-ledger-section {
+  margin-top: 14px;
+  margin-left: calc(-50vw + 50% + 16px);
+  margin-right: 20px;
+  width: calc(97vw - 28px);
+  max-width: calc(97vw - 28px);
+  box-sizing: border-box;
+}
+
+.vip-page .vip-ledger-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 23px;
+}
+
+.vip-page .vip-ledger-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+  font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+.vip-page .vip-filter-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0;
+}
+
+.vip-page .vip-filter-button {
+  padding: 6px 18px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: #262542;
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.vip-page .vip-filter-button.vip-filter-search {
+  background: linear-gradient(to bottom, #5047c2 0%, #11096b 100%);
+}
+
+.vip-page .vip-filter-dash {
+  color: var(--text-primary);
+  font-size: 13px;
+}
+
+.vip-page .vip-ledger-table {
+  margin-top: 0;
+}
+
+.vip-page .vip-reset-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
+
+.vip-page .vip-reset-button {
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(to bottom, #5047c2 0%, #11096b 100%);
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.vip-page .vip-ledger-table .history-header,
+.vip-page .vip-ledger-table .history-row {
+  grid-template-columns: 1.5fr 1fr 1.8fr 1.2fr;
+}
+
+

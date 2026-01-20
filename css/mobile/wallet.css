@@ -262,14 +262,19 @@ body {
   margin-bottom: 32px;
   margin-left: calc(-50vw + 50%);
   margin-right: auto;
-  width: calc(100vw - 32px);
-  max-width: calc(100vw - 32px);
+  width: calc(100vw - 14px);
+  max-width: calc(100vw - 14px);
   height: 112px;
   padding-left: 44px;
   padding-right: 8px;
   padding-top: 18px;
   padding-bottom: 18px;
-  background: linear-gradient(to bottom, #442F73 0%, #0C0A3C 100%);
+  /* Gradient với opacity: trên nhạt hơn, dưới đậm hơn */
+  background: linear-gradient(
+    to bottom,
+    rgba(68, 47, 115, 0.65) 0%,
+    rgba(12, 10, 60, 1) 100%
+  );
   border-radius: 0;
   border: none;
   box-sizing: border-box;
@@ -320,38 +325,34 @@ body {
   display: flex;
   gap: 12px;
   margin-bottom: 32px;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+  flex-wrap: wrap;
+  overflow: visible;
   padding-bottom: 2px;
-  margin-left: calc(-50vw + 50%);
-  margin-right: calc(-50vw + 50%);
-  width: calc(102vw - 32px);
-  max-width: calc(102vw - 32px);
-  padding-left: 16px;
-  padding-right: 16px;
+  margin-left: calc(-50vw + 50% + 16px);
+  margin-right: 20px;
+  width: calc(97vw - 28px);
+  max-width: calc(97vw - 28px);
+  padding-left: 0;
+  padding-right: 0;
   padding-top: 0;
   box-sizing: border-box;
 }
 
-.wallet-tabs::-webkit-scrollbar {
-  display: none;
-}
-
 .wallet-tab {
-  flex: 1;
-  min-width: 0;
+  flex: 1 1 0;
   padding: 10px 8px;
   background: #262542;
   border: 1px solid rgba(100, 100, 110, 0.3);
   border-radius: 4px;
   color: var(--text-primary);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   cursor: pointer;
   transition: background var(--transition-fast), border-color var(--transition-fast),
     transform var(--transition-fast), color var(--transition-fast);
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   text-align: center;
@@ -371,14 +372,18 @@ body {
 
 /* Wallet Details Section */
 .wallet-details {
-  background: linear-gradient(to bottom, #442F73 0%, #0C0A3C 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(68, 47, 115, 0.65) 0%,
+    rgba(12, 10, 60, 1) 100%
+  );
   border-radius: 0;
   padding: 18px 16px;
   border: none;
   margin-left: calc(-50vw + 50% + 16px);
-  margin-right: 32px;
-  width: calc(97vw - 40px);
-  max-width: calc(97vw - 40px);
+  margin-right: 20px;
+  width: calc(97vw - 28px);
+  max-width: calc(97vw - 28px);
   box-sizing: border-box;
 }
 
@@ -396,10 +401,21 @@ body {
 }
 
 .wallet-bullet {
-  font-size: 14px;
-  color: var(--text-secondary);
-  line-height: 1;
-  margin-top: 2px;
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+  position: relative;
+  display: inline-block;
+  font-size: 0;
+  line-height: 0;
+}
+
+.wallet-bullet::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--text-secondary);
 }
 
 .wallet-name {
@@ -526,8 +542,8 @@ body {
     margin-bottom: 24px;
     margin-left: calc(-50vw + 50%);
     margin-right: auto;
-    width: calc(100vw - 24px);
-    max-width: calc(100vw - 24px);
+    width: calc(100vw - 10px);
+    max-width: calc(100vw - 10px);
     height: 112px;
     padding-left: 40px;
     padding-right: 8px;
@@ -560,27 +576,28 @@ body {
   .wallet-tabs {
     gap: 10px;
     margin-bottom: 24px;
-    width: calc(102vw - 24px);
-    max-width: calc(102vw - 24px);
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
-    padding-left: 12px;
-    padding-right: 12px;
+    width: calc(97vw - 24px);
+    max-width: calc(97vw - 24px);
+    margin-left: calc(-50vw + 50% + 12px);
+    margin-right: 16px;
+    padding-left: 0;
+    padding-right: 0;
     box-sizing: border-box;
   }
 
   .wallet-tab {
     padding: 8px 6px;
-    font-size: 12px;
+    font-size: 11px;
     border-radius: 4px;
+    white-space: nowrap;
   }
 
   .wallet-details {
-    width: calc(97vw - 32px);
-    max-width: calc(97vw - 32px);
+    width: calc(97vw - 24px);
+    max-width: calc(97vw - 24px);
     padding: 16px 12px;
     margin-left: calc(-50vw + 50% + 12px);
-    margin-right: 24px;
+    margin-right: 16px;
     box-sizing: border-box;
   }
 
@@ -593,7 +610,8 @@ body {
   }
 
   .wallet-bullet {
-    font-size: 12px;
+    width: 9px;
+    height: 9px;
   }
 
   .balance-amount {
@@ -631,9 +649,10 @@ body {
   }
 
   .wallet-tab {
-    font-size: 12px;
+    font-size: 11px;
     padding: 9px 7px;
     border-radius: 4px;
+    white-space: nowrap;
   }
 
   .balance-amount {

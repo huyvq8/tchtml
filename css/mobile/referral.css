@@ -1,3 +1,5 @@
+/* Referral page CSS – tách riêng khỏi wallet-1.css nhưng giữ layout giống hệt */
+
 :root {
   --bg-main: #020923;
   --bg-card: rgba(34, 20, 87, 0.9);
@@ -24,10 +26,9 @@
 body {
   margin: 0;
   min-height: 100vh;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--text-primary);
-  background-color: #050F2D;
+  background-color: #050f2d;
   display: flex;
   justify-content: center;
   align-items: stretch;
@@ -47,7 +48,7 @@ body {
   background: transparent;
 }
 
-/* Top Navigation Bar */
+/* ===== Top Navigation Bar ===== */
 .top-nav {
   display: flex;
   align-items: center;
@@ -252,10 +253,9 @@ body {
   border: 1px solid var(--accent-yellow);
   font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
-  box-sizing: border-box;
 }
 
-/* Total Assets Section */
+/* ===== Total Assets ===== */
 .total-assets {
   text-align: left;
   margin-top: 0;
@@ -290,7 +290,6 @@ body {
   font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   font-weight: 400;
-  letter-spacing: 0.2px;
 }
 
 .total-amount-wrapper {
@@ -308,7 +307,6 @@ body {
   font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   line-height: 1.1;
-  letter-spacing: -0.5px;
 }
 
 .total-currency {
@@ -319,7 +317,7 @@ body {
     sans-serif;
 }
 
-/* Wallet Selection Tabs */
+/* ===== Wallet tabs ===== */
 .wallet-tabs {
   display: flex;
   gap: 12px;
@@ -331,9 +329,6 @@ body {
   margin-right: 20px;
   width: calc(97vw - 28px);
   max-width: calc(97vw - 28px);
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
   box-sizing: border-box;
 }
 
@@ -352,12 +347,9 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
   font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   text-align: center;
-  max-width: 100%;
-  box-sizing: border-box;
 }
 
 .wallet-tab:hover {
@@ -368,11 +360,11 @@ body {
 .wallet-tab.active {
   background: #262542;
   border-color: rgba(100, 100, 110, 0.3);
-  color: #FFC83B;
+  color: #ffc83b;
   font-weight: 600;
 }
 
-/* Wallet Details Section */
+/* ===== Wallet details box ===== */
 .wallet-details {
   background: linear-gradient(
     to bottom,
@@ -387,55 +379,6 @@ body {
   width: calc(97vw - 28px);
   max-width: calc(97vw - 28px);
   box-sizing: border-box;
-}
-
-/* ===== Referral page subtle tweaks (không ảnh hưởng wallet-1) ===== */
-.referral-page .wallet-details .wallet-bullet::before {
-  /* chấm vàng như mẫu Referral */
-  background: #ffc83b;
-}
-
-.referral-page .wallet-details .wallet-subtitle {
-  font-size: 11px;
-  color: var(--text-secondary);
-  margin: 2px 0 0 0;
-  font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
-}
-
-.referral-page .ref-wallet-actions {
-  display: flex;
-  flex-direction: column;
-  /* khoảng cách dọc giữa Top Up và Withdraw: 10px */
-  gap: 10px;
-}
-
-/* tinh chỉnh khoảng cách dọc trong box và tới bảng history */
-.referral-page .wallet-header {
-  margin-bottom: 6px;
-}
-
-.referral-page .wallet-balance {
-  margin-bottom: 6px;
-}
-
-.referral-page .history-section {
-  margin-top: 18px;
-}
-
-/* khoảng cách dọc giữa tiêu đề "Live wallet balance" và dòng $12.200,50 là 4px */
-.referral-page .wallet-header {
-  margin-bottom: 0;
-}
-
-.referral-page .wallet-name {
-  display: inline-block;
-  margin-bottom: 0;
-  line-height: 1.02;
-}
-
-.referral-page .wallet-balance {
-  margin-top: -40px;
 }
 
 .wallet-header {
@@ -480,7 +423,7 @@ body {
 
 .reload-button {
   padding: 8px 12px;
-  background: linear-gradient(to bottom, #5047C2 0%, #11096B 100%);
+  background: linear-gradient(to bottom, #5047c2 0%, #11096b 100%);
   border: none;
   border-radius: 8px;
   color: var(--text-primary);
@@ -518,7 +461,6 @@ body {
   font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   line-height: 1;
-  letter-spacing: -0.5px;
 }
 
 .balance-currency {
@@ -531,53 +473,7 @@ body {
   align-self: center;
 }
 
-/* Progress Bar Section */
-.progress-section {
-  margin-top: 16px;
-}
-
-.progress-bar-container {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
-}
-
-.progress-bar {
-  flex: 1;
-  height: 8px;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-  overflow: hidden;
-  position: relative;
-}
-
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(to right, var(--accent-yellow) 0%, #ffd966 100%);
-  border-radius: 4px;
-  transition: width 0.3s ease;
-}
-
-.progress-text {
-  font-size: 13px;
-  color: var(--text-primary);
-  font-weight: 500;
-  white-space: nowrap;
-  font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
-}
-
-.progress-description {
-  font-size: 12px;
-  color: var(--text-secondary);
-  line-height: 1.5;
-  margin: 0;
-  font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
-}
-
-/* History Section */
+/* ===== History section & table ===== */
 .history-section {
   margin-top: 6px;
   margin-left: calc(-50vw + 50% + 16px);
@@ -605,90 +501,6 @@ body {
   border-radius: 0;
   overflow: hidden;
   border: none;
-}
-
-/* ===== VIP wallet ledger page (dùng chung style với history) ===== */
-.vip-page .vip-ledger-section {
-  /* sát box VIP wallet hơn một chút so với mặc định history-section */
-  margin-top: 14px;
-  margin-left: calc(-50vw + 50% + 16px);
-  margin-right: 20px;
-  width: calc(97vw - 28px);
-  max-width: calc(97vw - 28px);
-  box-sizing: border-box;
-}
-
-.vip-page .vip-ledger-header-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  /* khoảng cách dọc từ hàng tiêu đề + filter xuống bảng: 23px */
-  margin-bottom: 23px;
-}
-
-.vip-page .vip-ledger-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin: 0;
-  font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
-}
-
-.vip-page .vip-filter-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 0;
-}
-
-.vip-page .vip-filter-button {
-  /* rộng ngang hơn, bo góc nhẹ hơn để giống mẫu */
-  padding: 6px 18px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  background: #262542;
-  color: var(--text-primary);
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.vip-page .vip-filter-button.vip-filter-search {
-  background: linear-gradient(to bottom, #5047c2 0%, #11096b 100%);
-}
-
-.vip-page .vip-filter-dash {
-  color: var(--text-primary);
-  font-size: 13px;
-}
-
-.vip-page .vip-ledger-table {
-  margin-top: 0;
-}
-
-.vip-page .vip-reset-row {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 14px;
-}
-
-.vip-page .vip-reset-button {
-  padding: 6px 14px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  background: linear-gradient(to bottom, #5047c2 0%, #11096b 100%);
-  color: var(--text-primary);
-  font-size: 12px;
-  font-weight: 500;
-}
-
-/* Căn lại 4 cột Time / Amount / Reason / Current balance cho VIP ledger */
-.vip-page .vip-ledger-table .history-header,
-.vip-page .vip-ledger-table .history-row {
-  grid-template-columns: 1.5fr 1fr 1.8fr 1.2fr;
 }
 
 .history-header {
@@ -742,7 +554,7 @@ body {
 
 .history-header .history-cell {
   font-weight: 400;
-  color: #FFC83B;
+  color: #ffc83b;
   font-size: 13px;
   text-transform: none;
   letter-spacing: 0.5px;
@@ -763,7 +575,42 @@ body {
   font-weight: 500;
 }
 
-/* Responsive for small mobile devices */
+/* ===== Tùy chỉnh riêng Referral ===== */
+.referral-page .wallet-details .wallet-bullet::before {
+  background: #ffc83b;
+}
+
+.referral-page .wallet-details .wallet-subtitle {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin: 2px 0 0 0;
+}
+
+.referral-page .ref-wallet-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.referral-page .wallet-header {
+  margin-bottom: 0;
+}
+
+.referral-page .wallet-name {
+  display: inline-block;
+  margin-bottom: 0;
+  line-height: 1.02;
+}
+
+.referral-page .wallet-balance {
+  margin-top: -40px;
+}
+
+.referral-page .history-section {
+  margin-top: 18px;
+}
+
+/* ===== Responsive ===== */
 @media (max-width: 375px) {
   .screen-container {
     width: 90%;
@@ -781,82 +628,6 @@ body {
     margin-top: 4px;
   }
 
-  .header-right {
-    gap: 8px;
-  }
-
-  .live-account {
-    padding: 5px 8px;
-    gap: 4px;
-    height: 46px;
-  }
-
-  .live-label {
-    font-size: 10px;
-  }
-
-  .live-amount {
-    font-size: 11px;
-  }
-
-  .notification-button {
-    min-width: 46px;
-    width: 46px;
-    height: 46px;
-    padding: 0;
-  }
-
-  .wallet-icon {
-    width: 14px;
-    height: 14px;
-  }
-
-  .bell-icon {
-    width: 18px;
-    height: 18px;
-  }
-
-  .live-dot {
-    width: 5px;
-    height: 5px;
-  }
-
-  .total-assets {
-    margin-top: 0;
-    margin-bottom: 18px;
-    margin-left: calc(-50vw + 50%);
-    margin-right: auto;
-    width: calc(100vw - 10px);
-    max-width: calc(100vw - 10px);
-    height: 112px;
-    padding-left: 40px;
-    padding-right: 8px;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    border-radius: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .total-label {
-    font-size: 14px;
-    margin-bottom: 8px;
-    padding-left: 0;
-  }
-
-  .total-amount-wrapper {
-    padding-left: 0;
-  }
-
-  .total-amount {
-    font-size: 22px;
-  }
-
-  .total-currency {
-    font-size: 14px;
-  }
-
   .wallet-tabs {
     gap: 10px;
     margin-bottom: 17px;
@@ -864,15 +635,11 @@ body {
     max-width: calc(97vw - 24px);
     margin-left: calc(-50vw + 50% + 12px);
     margin-right: 16px;
-    padding-left: 0;
-    padding-right: 0;
-    box-sizing: border-box;
   }
 
   .wallet-tab {
     padding: 8px 4px;
     font-size: 10px;
-    border-radius: 4px;
   }
 
   .wallet-details {
@@ -881,11 +648,6 @@ body {
     padding: 16px 12px;
     margin-left: calc(-50vw + 50% + 12px);
     margin-right: 16px;
-    box-sizing: border-box;
-  }
-
-  .wallet-header {
-    margin-bottom: 6px;
   }
 
   .wallet-name {
@@ -905,32 +667,6 @@ body {
     font-size: 13px;
   }
 
-  .reload-button {
-    padding: 7px 10px;
-    font-size: 13px;
-  }
-
-  .progress-section {
-    margin-top: 12px;
-  }
-
-  .progress-bar-container {
-    gap: 8px;
-    margin-bottom: 10px;
-  }
-
-  .progress-bar {
-    height: 6px;
-  }
-
-  .progress-text {
-    font-size: 11px;
-  }
-
-  .progress-description {
-    font-size: 11px;
-  }
-
   .history-section {
     margin-top: 6px;
     margin-left: calc(-50vw + 50% + 12px);
@@ -938,36 +674,8 @@ body {
     width: calc(97vw - 24px);
     max-width: calc(97vw - 24px);
   }
-
-  .history-title {
-    font-size: 16px;
-    margin-bottom: 17px;
-  }
-
-  .history-header,
-  .history-row {
-    padding: 16px 16px 16px 8px;
-    gap: 8px;
-  }
-
-  .history-cell {
-    font-size: 13px;
-    white-space: normal;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-
-  .history-header .history-cell {
-    font-weight: 400;
-    font-size: 13px;
-    color: #FFC83B;
-  }
 }
 
-/* Responsive for medium mobile devices */
 @media (min-width: 376px) and (max-width: 414px) {
   .screen-container {
     width: 90%;
@@ -975,22 +683,9 @@ body {
     padding: 0 12px 30px;
   }
 
-  .top-nav {
-    padding: 11px 14px;
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
-    width: 100vw;
-    max-width: 100vw;
-  }
-
-  .total-amount {
-    font-size: 23px;
-  }
-
   .wallet-tab {
     font-size: 10px;
     padding: 9px 5px;
-    border-radius: 4px;
   }
 
   .balance-amount {
@@ -998,25 +693,12 @@ body {
   }
 }
 
-/* Responsive for larger screens */
 @media (min-width: 480px) {
   .screen-container {
     width: 90%;
     max-width: 90%;
     justify-content: flex-start;
     padding: 0 14px 34px;
-  }
-
-  .top-nav {
-    padding: 12px 16px;
-    margin-left: calc(-50vw + 50%);
-    margin-right: calc(-50vw + 50%);
-    width: 100vw;
-    max-width: 100vw;
-  }
-
-  .total-amount {
-    font-size: 24px;
   }
 
   .balance-amount {

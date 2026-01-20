@@ -258,8 +258,8 @@ body {
 /* Total Assets Section */
 .total-assets {
   text-align: left;
-  margin-top: 13px;
-  margin-bottom: 32px;
+  margin-top: 0;
+  margin-bottom: 18px;
   margin-left: calc(-50vw + 50%);
   margin-right: auto;
   width: calc(100vw - 32px);
@@ -319,7 +319,7 @@ body {
 .wallet-tabs {
   display: flex;
   gap: 12px;
-  margin-bottom: 32px;
+  margin-bottom: 17px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
@@ -341,20 +341,24 @@ body {
 .wallet-tab {
   flex: 1;
   min-width: 0;
-  padding: 10px 8px;
+  padding: 10px 6px;
   background: #262542;
   border: 1px solid rgba(100, 100, 110, 0.3);
   border-radius: 4px;
   color: var(--text-primary);
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   cursor: pointer;
   transition: background var(--transition-fast), border-color var(--transition-fast),
     transform var(--transition-fast), color var(--transition-fast);
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   text-align: center;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .wallet-tab:hover {
@@ -441,6 +445,7 @@ body {
   gap: 10px;
   padding-left: 0;
   margin-left: 0;
+  margin-bottom: 16px;
 }
 
 .balance-amount {
@@ -461,6 +466,150 @@ body {
     sans-serif;
   line-height: 1;
   align-self: center;
+}
+
+/* Progress Bar Section */
+.progress-section {
+  margin-top: 16px;
+}
+
+.progress-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, var(--accent-yellow) 0%, #ffd966 100%);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-size: 13px;
+  color: var(--text-primary);
+  font-weight: 500;
+  white-space: nowrap;
+  font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+.progress-description {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+  font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+/* History Section */
+.history-section {
+  margin-top: 6px;
+  margin-left: calc(-50vw + 50% + 16px);
+  margin-right: 32px;
+  width: calc(97vw - 40px);
+  max-width: calc(97vw - 40px);
+  box-sizing: border-box;
+}
+
+.history-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 17px 0;
+  font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+.history-table {
+  background: linear-gradient(to bottom, #442F73 0%, #0C0A3C 100%);
+  border-radius: 0;
+  overflow: hidden;
+  border: none;
+}
+
+.history-header {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.5fr 1fr;
+  gap: 8px;
+  padding: 16px 16px 16px 8px;
+  background: #161354;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.history-row {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.5fr 1fr;
+  gap: 8px;
+  padding: 16px 16px 16px 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background var(--transition-fast);
+}
+
+.history-row:nth-of-type(odd) {
+  background: #161354;
+}
+
+.history-row:nth-of-type(even) {
+  background: #121042;
+}
+
+.history-row:last-child {
+  border-bottom: none;
+}
+
+.history-row:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.history-cell {
+  font-size: 13px;
+  color: #a4b0d0;
+  font-family: Arial, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  line-height: 1.5;
+  word-break: break-word;
+  white-space: normal;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.history-header .history-cell {
+  font-weight: 400;
+  color: #FFC83B;
+  font-size: 13px;
+  text-transform: none;
+  letter-spacing: 0.5px;
+}
+
+.value-positive {
+  color: #4ade80;
+  font-weight: 600;
+}
+
+.value-negative {
+  color: #ef4444;
+  font-weight: 600;
+}
+
+.status-done {
+  color: #a4b0d0;
+  font-weight: 500;
 }
 
 /* Responsive for small mobile devices */
@@ -522,8 +671,8 @@ body {
   }
 
   .total-assets {
-    margin-top: 13px;
-    margin-bottom: 24px;
+    margin-top: 0;
+    margin-bottom: 18px;
     margin-left: calc(-50vw + 50%);
     margin-right: auto;
     width: calc(100vw - 24px);
@@ -559,7 +708,7 @@ body {
 
   .wallet-tabs {
     gap: 10px;
-    margin-bottom: 24px;
+    margin-bottom: 17px;
     width: calc(102vw - 24px);
     max-width: calc(102vw - 24px);
     margin-left: calc(-50vw + 50%);
@@ -570,9 +719,12 @@ body {
   }
 
   .wallet-tab {
-    padding: 8px 6px;
-    font-size: 12px;
+    padding: 8px 4px;
+    font-size: 11px;
     border-radius: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
 
   .wallet-details {
@@ -608,6 +760,62 @@ body {
     padding: 7px 10px;
     font-size: 13px;
   }
+
+  .progress-section {
+    margin-top: 12px;
+  }
+
+  .progress-bar-container {
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .progress-bar {
+    height: 6px;
+  }
+
+  .progress-text {
+    font-size: 11px;
+  }
+
+  .progress-description {
+    font-size: 11px;
+  }
+
+  .history-section {
+    margin-top: 6px;
+    margin-left: calc(-50vw + 50% + 12px);
+    margin-right: 24px;
+    width: calc(97vw - 32px);
+    max-width: calc(97vw - 32px);
+  }
+
+  .history-title {
+    font-size: 16px;
+    margin-bottom: 17px;
+  }
+
+  .history-header,
+  .history-row {
+    padding: 16px 16px 16px 8px;
+    gap: 8px;
+  }
+
+  .history-cell {
+    font-size: 13px;
+    white-space: normal;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .history-header .history-cell {
+    font-weight: 400;
+    font-size: 13px;
+    color: #FFC83B;
+  }
 }
 
 /* Responsive for medium mobile devices */
@@ -631,9 +839,12 @@ body {
   }
 
   .wallet-tab {
-    font-size: 12px;
-    padding: 9px 7px;
+    font-size: 11px;
+    padding: 9px 5px;
     border-radius: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
 
   .balance-amount {

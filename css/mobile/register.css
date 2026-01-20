@@ -210,10 +210,10 @@ body {
   display: inline-block;
   width: 16.8px;
   height: 14px;
-  font-size: 14px;
-  line-height: 14px;
-  color: #ffffff;
-  opacity: 0.9;
+  background-image: url("../../images/Vector (3).png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
   cursor: default;
 }
 

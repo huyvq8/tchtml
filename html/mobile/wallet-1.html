@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Trade Coin88 - Wallet</title>
-    <link rel="stylesheet" href="../../css/mobile/wallet.css" />
+    <link rel="stylesheet" href="../../css/mobile/wallet-1.css" />
   </head>
   <body>
     <div class="screen-container">
@@ -53,9 +53,9 @@
       <!-- Wallet Selection Tabs -->
       <div class="wallet-tabs">
         <button class="wallet-tab" data-wallet="main">Main Wallet</button>
-        <button class="wallet-tab" data-wallet="promotion">Promotion Wallet</button>
+        <button class="wallet-tab active" data-wallet="promotion">Promotion Wallet</button>
         <button class="wallet-tab" data-wallet="vip">Vip Wallet</button>
-        <button class="wallet-tab active" data-wallet="demo">Demo Wallet</button>
+        <button class="wallet-tab" data-wallet="demo">Demo Wallet</button>
       </div>
 
       <!-- Wallet Details Section -->
@@ -63,7 +63,7 @@
         <div class="wallet-header">
           <div class="wallet-info">
             <span class="wallet-bullet">•</span>
-            <span class="wallet-name">Demo wallet</span>
+            <span class="wallet-name">Promotion wallet</span>
           </div>
           <button class="reload-button">Reload Funds</button>
         </div>
@@ -71,6 +71,44 @@
         <div class="wallet-balance">
           <span class="balance-amount">$1000</span>
           <span class="balance-currency">USDT</span>
+        </div>
+
+        <!-- Progress Bar Section -->
+        <div class="progress-section">
+          <div class="progress-bar-container">
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 33.33%"></div>
+            </div>
+            <div class="progress-text">$10.000/$30.000</div>
+          </div>
+          <p class="progress-description">
+            Continue trading to reach the 10,000 USD volume and receive $1000 to your live wallet.
+          </p>
+        </div>
+      </section>
+
+      <!-- History Section -->
+      <section class="history-section">
+        <h2 class="history-title">History</h2>
+        <div class="history-table">
+          <div class="history-header">
+            <div class="history-cell">Time</div>
+            <div class="history-cell">Value</div>
+            <div class="history-cell">Type</div>
+            <div class="history-cell">Status</div>
+          </div>
+          <div class="history-row">
+            <div class="history-cell">11/23/2025<br>15:09:27</div>
+            <div class="history-cell value-positive">+$1000</div>
+            <div class="history-cell">First deposit<br>bonus 10%</div>
+            <div class="history-cell status-done">Done</div>
+          </div>
+          <div class="history-row">
+            <div class="history-cell">11/23/2025<br>15:09:27</div>
+            <div class="history-cell value-negative">-100</div>
+            <div class="history-cell">Tranfer to live</div>
+            <div class="history-cell status-done">Done</div>
+          </div>
         </div>
       </section>
     </div>

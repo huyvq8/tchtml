@@ -256,6 +256,13 @@ body {
     border-radius: 0 4px 4px 0;
 }
 
+.nav-item svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    display: block;
+}
+
 .nav-item span:first-of-type {
     font-size: 14px;
     font-weight: 500;

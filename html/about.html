@@ -6,69 +6,119 @@
     <title>About Us - TradeCoin88</title>
     <link rel="stylesheet" href="../css/dashboard.css">
     <style>
+        /* Override header và box icon colors */
+        .dashboard-header {
+            background-color: #201D44 !important;
+        }
+
+        .dashboard-header .account-toggle,
+        .dashboard-header .live-account {
+            background: #181537 !important;
+        }
+
+        .dashboard-header .notification-button {
+            background: #181537 !important;
+        }
+
+        .dashboard-header .user-info {
+            background: #181537 !important;
+        }
+
         /* About Us Page Specific Styles */
         .about-header {
-            margin-bottom: 24px;
+            margin-bottom: 18px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-start;
             flex-wrap: wrap;
             gap: 16px;
         }
 
         .about-title-section {
-            margin-bottom: 24px;
+            margin-bottom: 0;
         }
 
         .about-main-title {
             font-size: 32px;
             font-weight: 700;
-            color: var(--text-white);
+            color: #FFC83B;
             margin-bottom: 8px;
         }
 
         .about-subtitle {
-            font-size: 16px;
-            color: var(--text-gray);
-            margin-bottom: 24px;
+            font-size: 14px;
+            color: var(--text-white);
+            margin-bottom: 20px;
         }
 
         .about-tabs {
             display: flex;
             gap: 8px;
-            margin-bottom: 32px;
             flex-wrap: wrap;
         }
 
         .about-tab {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
+            /* Nút KHÔNG được chọn */
+            background: rgba(60, 48, 116, 0.95);
+            border: none;
             border-radius: 8px;
-            padding: 12px 24px;
-            color: var(--text-gray);
+            padding: 9px 18px;
+            color: #ffffff;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .about-tab.active {
-            background: rgba(73, 45, 225, 0.5);
-            color: var(--text-white);
-            border-color: var(--purple);
+            /* Nút ĐƯỢC chọn */
+            background: linear-gradient(to bottom, #5047C2 0%, #11096B 100%);
+            color: #ffffff;
         }
 
+        /* Gradient box (hero) full width - chỉ box gradient full width, phần tử bên trong giữ nguyên */
+        .about-hero {
+            width: 100vw;
+            max-width: 100vw;
+            margin: 24px 0 32px;
+            margin-left: calc(-50vw + 50%);
+            margin-right: calc(-50vw + 50%);
+            padding: 24px 0 20px; /* padding ngang = 0, để inner tự quản lý */
+            border-radius: 16px;
+            background: linear-gradient(
+                to bottom,
+                rgba(68, 47, 115, 0.5) 0%,
+                rgba(12, 10, 60, 0.5) 100%
+            );
+            box-sizing: border-box;
+        }
+
+        .about-hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            /* padding sẽ được tính toán động bởi JavaScript để căn chỉnh với content-section */
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Main content cards */
         .about-content {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 32px;
-            backdrop-filter: blur(10px);
+            max-width: 1100px;
+            margin: 0 auto 40px;
+            background: transparent;
+            border: none;
+            padding: 0;
             line-height: 1.8;
         }
 
         .content-section {
-            margin-bottom: 32px;
+            margin-bottom: 24px;
+            background: linear-gradient(to bottom, rgba(68, 47, 115, 0.65) 0%, rgba(12, 10, 60, 1) 100%);
+            border-radius: 16px;
+            border: none;
+            /* padding để căn chỉnh với hero-inner: 24px (top/bottom) + 32px (left/right) */
+            padding: 24px 32px;
+            box-sizing: border-box;
         }
 
         .content-section:last-child {
@@ -109,7 +159,7 @@
         }
 
         .highlight-box {
-            background: rgba(255, 200, 59, 0.1);
+            background: rgba(255, 200, 59, 0.04);
             border-left: 4px solid var(--yellow-main);
             padding: 16px;
             margin: 16px 0;
@@ -124,11 +174,11 @@
         }
 
         .back-to-trade-btn {
-            background: var(--purple);
+            background: linear-gradient(to bottom, #5047C2 0%, #11096B 100%);
             border: none;
             border-radius: 8px;
             padding: 12px 24px;
-            color: var(--text-white);
+            color: #FFC83B;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
@@ -148,24 +198,187 @@
         .step-item {
             font-size: 14px;
             color: var(--text-gray);
-            margin-bottom: 12px;
+            margin-bottom: 8px;
+        }
+
+        .advice-section {
+            background: #050B3D;
+            border-radius: 0;
+            border: none;
+            padding: 16px 28px 16px 32px;
+            position: relative;
+        }
+
+        .advice-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 8px;
+            background-color: #FFC83B;
+        }
+
+        .advice-box {
+            margin-top: 0;
+            background: transparent;
+            border-radius: 0;
+            padding: 0;
+            color: #FFFFFF;
+            font-size: 14px;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+
+        .advice-title {
+            font-weight: 700;
+            margin-bottom: 2px;
+            color: #FFC83B;
+        }
+
+        .advice-highlight {
+            color: #FFC83B;
         }
 
         @media (max-width: 768px) {
+            body {
+                background-color: #050F2D;
+            }
+
+            /* Override header và box icon colors cho mobile */
+            .dashboard-header {
+                background-color: #201D44 !important;
+            }
+
+            .dashboard-header .account-toggle,
+            .dashboard-header .live-account {
+                background: #181537 !important;
+            }
+
+            .dashboard-header .notification-button {
+                background: #181537 !important;
+            }
+
+            .dashboard-header .user-info {
+                background: #181537 !important;
+            }
+
+            /* Header About mobile: 3 phần trên 1 hàng (menu | live account | bell) */
+            .dashboard-header .header-content {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                column-gap: 10px;
+                flex-wrap: nowrap !important;
+            }
+
+            .dashboard-header .header-right {
+                order: 0;
+                width: auto;
+                margin-bottom: 0;
+            }
+
+            /* Chỉ giữ lại 3 đối tượng trên header: menu, live account, bell */
+            .dashboard-header .header-logo {
+                display: none;
+            }
+
+            .dashboard-header .user-info {
+                display: none;
+            }
+
+            .dashboard-container {
+                display: flex;
+                justify-content: center;
+            }
+
+            .dashboard-main {
+                max-width: 440px;
+                width: 100%;
+                padding: 0 16px 32px;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            /* Box gradient full width - chỉ box gradient full width, phần tử bên trong giữ nguyên */
+            .about-hero {
+                width: 100vw;
+                max-width: 100vw;
+                margin: 16px 0 20px;
+                margin-left: calc(-50vw + 50%);
+                margin-right: calc(-50vw + 50%);
+                padding: 20px 0 18px; /* padding ngang = 0, để inner tự quản lý */
+                border-radius: 16px;
+            }
+
+            .about-hero-inner {
+                /* padding sẽ được tính toán động bởi JavaScript để căn chỉnh với content-section */
+                padding: 0;
+            }
+
+
             .about-main-title {
-                font-size: 24px;
+                font-size: 20px;
+                line-height: 1.1;
+                white-space: nowrap; /* cố giữ ABOUT TRADECOIN88 trên một hàng */
+            }
+
+            /* Tiêu đề + nút Back to trade trên cùng một hàng, giống mẫu */
+            .about-header {
+                align-items: flex-start;      /* căn theo đỉnh, nút thẳng hàng với title */
+                flex-wrap: nowrap;           /* bắt buộc 1 hàng */
+                justify-content: space-between;
+                gap: 12px;
+            }
+
+            .about-title-section {
+                flex: 1;
+                min-width: 0;                /* cho phép co lại theo chiều ngang */
+                margin-bottom: 0;
+            }
+
+            .back-to-trade-btn {
+                margin-top: 0;
+                white-space: nowrap;
+                padding: 8px 18px;
+                font-size: 13px;
+            }
+
+            /* Thu nhỏ thêm trên màn rất hẹp để title + nút vẫn cùng hàng */
+            @media (max-width: 480px) {
+                .about-main-title {
+                    font-size: 18px;
+                }
+
+                .back-to-trade-btn {
+                    padding: 6px 14px;
+                    font-size: 12px;
+                }
             }
 
             .about-tabs {
-                flex-direction: column;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                row-gap: 14px;
+                margin-top: 12px;
+                margin-bottom: 4px;
             }
 
             .about-tab {
-                width: 100%;
+                min-width: 44%;
+                text-align: center;
+                white-space: nowrap;
+                padding: 8px 14px;
             }
 
             .about-content {
-                padding: 20px;
+                margin: 0 0 32px;
+            }
+
+            .content-section {
+                padding: 20px 16px;
             }
 
             .section-title {
@@ -184,9 +397,14 @@
             <div class="header-right">
                 <div class="account-dropdown">
                     <button class="account-toggle">
-                        <span class="account-type">Live account</span>
-                        <span class="account-balance">$10.200,50</span>
-                        <span class="live-dot"></span>
+                        <img src="../images/a3 3.png" alt="Wallet" class="account-wallet-icon">
+                        <div class="account-info">
+                            <span class="account-type">
+                                <span class="live-dot"></span>
+                                Live account
+                            </span>
+                            <span class="account-balance">$10.200,50</span>
+                        </div>
                         <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
                             <path d="M1 1L6 6L11 1" stroke="white" stroke-width="2" stroke-linecap="round"/>
                         </svg>
@@ -199,12 +417,11 @@
                     </svg>
                     <span class="username">Abc123</span>
                 </div>
-                <button class="icon-btn notification-btn">
-                    <svg width="20" height="22" viewBox="0 0 20 22" fill="none">
-                        <path d="M10 0C6.68629 0 4 2.68629 4 6V9C4 10.6569 3.32843 12.2243 2.17157 13.3812L1.5 14.0528V16H18.5V14.0528L17.8284 13.3812C16.6716 12.2243 16 10.6569 16 9V6C16 2.68629 13.3137 0 10 0Z" fill="white"/>
-                        <path d="M7 18H13C13 19.6569 11.6569 21 10 21C8.34315 21 7 19.6569 7 18Z" fill="white"/>
-                    </svg>
-                    <span class="badge">0</span>
+                <button class="icon-btn notification-btn notification-button">
+                    <div class="bell-wrapper">
+                        <img src="../images/Vector.png" alt="Notifications" class="bell-icon" />
+                        <span class="notification-badge">0</span>
+                    </div>
                 </button>
             </div>
         </div>
@@ -220,19 +437,23 @@
 
         <!-- Main Content -->
         <main class="dashboard-main">
-            <div class="about-header">
-                <div class="about-title-section">
-                    <div class="about-main-title">ABOUT TRADECOIN88</div>
-                    <div class="about-subtitle">Trusted Binary Options Trading Platform in Nigeria</div>
-                </div>
-                <button class="back-to-trade-btn">Back to trade</button>
-            </div>
+            <div class="about-hero">
+                <div class="about-hero-inner">
+                    <div class="about-header">
+                        <div class="about-title-section">
+                            <div class="about-main-title">ABOUT TRADECOIN88</div>
+                            <div class="about-subtitle">Trusted Binary Options Trading Platform in Nigeria</div>
+                        </div>
+                        <button class="back-to-trade-btn">Back to trade</button>
+                    </div>
 
-            <div class="about-tabs">
-                <button class="about-tab active" data-tab="introduction">Introduction</button>
-                <button class="about-tab" data-tab="account">Account</button>
-                <button class="about-tab" data-tab="deposit">Deposit & Withdrawals</button>
-                <button class="about-tab" data-tab="rules">Trading Rules</button>
+                    <div class="about-tabs">
+                        <button class="about-tab active" data-tab="introduction">Introduction</button>
+                        <button class="about-tab" data-tab="account">Account</button>
+                        <button class="about-tab" data-tab="deposit">Deposit & Withdrawals</button>
+                        <button class="about-tab" data-tab="rules">Trading Rules</button>
+                    </div>
+                </div>
             </div>
 
             <div class="about-content" id="tab-content">
@@ -315,6 +536,55 @@
                                 <li class="step-item">Enter amount and confirm transaction.</li>
                             </ol>
                         </div>
+                        <div class="section-content">
+                            <strong>Withdrawals:</strong>
+                            <ol class="step-list">
+                                <li class="step-item">Go to Wallet → Withdraw.</li>
+                                <li class="step-item">Enter amount and linked bank account details.</li>
+                                <li class="step-item">Confirm and wait for processing (5–15 minutes).</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <div class="section-title">V. Policy & Violation Restrictions</div>
+                        <div class="section-content">
+                            To ensure fairness, security, and a safe trading environment for all users, TradeCoin88 strongly advises against engaging in the following prohibited activities. Violations of these rules may result in account suspension, removal of bonuses, or permanent bans.
+                        </div>
+                        <div class="section-content">
+                            <ol class="step-list">
+                                <li class="step-item"><strong>1. Multiple Account Creation</strong><br>
+                                    Do not register multiple accounts with the intention of receiving promotions or bonuses more than once. Our system automatically detects duplicate accounts, and violating users may face account suspension or permanent bans.
+                                </li>
+                                <li class="step-item"><strong>2. Opposing Bets or Result Manipulation</strong><br>
+                                    Deliberately placing bets between multiple accounts to generate fake trading volume or manipulate results is strictly prohibited. Such actions will lead to immediate cancellation of all bonuses and possible account restrictions.
+                                </li>
+                                <li class="step-item"><strong>3. Promotion Abuse</strong><br>
+                                    Avoid making only the minimum deposit required to receive a bonus and then withdrawing immediately after completing the minimum trading volume. This behavior will result in denial of bonus rewards and restricted access to future promotions.
+                                </li>
+                                <li class="step-item"><strong>4. Abnormal Transaction Behavior</strong><br>
+                                    Do not make numerous small deposits or repeatedly withdraw near the maximum allowed limit. Such activity may trigger system reviews and temporary suspension of transactions pending verification.
+                                </li>
+                                <li class="step-item"><strong>5. Account Sharing</strong><br>
+                                    Never share your account with others or log in from unrecognized or suspicious devices. This compromises your account security and may lead to temporary suspension or permanent account action.
+                                </li>
+                                <li class="step-item"><strong>6. Use of Automated Software</strong><br>
+                                    The use of bots, automated scripts, or any third-party tools to place bets or manipulate the platform is strictly forbidden. Detected cases will be handled seriously and may lead to permanent bans.
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="content-section advice-section">
+                        <div class="advice-box">
+                            <div>
+                                <span class="advice-title">Our Advice:</span>
+                                <span>
+                                    Trade honestly, follow platform guidelines, and enjoy all the benefits, bonuses, and rewards offered by the system.
+                                </span>
+                                <span class="advice-highlight"> All fraudulent or abusive activities will be strictly investigated and dealt with seriously.</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -380,6 +650,58 @@
                     }
                 });
             });
+
+            // Tự động căn chỉnh padding của about-hero-inner với content-section
+            function alignHeroInnerPadding() {
+                const heroInner = document.querySelector('.about-hero-inner');
+                const contentSection = document.querySelector('.content-section');
+                
+                if (!heroInner || !contentSection) return;
+
+                // Lấy vị trí và kích thước của các phần tử
+                const heroInnerRect = heroInner.getBoundingClientRect();
+                const sectionRect = contentSection.getBoundingClientRect();
+                
+                // Tính toán padding-left và padding-right để căn chỉnh
+                const paddingLeft = sectionRect.left - heroInnerRect.left;
+                const paddingRight = heroInnerRect.right - sectionRect.right;
+                
+                // Áp dụng padding mới
+                heroInner.style.paddingLeft = Math.max(0, paddingLeft) + 'px';
+                heroInner.style.paddingRight = Math.max(0, paddingRight) + 'px';
+            }
+
+            // Debounce function để tối ưu hiệu suất
+            let resizeTimeout;
+            function debouncedAlign() {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(alignHeroInnerPadding, 50);
+            }
+
+            // Chạy khi load và khi resize
+            alignHeroInnerPadding();
+            window.addEventListener('resize', debouncedAlign);
+            
+            // Chạy lại sau khi tab được chuyển (để đảm bảo content-section đã render)
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    setTimeout(alignHeroInnerPadding, 100);
+                });
+            });
+
+            // Theo dõi thay đổi của content-section để tự động căn chỉnh lại
+            const aboutContent = document.querySelector('.about-content');
+            if (aboutContent) {
+                const observer = new MutationObserver(function() {
+                    setTimeout(alignHeroInnerPadding, 50);
+                });
+                observer.observe(aboutContent, {
+                    childList: true,
+                    subtree: true,
+                    attributes: true,
+                    attributeFilter: ['style', 'class']
+                });
+            }
         });
     </script>
 </body>

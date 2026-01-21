@@ -7,74 +7,15 @@
     <link rel="stylesheet" href="../css/dashboard.css">
     <style>
         /* FAQ Page Specific Styles - Header chỉ có 3 thành phần */
-        /* Sidebar cho FAQ: off-canvas, mở bằng hamburger */
+        /* Sidebar cho FAQ: giống các trang desktop khác – luôn hiển thị bên trái */
         .dashboard-container {
-            display: block !important;
+            display: flex;
+            min-height: calc(100vh - 72px);
         }
         .dashboard-container .sidebar {
             display: block !important;
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            width: 260px;
-            z-index: 2000;
-            transform: translateX(-110%);
-            transition: transform 0.2s ease-out;
-            box-shadow: 0 18px 40px rgba(0,0,0,0.45);
-            overflow-y: auto;
         }
-        body.faq-menu-open .dashboard-container .sidebar {
-            transform: translateX(0);
-        }
-        .faq-sidebar-backdrop{
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.45);
-            z-index: 1999;
-            display: none;
-        }
-        body.faq-menu-open .faq-sidebar-backdrop{
-            display: block;
-        }
-        body.faq-menu-open{
-            overflow: hidden;
-        }
-        .dashboard-container .dashboard-main {
-            width: 100% !important;
-            max-width: 1200px;
-            margin: 0 auto !important;
-            /* tạo khoảng cách 2 bên + trên dưới đều như mẫu */
-            padding: 32px 48px 48px !important;
-            box-sizing: border-box;
-        }
-
-        /* Dải gradient nền phía sau (giống mẫu): #442F73 -> #0C0A3C, opacity 50% */
-        .dashboard-container .dashboard-main {
-            position: relative;
-        }
-        .dashboard-container .dashboard-main::before {
-            content: "";
-            position: absolute;
-            top: 32px; /* dãn cách trên 32px */
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100vw; /* full 100% chiều ngang như mẫu */
-            height: 308px; /* theo mẫu */
-            background: linear-gradient(
-                to bottom,
-                rgba(68, 47, 115, 0.5) 0%,
-                rgba(12, 10, 60, 0.5) 100%
-            );
-            pointer-events: none;
-            z-index: 0;
-            /* bo 2 góc trên */
-            border-radius: 17px 17px 0 0;
-        }
-        .dashboard-container .dashboard-main > * {
-            position: relative;
-            z-index: 1;
-        }
+        /* FAQ layout: dùng padding/margin mặc định của .dashboard-main trong dashboard.css */
 
         /* Header bar giống mẫu: full-width, nền tím đậm, padding nhỏ hơn, không wrap */
         .dashboard-header {
@@ -297,7 +238,7 @@
 
 
         .faq-title-section {
-            margin-bottom: 26px;
+            margin: 0 0 20px 0;
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
@@ -326,17 +267,40 @@
         }
 
         /* Tạo “khoảng thở” xung quanh khu vực logo + title (giống mẫu) */
-        .faq-title-section { margin-top: 18px; }
+        .faq-title-section { margin-top: 0; }
+
+        /* Hộp FAQ hero: full width TRONG phần nội dung, phủ hết padding của dashboard-main */
+        .faq-hero {
+            width: auto;
+            max-width: none;
+            /* dashboard-main có padding 24px nên dùng margin âm để box chạm sát 2 mép nội dung */
+            margin: 24px -24px 32px;
+            padding: 24px 32px 28px;
+            border-radius: 16px;
+            /* Gradient theo mẫu: #442F73 -> #0C0A3C với opacity 50% */
+            background: linear-gradient(
+                to bottom,
+                rgba(68, 47, 115, 0.5) 0%,
+                rgba(12, 10, 60, 0.5) 100%
+            );
+            box-sizing: border-box;
+        }
+
+        /* Bên trong hero: canh lề trái/phải giống các box phía dưới */
+        .faq-hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
 
         .faq-main-title {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 700;
             color: var(--text-white);
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .faq-summary {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--text-gray);
         }
 
@@ -406,6 +370,8 @@
             grid-template-columns: 1fr 1fr;
             /* row-gap | column-gap */
             gap: 25px 48px;
+            max-width: 1100px;
+            margin: 0 auto 40px;
         }
 
         .faq-category {
@@ -601,7 +567,6 @@
     </header>
 
     <div class="dashboard-container">
-        <div class="faq-sidebar-backdrop" aria-hidden="true"></div>
         <!-- Sidebar Navigation -->
         <aside class="sidebar">
             <div class="sidebar-logo">
@@ -615,21 +580,25 @@
 
         <!-- Main Content -->
         <main class="dashboard-main">
-            <div class="faq-title-section">
-                <div class="faq-title-left">
-                    <img class="faq-brand-logo" src="../images/logo_tradecoin88.png" alt="TradeCoin88" />
-                    <div class="faq-brand">TradeCoin88</div>
-                    <div class="faq-main-title">FREQUENTLY ASKED QUESTIONS (FAQ)</div>
-                    <div class="faq-summary">
-                        Asset: Bitcoin • Expiry: 1 minute • Payout: 95% • Currency: NGN • Payments: Paystack
+            <div class="faq-hero">
+                <div class="faq-hero-inner">
+                    <div class="faq-title-section">
+                        <div class="faq-title-left">
+                            <img class="faq-brand-logo" src="../images/logo_tradecoin88.png" alt="TradeCoin88" />
+                            <div class="faq-brand">TradeCoin88</div>
+                            <div class="faq-main-title">FREQUENTLY ASKED QUESTIONS (FAQ)</div>
+                            <div class="faq-summary">
+                                Asset: Bitcoin • Expiry: 1 minute • Payout: 95% • Currency: NGN • Payments: Paystack
+                            </div>
+                        </div>
+                        <button class="back-to-trade-btn">Back to trade</button>
+                    </div>
+
+                    <div class="faq-search">
+                        <input type="text" class="faq-search-input" placeholder="Search question">
+                        <button class="faq-search-btn">Seach</button>
                     </div>
                 </div>
-                <button class="back-to-trade-btn">Back to trade</button>
-            </div>
-
-            <div class="faq-search">
-                <input type="text" class="faq-search-input" placeholder="Search question">
-                <button class="faq-search-btn">Seach</button>
             </div>
 
             <div class="faq-categories-grid">
@@ -780,18 +749,6 @@
     <script>
         // FAQ Toggle Functionality
         document.addEventListener('DOMContentLoaded', function() {
-            // FAQ: Sidebar off-canvas toggle
-            const menuBtn = document.querySelector('.dashboard-header .menu-button');
-            const backdrop = document.querySelector('.faq-sidebar-backdrop');
-            const closeMenu = () => document.body.classList.remove('faq-menu-open');
-            const toggleMenu = () => document.body.classList.toggle('faq-menu-open');
-
-            if (menuBtn) menuBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                toggleMenu();
-            });
-            if (backdrop) backdrop.addEventListener('click', closeMenu);
-
             const faqItems = document.querySelectorAll('.faq-item');
             faqItems.forEach(item => {
                 const question = item.querySelector('.faq-question');

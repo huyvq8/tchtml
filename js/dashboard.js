@@ -2,14 +2,27 @@
 
 // Mobile menu toggle
 document.addEventListener('DOMContentLoaded', function() {
+    // Some pages manage their own header layout and must NOT get an auto-injected mobile menu button.
+    const disableAutoMobileMenu =
+        document.body.classList.contains('no-auto-mobile-menu') ||
+        /(^|\/)faq\.html$/i.test(window.location.pathname.replace(/\\/g, '/'));
+
     // Add mobile menu button if on mobile
-    if (window.innerWidth <= 768) {
+    if (!disableAutoMobileMenu && window.innerWidth <= 768) {
         createMobileMenuButton();
+    } else if (disableAutoMobileMenu) {
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        if (menuBtn) menuBtn.remove();
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar) sidebar.classList.remove('open');
     }
 
     // Handle window resize
     window.addEventListener('resize', function() {
-        if (window.innerWidth <= 768) {
+        // If page disables auto mobile menu, do not interfere with sidebar state.
+        if (disableAutoMobileMenu) return;
+
+        if (!disableAutoMobileMenu && window.innerWidth <= 768) {
             if (!document.querySelector('.mobile-menu-btn')) {
                 createMobileMenuButton();
             }

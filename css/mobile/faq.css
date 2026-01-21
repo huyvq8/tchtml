@@ -377,6 +377,18 @@ body {
   cursor: pointer;
 }
 
+/* Accordion container (dùng cho item có câu trả lời) */
+.faq-item[role="group"] {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(18, 16, 66, 0.55);
+}
+
+.faq-item[role="group"] .faq-question {
+  font-weight: 500;
+}
+
 .faq-item--expanded {
   padding: 0;
   border-radius: 10px;
@@ -402,6 +414,11 @@ body {
   color: rgba(255, 255, 255, 0.72);
   font-size: 13px;
   line-height: 1.5;
+  display: none;
+}
+
+.faq-item--expanded .faq-answer {
+  display: block;
 }
 
 .faq-item:active {

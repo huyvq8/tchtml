@@ -89,11 +89,11 @@
                 <h2 class="faq-card-title">Account &amp; Verification</h2>
               </header>
               <div class="faq-items">
-                <div class="faq-item faq-item--expanded" role="group">
-                  <button class="faq-question" type="button">
+                <div class="faq-item" role="group">
+                  <button class="faq-question" type="button" aria-expanded="false">
                     How can I verify my account if I do not receive the OTP?
                   </button>
-                  <div class="faq-answer">
+                  <div class="faq-answer" aria-hidden="true">
                     Please check your network connection and ensure the phone
                     number/email matches your registered information. If you
                     still do not receive the code, contact our Support via the
@@ -146,6 +146,32 @@
         </div>
       </section>
     </div>
+    <script>
+      // FAQ accordion: click to show/hide answer like the sample
+      (function () {
+        const groups = document.querySelectorAll('.faq-item[role="group"]');
+
+        groups.forEach((group) => {
+          const btn = group.querySelector('.faq-question');
+          const answer = group.querySelector('.faq-answer');
+          if (!btn || !answer) return;
+
+          const setExpanded = (expanded) => {
+            group.classList.toggle('faq-item--expanded', expanded);
+            btn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+            answer.setAttribute('aria-hidden', expanded ? 'false' : 'true');
+          };
+
+          // default collapsed
+          setExpanded(group.classList.contains('faq-item--expanded'));
+
+          btn.addEventListener('click', () => {
+            const expanded = group.classList.contains('faq-item--expanded');
+            setExpanded(!expanded);
+          });
+        });
+      })();
+    </script>
   </body>
 </html>
 

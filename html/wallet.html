@@ -12,24 +12,78 @@
         }
 
         .total-assets {
-            background: linear-gradient(135deg, rgba(74, 64, 154, 0.5) 0%, rgba(5, 15, 45, 0.5) 100%);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
+            background: linear-gradient(
+                to bottom,
+                rgba(68, 47, 115, 0.65) 0%,
+                rgba(12, 10, 60, 1) 100%
+            );
+            border: none;
+            border-radius: 0;
             padding: 24px;
             margin-bottom: 24px;
-            backdrop-filter: blur(10px);
+        }
+        
+        /* Desktop: bo tròn nhẹ cho total-assets */
+        .desktop-shell .total-assets {
+            border-radius: 8px;
+        }
+        
+        /* Chỉ điều chỉnh padding-left của text để tự động thẳng hàng */
+        .desktop-shell .total-assets-label,
+        .desktop-shell .total-assets-value {
+            padding-left: calc(var(--wallet-main-pad) + var(--total-assets-text-padding));
+            margin-left: 0;
+        }
+
+        /* ===== Responsive spacing control (desktop vs collapsed) ===== */
+        :root {
+            --wallet-main-pad: 24px; /* mặc định desktop */
+            --wallet-mobile-pad: 8px; /* mobile: giảm margin 2 bên + tăng % hiển thị */
+            --total-assets-text-padding: 33px; /* padding-left cho text trong Total assets (mobile) */
+        }
+
+        /* override dashboard.css for THIS page */
+        .desktop-shell .dashboard-main {
+            padding: var(--wallet-main-pad) !important;
+        }
+
+
+        /* Desktop: Total assets box full width (không chừa margin 2 bên) */
+        .desktop-shell .dashboard-main .total-assets {
+            margin-left: calc(var(--wallet-main-pad) * -1);   /* bù padding */
+            margin-right: calc(var(--wallet-main-pad) * -1);  /* bù padding */
+            width: calc(100% + (var(--wallet-main-pad) * 2));
+            max-width: none;
+        }
+
+        /* Desktop: các khối bên dưới Total assets cần "thu hẹp" để có margin 2 bên giống mẫu */
+        .desktop-shell .dashboard-main .desktop-content {
+            max-width: var(--wallet-content-max);
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        /* Tabs/boxes/table trong desktop-content sẽ theo max-width này */
+        .desktop-shell .dashboard-main .desktop-content .wallet-tabs,
+        .desktop-shell .dashboard-main .desktop-content .wallet-card,
+        .desktop-shell .dashboard-main .desktop-content .trade-history-section {
+            width: 100%;
         }
 
         .total-assets-label {
             font-size: 14px;
             color: var(--text-gray);
             margin-bottom: 8px;
+            margin-left: 0;
+            padding-left: 0;
         }
 
         .total-assets-value {
             font-size: 36px;
             font-weight: 700;
             color: var(--text-white);
+            margin-left: 0;
+            padding-left: 0;
         }
 
         .wallet-tabs {
@@ -40,30 +94,64 @@
         }
 
         .wallet-tab {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 12px 24px;
-            color: var(--text-gray);
-            font-size: 14px;
+            background: #262542;
+            border: 1px solid rgba(100, 100, 110, 0.3);
+            border-radius: 4px;
+            padding: 10px 18px;
+            color: var(--text-white);
+            font-size: 13px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
         }
 
         .wallet-tab.active {
-            background: rgba(73, 45, 225, 0.3);
-            color: var(--text-white);
-            border-color: var(--purple);
+            background: #262542;
+            color: #FFC83B;
+            border-color: rgba(100, 100, 110, 0.3);
+            box-shadow: none;
+            font-weight: 600;
+        }
+
+        .wallet-tab:hover {
+            background: #2d2d4f;
+        }
+        
+        .wallet-content {
+            display: none;
+        }
+        
+        .wallet-content.active {
+            display: block;
         }
 
         .wallet-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
+            background: linear-gradient(
+                to bottom,
+                rgba(68, 47, 115, 0.65) 0%,
+                rgba(12, 10, 60, 1) 100%
+            );
+            border: none;
+            border-radius: 0;
             padding: 24px;
             margin-bottom: 24px;
-            backdrop-filter: blur(10px);
+        }
+        
+        /* Desktop: bo tròn nhẹ cho wallet-card */
+        .desktop-shell .wallet-card {
+            border-radius: 8px;
+        }
+        
+        /* Chỉ điều chỉnh padding-left của text để tự động thẳng hàng */
+        .desktop-shell .wallet-balance-info {
+            padding-left: calc(var(--wallet-main-pad) + var(--total-assets-text-padding));
+            margin-left: 0;
+        }
+        
+        /* Đảm bảo các phần tử con của wallet-card không có margin/padding riêng làm lệch */
+        .wallet-balance-info {
+            margin-left: 0;
+            padding-left: 0;
         }
 
         .wallet-balance-header {
@@ -83,6 +171,8 @@
             font-size: 14px;
             color: var(--text-gray);
             margin-bottom: 8px;
+            margin-left: 0;
+            padding-left: 0;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -100,6 +190,8 @@
             font-size: 32px;
             font-weight: 700;
             color: var(--yellow-main);
+            margin-left: 0;
+            padding-left: 0;
         }
 
         .wallet-actions {
@@ -108,7 +200,7 @@
         }
 
         .wallet-btn {
-            background: var(--purple);
+            background: linear-gradient(to bottom, #5047C2 0%, #11096B 100%);
             border: none;
             border-radius: 8px;
             padding: 12px 24px;
@@ -120,7 +212,7 @@
         }
 
         .wallet-btn:hover {
-            background: #5a3ef0;
+            background: linear-gradient(to bottom, #5d54d4 0%, #1a0f7a 100%);
         }
 
         .wallet-notice {
@@ -129,12 +221,16 @@
             margin-top: 8px;
         }
 
+        /* Trade History (desktop): bản mẫu không có box bọc ngoài */
         .trade-history-section {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 24px;
-            backdrop-filter: blur(10px);
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 0;
+        }
+
+        .trade-history-section .history-title {
+            margin-top: 0;
         }
 
         .history-title {
@@ -149,13 +245,9 @@
             border-collapse: collapse;
         }
 
-        .history-table thead {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
         .history-table th {
             padding: 12px 16px;
-            text-align: left;
+            text-align: center;
             font-size: 12px;
             font-weight: 600;
             color: var(--text-gray);
@@ -168,6 +260,7 @@
             font-size: 14px;
             color: var(--text-white);
             border-bottom: 1px solid var(--border-color);
+            text-align: center;
         }
 
         .history-table tbody tr:hover {
@@ -179,12 +272,12 @@
         }
 
         .value-positive {
-            color: var(--green);
+            color: #4ade80;
             font-weight: 600;
         }
 
         .value-negative {
-            color: var(--red);
+            color: #ef4444;
             font-weight: 600;
         }
 
@@ -198,41 +291,628 @@
             color: var(--green);
         }
 
+        /* ===== Match MOBILE wallet gradient table look ===== */
+        .history-table thead {
+            background: #161354;
+        }
+
+        .history-table th {
+            color: #FFC83B;
+            font-weight: 400;
+            text-transform: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+        }
+
+        .history-table tbody tr:nth-child(odd) {
+            background: #161354;
+        }
+
+        .history-table tbody tr:nth-child(even) {
+            background: #121042;
+        }
+
+        .history-table td {
+            color: #a4b0d0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            vertical-align: middle;
+        }
+
+        /* Force Value/Amount colors inside table cells (override td color) */
+        .history-table td.value-positive {
+            color: #4ade80;
+            font-weight: 600;
+        }
+
+        .history-table td.value-negative {
+            color: #ef4444;
+            font-weight: 600;
+        }
+
+        /* status pill in desktop is not in mobile -> make it subtle */
+        .status-badge {
+            background: transparent;
+            color: #a4b0d0;
+            padding: 0;
+            border-radius: 0;
+            font-weight: 500;
+        }
+
+        /* ===== Switch shells (desktop vs mobile) ===== */
+        .desktop-shell {
+            display: block;
+        }
+
+        .mobile-shell {
+            display: none;
+        }
+
+        /* ===== Mobile shell styles (match mobile wallet look) ===== */
+        .m-top-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: rgba(34, 20, 87, 0.95);
+            width: 100%;
+        }
+
+        .m-header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .m-menu-button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .m-hamburger {
+            width: 26px;
+            height: 19px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .m-hamburger span {
+            height: 3px;
+            width: 26px;
+            background: #fff;
+            border-radius: 2px;
+            display: block;
+        }
+
+        .m-live-account {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 12px;
+            height: 46px;
+            background: #181537;
+            border-radius: 8px;
+            border: 1px solid rgba(124, 105, 255, 0.35);
+            box-sizing: border-box;
+        }
+
+        .m-wallet-icon {
+            width: 16px;
+            height: 16px;
+            filter: brightness(0) invert(1);
+            flex-shrink: 0;
+        }
+
+        .m-live-divider {
+            width: 1px;
+            height: 24px;
+            background-color: rgba(124, 105, 255, 0.35);
+            margin: 0 4px;
+            flex-shrink: 0;
+        }
+
+        .m-live-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+        }
+
+        .m-live-label-row {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .m-live-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #ffc83b;
+        }
+
+        .m-live-label {
+            font-size: 12px;
+            font-weight: 400;
+            color: #fff;
+            white-space: nowrap;
+        }
+
+        .m-live-amount {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            white-space: nowrap;
+            line-height: 1.2;
+        }
+
+        .m-dropdown {
+            font-size: 28px;
+            color: #ffc83b;
+            margin-left: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: scaleY(0.6);
+            height: 46px;
+        }
+
+        .m-notification {
+            background: #181537;
+            border: 1px solid rgba(124, 105, 255, 0.35);
+            border-radius: 8px;
+            cursor: pointer;
+            padding: 0;
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .m-bell-wrap {
+            position: relative;
+            width: 20px;
+            height: 20px;
+        }
+
+        .m-bell {
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) invert(1);
+            display: block;
+        }
+
+        .m-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #181537;
+            color: #ffc83b;
+            font-size: 9px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ffc83b;
+            box-sizing: border-box;
+        }
+
+        .m-screen {
+            width: 100%;
+            max-width: 433px; /* thu hẹp % hiển thị chiều ngang */
+            margin: 0 auto;
+            padding: 0 calc(var(--wallet-mobile-pad) - 2px) 32px;
+            box-sizing: border-box;
+        }
+
+        .m-total-assets {
+            margin-top: 13px;
+            margin-bottom: 18px;
+            height: 112px;
+            padding: 18px 16px;
+            /* full sát bên trái theo viewport, chỉ chừa nhẹ bên phải như mẫu */
+            margin-left: calc(50% - 50vw);
+            margin-right: 10px;
+            width: calc(100vw - 10px);
+            background: linear-gradient(
+                to bottom,
+                rgba(68, 47, 115, 0.65) 0%,
+                rgba(12, 10, 60, 1) 100%
+            );
+            border-radius: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+        
+        /* Chỉ điều chỉnh padding-left của text để tự động thẳng hàng với wallet-card
+           JavaScript sẽ tự động đo và set padding-left dựa trên vị trí thực tế
+        */
+        .m-total-label,
+        .m-total-amount-row {
+            margin-left: 0;
+            /* padding-left sẽ được set bởi JavaScript */
+        }
+
+        .m-total-label {
+            font-size: 16px;
+            color: #a4b0d0;
+            margin: 0 0 12px 0;
+            font-weight: 400;
+        }
+
+        .m-total-amount-row {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .m-total-amount {
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .m-total-cur {
+            font-size: 16px;
+            color: #a4b0d0;
+            font-weight: 400;
+        }
+
+        .m-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 17px;
+        }
+
+        .m-tab {
+            flex: 1 1 0;
+            padding: 10px 8px;
+            background: #262542;
+            border: 1px solid rgba(100, 100, 110, 0.3);
+            border-radius: 4px;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 500;
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .m-tab.active {
+            color: #ffc83b;
+            font-weight: 600;
+        }
+
+        /* Mobile-shell: giảm kích thước Live wallet balance cho giống bản mẫu */
+        .mobile-shell .wallet-card {
+            border-radius: 0;
+            /* Giữ nguyên padding container, chỉ điều chỉnh text bên trong */
+        }
+        
+        /* Chỉ điều chỉnh padding-left của text để tự động thẳng hàng */
+        .mobile-shell .wallet-balance-info {
+            padding-left: var(--total-assets-text-padding);
+            margin-left: 0;
+        }
+
+        .mobile-shell .wallet-balance-label {
+            font-size: 13px;
+            margin-bottom: 6px;
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        .mobile-shell .wallet-balance-value {
+            font-size: 26px;
+            line-height: 1;
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        .mobile-shell .wallet-balance-value .m-currency {
+            font-size: 14px;
+            font-weight: 400;
+            color: #a4b0d0;
+            margin-left: 8px;
+        }
+
+        .mobile-shell .wallet-notice {
+            font-size: 10px;
+            color: #a4b0d0;
+            margin-top: 6px;
+        }
+
+        .mobile-shell .wallet-actions {
+            gap: 10px;
+        }
+
+        .mobile-shell .wallet-btn {
+            padding: 6px 9px;
+            font-size: 11px;
+            border-radius: 8px;
+        }
+
+        /* Mobile-shell: bảng cân đối chiều ngang với wallet-card, mở rộng thêm 5px mỗi bên */
+        .mobile-shell .trade-history-section {
+            width: calc(100% + 10px);
+            margin-left: -5px;
+            margin-right: -5px;
+            padding-left: 8px !important;
+            padding-right: 8px !important;
+            box-sizing: border-box;
+        }
+
         @media (max-width: 768px) {
-            .total-assets-value {
-                font-size: 28px;
-            }
+            .desktop-shell { display: none; }
+            .mobile-shell { display: block; }
+        }
 
-            .wallet-balance-value {
-                font-size: 24px;
-            }
+        /* ===== Desktop spacing: rộng thì padding lớn hơn, hẹp thì nhỏ lại ===== */
+        @media (min-width: 1400px) {
+            :root { --wallet-main-pad: 40px; }
+        }
 
-            .wallet-actions {
-                width: 100%;
-                flex-direction: column;
-            }
+        @media (min-width: 1025px) and (max-width: 1399px) {
+            :root { --wallet-main-pad: 32px; }
+        }
 
-            .wallet-btn {
-                width: 100%;
-            }
+        @media (min-width: 769px) and (max-width: 1024px) {
+            :root { --wallet-main-pad: 18px; }
+        }
 
-            .wallet-balance-header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+        /* Desktop: inner content width (tabs/boxes/table) */
+        :root { --wallet-content-max: 1425px; } /* thu hẹp % hiển thị chiều ngang */
 
-            .history-table {
-                font-size: 12px;
-            }
+        @media (min-width: 1700px) {
+            :root { --wallet-content-max: 1520px; }
+        }
 
-            .history-table th,
-            .history-table td {
-                padding: 8px;
-            }
+        @media (min-width: 1400px) and (max-width: 1699px) {
+            :root { --wallet-content-max: 1444px; }
+        }
+
+        @media (min-width: 1200px) and (max-width: 1399px) {
+            :root { --wallet-content-max: 1311px; }
+        }
+
+        @media (min-width: 1025px) and (max-width: 1199px) {
+            :root { --wallet-content-max: 1197px; }
+        }
+
+        /* ===== Mobile spacing: màn nhỏ giảm padding 2 bên ===== */
+        @media (max-width: 420px) {
+            :root { --wallet-mobile-pad: 6px; }
+        }
+
+        @media (max-width: 360px) {
+            :root { --wallet-mobile-pad: 4px; }
         }
     </style>
 </head>
 <body>
+    <!-- ===== Mobile wallet (hiện khi màn hình nhỏ) ===== -->
+    <div class="mobile-shell">
+        <div class="m-top-nav">
+            <button class="m-menu-button" aria-label="Menu">
+                <span class="m-hamburger"><span></span><span></span><span></span></span>
+            </button>
+
+            <div class="m-header-right">
+                <div class="m-live-account">
+                    <img src="../images/a3 3.png" alt="Wallet" class="m-wallet-icon">
+                    <div class="m-live-divider"></div>
+                    <div class="m-live-content">
+                        <div class="m-live-label-row">
+                            <span class="m-live-dot"></span>
+                            <span class="m-live-label">Live account</span>
+                        </div>
+                        <span class="m-live-amount">$10.200,50</span>
+                    </div>
+                    <span class="m-dropdown">⌄</span>
+                </div>
+
+                <button class="m-notification" aria-label="Notifications">
+                    <span class="m-bell-wrap">
+                        <img src="../images/Vector.png" alt="Notifications" class="m-bell">
+                        <span class="m-badge">0</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+
+        <div class="m-screen">
+            <section class="m-total-assets">
+                <p class="m-total-label">Total assets</p>
+                <div class="m-total-amount-row">
+                    <span class="m-total-amount">$12.200,50</span>
+                    <span class="m-total-cur">USDT</span>
+                </div>
+            </section>
+
+            <div class="m-tabs">
+                <button class="m-tab active" data-wallet="main">Main Wallet</button>
+                <button class="m-tab" data-wallet="promotion">Promotion Wallet</button>
+                <button class="m-tab" data-wallet="vip">Vip Wallet</button>
+                <button class="m-tab" data-wallet="demo">Demo Wallet</button>
+            </div>
+
+            <!-- dùng lại wallet-content + data-content để JS toggle giống desktop -->
+            <div class="wallet-content active" data-content="main" data-scope="mobile">
+                <div class="wallet-card" style="margin-bottom:18px; padding:18px 16px;">
+                    <div class="wallet-balance-header" style="align-items:flex-start; margin-bottom:0;">
+                        <div class="wallet-balance-info">
+                            <div class="wallet-balance-label">Live wallet balace</div>
+                            <div class="wallet-balance-value">$12.200,50 <span class="m-currency">USDT</span></div>
+                            <div class="wallet-notice">Input Your Bank Account For Withdraw</div>
+                        </div>
+                        <div class="wallet-actions" style="flex-direction:column;">
+                            <button class="wallet-btn">Top Up</button>
+                            <button class="wallet-btn">Withdraw</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trade-history-section" style="padding:18px 16px;">
+                    <div class="history-title" style="margin-bottom:17px;">Trading hirsory</div>
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Value</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>11/23/2025<br>15:09:27</td>
+                                <td class="value-positive">+1.100.000</td>
+                                <td>Topup</td>
+                                <td>Done</td>
+                            </tr>
+                            <tr>
+                                <td>11/23/2025<br>15:09:27</td>
+                                <td class="value-negative">-100</td>
+                                <td>Buy VIP</td>
+                                <td>Done</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="wallet-content" data-content="promotion" data-scope="mobile">
+                <div class="wallet-card" style="padding:18px 16px; margin-bottom:18px;">
+                    <div class="wallet-balance-header" style="align-items:flex-start; margin-bottom:0;">
+                        <div class="wallet-balance-info">
+                            <div class="wallet-balance-label">Promotion wallet</div>
+                            <div class="wallet-balance-value">$1000 <span class="m-currency">USDT</span></div>
+                        </div>
+                        <div class="wallet-actions" style="flex-direction:column;">
+                            <button class="wallet-btn">Reload Funds</button>
+                        </div>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:12px; margin-top:10px; margin-bottom:12px;">
+                        <div style="flex:1; height:8px; background: rgba(255,255,255,0.10); border-radius:4px; overflow:hidden;">
+                            <div style="height:100%; width:33.33%; background: linear-gradient(to right, #ffc83b 0%, #ffd966 100%);"></div>
+                        </div>
+                        <div style="font-size:13px; color:#fff; font-weight:500;">$10.000/$30.000</div>
+                    </div>
+                    <p style="margin:0; font-size:12px; color:#a4b0d0; line-height:1.5;">
+                        Continue trading to reach the 10,000 USD volume and receive $1000 to your live wallet
+                    </p>
+                </div>
+
+                <div class="trade-history-section" style="padding:18px 16px;">
+                    <div class="history-title" style="margin-bottom:17px;">History</div>
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Value</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>11/23/2025<br>15:09:27</td>
+                                <td class="value-positive">+$1000</td>
+                                <td>First deposit<br>bonus 10%</td>
+                                <td>Done</td>
+                            </tr>
+                            <tr>
+                                <td>11/23/2025<br>15:09:27</td>
+                                <td class="value-negative">-100</td>
+                                <td>Tranfer to live</td>
+                                <td>Done</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="wallet-content" data-content="vip" data-scope="mobile">
+                <div class="wallet-card" style="padding:18px 16px; margin-bottom:14px;">
+                    <div class="wallet-balance-header" style="align-items:flex-start; margin-bottom:0;">
+                        <div class="wallet-balance-info">
+                            <div class="wallet-balance-label">VIP wallet</div>
+                            <div class="wallet-balance-value">$12.200,50 <span class="m-currency">USDT</span></div>
+                        </div>
+                        <div class="wallet-actions" style="flex-direction:column;">
+                            <button class="wallet-btn">Tranfer To Live</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trade-history-section" style="padding:18px 16px;">
+                    <div class="history-title" style="margin-bottom:23px;">VIP wallet leder</div>
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Amount</th>
+                                <th>Reason</th>
+                                <th>Current balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>11/23/2025<br>15:09:27</td>
+                                <td class="value-positive">+1200</td>
+                                <td>Commission from user123...</td>
+                                <td>$11.200</td>
+                            </tr>
+                            <tr>
+                                <td>11/23/2025<br>15:09:27</td>
+                                <td class="value-negative">-10.000</td>
+                                <td>Tranfer to live</td>
+                                <td>$10.000</td>
+                            </tr>
+                            <tr>
+                                <td>11/23/2025<br>15:09:27</td>
+                                <td class="value-positive">+20.000</td>
+                                <td>Rebate from downline trader</td>
+                                <td>$20.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="display:flex; justify-content:flex-end; margin-top:14px;">
+                        <button class="wallet-btn">Reset filter</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wallet-content" data-content="demo" data-scope="mobile">
+                <div class="wallet-card" style="padding:18px 16px;">
+                    <div class="wallet-balance-header" style="align-items:flex-start; margin-bottom:0;">
+                        <div class="wallet-balance-info">
+                            <div class="wallet-balance-label">Demo wallet</div>
+                            <div class="wallet-balance-value">$1000 <span class="m-currency">USDT</span></div>
+                        </div>
+                        <div class="wallet-actions" style="flex-direction:column;">
+                            <button class="wallet-btn">Reload Funds</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="desktop-shell">
     <!-- Header -->
     <header class="dashboard-header">
         <div class="header-content">
@@ -242,9 +922,14 @@
             <div class="header-right">
                 <div class="account-dropdown">
                     <button class="account-toggle">
-                        <span class="account-type">Live account</span>
-                        <span class="account-balance">$10.200,50</span>
-                        <span class="live-dot"></span>
+                        <img src="../images/a3 3.png" alt="Wallet" class="account-wallet-icon">
+                        <div class="account-info">
+                            <span class="account-type">
+                                <span class="live-dot"></span>
+                                Live account
+                            </span>
+                            <span class="account-balance">$10.200,50</span>
+                        </div>
                         <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
                             <path d="M1 1L6 6L11 1" stroke="white" stroke-width="2" stroke-linecap="round"/>
                         </svg>
@@ -271,6 +956,10 @@
     <div class="dashboard-container">
         <!-- Sidebar Navigation -->
         <aside class="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo-icon">B</div>
+                <span class="logo-text">Trade Coin88</span>
+            </div>
             <nav class="sidebar-nav">
                 <a href="trade.html" class="nav-item">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -349,57 +1038,342 @@
                 <div class="total-assets-value">$12.200,50 USDT</div>
             </div>
 
+            <div class="desktop-content">
             <div class="wallet-tabs">
-                <button class="wallet-tab active">Main Wallet</button>
-                <button class="wallet-tab">Promotion Wallet</button>
-                <button class="wallet-tab">VIP Wallet</button>
-                <button class="wallet-tab">Demo Wallet</button>
+                <button class="wallet-tab active" data-wallet="main">Main Wallet</button>
+                <button class="wallet-tab" data-wallet="promotion">Promotion Wallet</button>
+                <button class="wallet-tab" data-wallet="vip">VIP Wallet</button>
+                <button class="wallet-tab" data-wallet="demo">Demo Wallet</button>
             </div>
 
-            <div class="wallet-card">
-                <div class="wallet-balance-header">
-                    <div class="wallet-balance-info">
-                        <div class="wallet-balance-label">Live wallet balance</div>
-                        <div class="wallet-balance-value">$10.200,50 USDT</div>
-                        <div class="wallet-notice">Input your bank account for withdraw</div>
+            <!-- Main Wallet Content -->
+            <div class="wallet-content active" data-content="main">
+                <div class="wallet-card">
+                    <div class="wallet-balance-header">
+                        <div class="wallet-balance-info">
+                            <div class="wallet-balance-label">Live wallet balance</div>
+                            <div class="wallet-balance-value">$10.200,50 USDT</div>
+                            <div class="wallet-notice">Input your bank account for withdraw</div>
+                        </div>
+                        <div class="wallet-actions">
+                            <button class="wallet-btn">Top Up</button>
+                            <button class="wallet-btn">Withdraw</button>
+                        </div>
                     </div>
-                    <div class="wallet-actions">
-                        <button class="wallet-btn">Top Up</button>
-                        <button class="wallet-btn">Withdraw</button>
-                    </div>
+                </div>
+
+                <div class="trade-history-section">
+                    <div class="history-title">Trade History</div>
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Value</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>11/23/2025 15:09:27</td>
+                                <td class="value-positive">+100.000.000</td>
+                                <td>Top up</td>
+                                <td><span class="status-badge">Done</span></td>
+                            </tr>
+                            <tr>
+                                <td>11/23/2025 15:09:27</td>
+                                <td class="value-negative">-100</td>
+                                <td>Buy VIP</td>
+                                <td><span class="status-badge">Done</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
-            <div class="trade-history-section">
-                <div class="history-title">Trade History</div>
-                <table class="history-table">
-                    <thead>
-                        <tr>
-                            <th>Time</th>
-                            <th>Value</th>
-                            <th>Type</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>11/23/2025 15:09:27</td>
-                            <td class="value-positive">+100.000.000</td>
-                            <td>Top up</td>
-                            <td><span class="status-badge">Done</span></td>
-                        </tr>
-                        <tr>
-                            <td>11/23/2025 15:09:27</td>
-                            <td class="value-negative">-100</td>
-                            <td>Buy VIP</td>
-                            <td><span class="status-badge">Done</span></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <!-- Promotion Wallet Content -->
+            <div class="wallet-content" data-content="promotion">
+                <div class="wallet-card">
+                    <div class="wallet-balance-header">
+                        <div class="wallet-balance-info">
+                            <div class="wallet-balance-label">Promotion Wallet</div>
+                            <div class="wallet-balance-value">$1000 USDT</div>
+                        </div>
+                        <div class="wallet-actions">
+                            <button class="wallet-btn">Tranfer To Live</button>
+                        </div>
+                    </div>
+                    <div class="progress-section" style="margin-top: 20px;">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                            <div style="flex: 1; height: 8px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden;">
+                                <div style="height: 100%; width: 33.33%; background: linear-gradient(to right, #FFC83B 0%, #ffd966 100%); border-radius: 4px;"></div>
+                            </div>
+                            <div style="font-size: 13px; color: var(--text-white); font-weight: 500;">$10.000/$30.000</div>
+                        </div>
+                        <p style="font-size: 12px; color: var(--text-gray); line-height: 1.5; margin: 0;">
+                            Continue trading to reach the 10,000 USD volume and receive $1000 to your live wallet.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="trade-history-section">
+                    <div class="history-title">Trade History</div>
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Value</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>11/23/2025<br>15:09:27</td>
+                                <td class="value-positive">+$1000</td>
+                                <td>First deposit<br>bonus 10%</td>
+                                <td><span class="status-badge">Done</span></td>
+                            </tr>
+                            <tr>
+                                <td>11/23/2025<br>15:09:27</td>
+                                <td class="value-negative">-100</td>
+                                <td>Tranfer to live</td>
+                                <td><span class="status-badge">Done</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- VIP Wallet Content -->
+            <div class="wallet-content" data-content="vip">
+                <div class="wallet-card">
+                    <div class="wallet-balance-header">
+                        <div class="wallet-balance-info">
+                            <div class="wallet-balance-label">VIP wallet</div>
+                            <div class="wallet-balance-value">$0.0 USDT</div>
+                        </div>
+                        <div class="wallet-actions">
+                            <button class="wallet-btn">Tranfer To Live</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trade-history-section">
+                    <div class="history-title">VIP Wallet Ledger</div>
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Amount</th>
+                                <th>Reason</th>
+                                <th>Current balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>11/23/2025<br>15:09:27</td>
+                                <td class="value-positive">+1200</td>
+                                <td>Commission from user123...</td>
+                                <td>$11.200</td>
+                            </tr>
+                            <tr>
+                                <td>11/23/2025<br>15:09:27</td>
+                                <td class="value-negative">-10.000</td>
+                                <td>Tranfer to live</td>
+                                <td>$10.000</td>
+                            </tr>
+                            <tr>
+                                <td>11/23/2025<br>15:09:27</td>
+                                <td class="value-positive">+20.000</td>
+                                <td>Rebate from downline trader</td>
+                                <td>$20.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Demo Wallet Content -->
+            <div class="wallet-content" data-content="demo">
+                <div class="wallet-card">
+                    <div class="wallet-balance-header">
+                        <div class="wallet-balance-info">
+                            <div class="wallet-balance-label">Demo Wallet</div>
+                            <div class="wallet-balance-value">$1000 USDT</div>
+                        </div>
+                        <div class="wallet-actions">
+                            <button class="wallet-btn">Reload Funds</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trade-history-section">
+                    <div class="history-title">Trade History</div>
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Value</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>11/23/2025 15:09:27</td>
+                                <td class="value-positive">+1000</td>
+                                <td>Demo deposit</td>
+                                <td><span class="status-badge">Done</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             </div>
         </main>
     </div>
 
     <script src="../js/dashboard.js"></script>
+    <script>
+        // Wallet Tab Switching
+        document.addEventListener('DOMContentLoaded', function() {
+            const walletTabs = document.querySelectorAll('.desktop-shell .wallet-tab');
+            const walletContents = document.querySelectorAll('.desktop-shell .wallet-content');
+
+            walletTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const walletType = this.getAttribute('data-wallet');
+                    
+                    // Remove active class from all tabs
+                    walletTabs.forEach(t => t.classList.remove('active'));
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Hide all wallet contents
+                    walletContents.forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Show selected wallet content
+                    const selectedContent = document.querySelector(`.desktop-shell .wallet-content[data-content="${walletType}"]`);
+                    if (selectedContent) {
+                        selectedContent.classList.add('active');
+                    }
+                });
+            });
+
+            const mTabs = document.querySelectorAll('.mobile-shell .m-tab');
+            const mContents = document.querySelectorAll('.mobile-shell .wallet-content');
+
+            mTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const walletType = this.getAttribute('data-wallet');
+                    mTabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    mContents.forEach(c => c.classList.remove('active'));
+                    const selected = document.querySelector(`.mobile-shell .wallet-content[data-content="${walletType}"]`);
+                    if (selected) selected.classList.add('active');
+                });
+            });
+
+            // Tự động căn chỉnh text trong m-total-assets để thẳng hàng với wallet-balance-label (Mobile)
+            function alignTotalAssetsTextMobile() {
+                const mobileShell = document.querySelector('.mobile-shell');
+                if (!mobileShell || getComputedStyle(mobileShell).display === 'none') return;
+                
+                // Đo vị trí của text trong wallet-balance-label (dòng chữ đầu tiên)
+                const walletBalanceLabel = document.querySelector('.mobile-shell .wallet-balance-label');
+                const totalLabel = document.querySelector('.m-total-label');
+                
+                if (!walletBalanceLabel || !totalLabel) return;
+                
+                // Đo vị trí thực tế của text trong wallet-balance-label từ viewport edge
+                const walletLabelRect = walletBalanceLabel.getBoundingClientRect();
+                const walletTextLeft = walletLabelRect.left;
+                
+                // Đo vị trí của m-total-assets từ viewport edge
+                const totalAssets = document.querySelector('.m-total-assets');
+                if (!totalAssets) return;
+                const totalRect = totalAssets.getBoundingClientRect();
+                const totalLeft = totalRect.left;
+                const totalPadding = parseFloat(getComputedStyle(totalAssets).paddingLeft) || 16;
+                
+                // Tính padding-left cần thiết cho text để thẳng hàng, giảm 25px để dịch về bên trái
+                const textPaddingLeft = walletTextLeft - totalLeft - totalPadding - 25;
+                
+                // Set padding-left cho tất cả text trong m-total-assets
+                const totalLabels = document.querySelectorAll('.m-total-label, .m-total-amount-row');
+                totalLabels.forEach(el => {
+                    el.style.setProperty('padding-left', Math.max(0, textPaddingLeft) + 'px', 'important');
+                });
+                
+                // Cũng giảm 25px cho wallet-balance-info để cả hai phần cùng dịch về bên trái
+                // Đo padding gốc từ CSS variable và giảm 25px
+                const walletBalanceInfo = document.querySelector('.mobile-shell .wallet-balance-info');
+                if (walletBalanceInfo) {
+                    const rootStyle = getComputedStyle(document.documentElement);
+                    const basePadding = parseFloat(rootStyle.getPropertyValue('--total-assets-text-padding')) || 33;
+                    walletBalanceInfo.style.setProperty('padding-left', Math.max(0, basePadding - 25) + 'px', 'important');
+                }
+            }
+
+            // Tự động căn chỉnh text trong desktop total-assets để thẳng hàng với wallet-balance-label (Desktop)
+            function alignTotalAssetsTextDesktop() {
+                const desktopShell = document.querySelector('.desktop-shell');
+                if (!desktopShell || getComputedStyle(desktopShell).display === 'none') return;
+                
+                // Đo vị trí của text trong wallet-balance-label (dòng chữ đầu tiên)
+                const walletBalanceLabel = document.querySelector('.desktop-shell .wallet-balance-label');
+                const totalLabel = document.querySelector('.desktop-shell .total-assets-label');
+                
+                if (!walletBalanceLabel || !totalLabel) return;
+                
+                // Đo vị trí thực tế của text trong wallet-balance-label từ viewport edge
+                const walletLabelRect = walletBalanceLabel.getBoundingClientRect();
+                const walletTextLeft = walletLabelRect.left;
+                
+                // Đo vị trí của total-assets từ viewport edge
+                const totalAssets = document.querySelector('.desktop-shell .total-assets');
+                if (!totalAssets) return;
+                const totalRect = totalAssets.getBoundingClientRect();
+                const totalLeft = totalRect.left;
+                const totalPadding = parseFloat(getComputedStyle(totalAssets).paddingLeft) || 0;
+                
+                // Tính padding-left cần thiết cho text để thẳng hàng, giảm 25px để dịch về bên trái
+                const textPaddingLeft = walletTextLeft - totalLeft - totalPadding - 25;
+                
+                // Set padding-left cho tất cả text trong total-assets
+                const totalLabels = document.querySelectorAll('.desktop-shell .total-assets-label, .desktop-shell .total-assets-value');
+                totalLabels.forEach(el => {
+                    el.style.setProperty('padding-left', Math.max(0, textPaddingLeft) + 'px', 'important');
+                });
+                
+                // Cũng giảm 25px cho wallet-balance-info để cả hai phần cùng dịch về bên trái
+                // Đo padding gốc từ CSS variable và giảm 25px
+                const walletBalanceInfo = document.querySelector('.desktop-shell .wallet-balance-info');
+                if (walletBalanceInfo) {
+                    // Đo padding gốc từ CSS variable (không bao gồm giá trị đã set bởi JavaScript)
+                    const rootStyle = getComputedStyle(document.documentElement);
+                    const basePadding = parseFloat(rootStyle.getPropertyValue('--total-assets-text-padding')) || 33;
+                    const mainPad = parseFloat(rootStyle.getPropertyValue('--wallet-main-pad')) || 32;
+                    const basePaddingTotal = mainPad + basePadding;
+                    walletBalanceInfo.style.setProperty('padding-left', Math.max(0, basePaddingTotal - 25) + 'px', 'important');
+                }
+            }
+
+            // Cập nhật khi load và khi resize cho cả mobile và desktop
+            function alignAllText() {
+                alignTotalAssetsTextMobile();
+                alignTotalAssetsTextDesktop();
+            }
+            
+            setTimeout(alignAllText, 100);
+            window.addEventListener('resize', function() {
+                setTimeout(alignAllText, 10);
+            });
+        });
+    </script>
+</div>
 </body>
 </html>

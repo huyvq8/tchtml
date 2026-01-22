@@ -346,3 +346,324 @@ body.loaded {
         scroll-behavior: auto;
     }
 }
+
+/* Maintenance Popup */
+.maintenance-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.maintenance-popup.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.maintenance-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 15, 45, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.maintenance-content {
+    position: relative;
+    z-index: 10001;
+    background: linear-gradient(135deg, rgba(73, 45, 225, 0.95) 0%, rgba(5, 15, 45, 0.98) 100%);
+    border: 2px solid rgba(255, 200, 59, 0.3);
+    border-radius: 24px;
+    padding: 60px 50px;
+    max-width: 580px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(255, 200, 59, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.maintenance-popup.active .maintenance-content {
+    transform: scale(1) translateY(0);
+}
+
+.maintenance-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 200, 59, 0.3);
+    border-radius: 50%;
+    color: var(--yellow-main);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10002;
+    padding: 0;
+}
+
+.maintenance-close:hover {
+    background: rgba(255, 200, 59, 0.2);
+    border-color: var(--yellow-main);
+    transform: rotate(90deg);
+}
+
+.maintenance-close:active {
+    transform: rotate(90deg) scale(0.95);
+}
+
+.maintenance-close svg {
+    width: 20px;
+    height: 20px;
+}
+
+.maintenance-logo {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.maintenance-logo-img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(255, 200, 59, 0.3));
+}
+
+.maintenance-icon {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.maintenance-icon svg {
+    filter: drop-shadow(0 0 20px rgba(255, 200, 59, 0.5));
+}
+
+.maintenance-title {
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--yellow-main);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 10px rgba(255, 200, 59, 0.4);
+    line-height: 1.2;
+}
+
+.maintenance-description {
+    font-size: 18px;
+    color: var(--text-white);
+    line-height: 1.8;
+    margin-bottom: 30px;
+    opacity: 0.95;
+}
+
+.maintenance-divider {
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, var(--yellow-main) 50%, transparent 100%);
+    margin: 0 auto 25px;
+    position: relative;
+}
+
+.maintenance-divider::before,
+.maintenance-divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--yellow-main);
+    box-shadow: 0 0 10px rgba(255, 200, 59, 0.8);
+}
+
+.maintenance-divider::before {
+    left: -4px;
+}
+
+.maintenance-divider::after {
+    right: -4px;
+}
+
+.maintenance-time {
+    margin-top: 20px;
+}
+
+.maintenance-time-label {
+    font-size: 14px;
+    color: var(--text-gray);
+    margin-bottom: 12px;
+    opacity: 0.9;
+}
+
+.maintenance-time-range {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.time-from,
+.time-to {
+    color: var(--yellow-main);
+    font-weight: 700;
+    font-size: 20px;
+    padding: 8px 16px;
+    background: rgba(255, 200, 59, 0.1);
+    border: 1px solid rgba(255, 200, 59, 0.3);
+    border-radius: 8px;
+    min-width: 110px;
+    text-align: center;
+}
+
+.time-separator {
+    color: var(--yellow-main);
+    font-size: 24px;
+    font-weight: 700;
+    opacity: 0.8;
+}
+
+/* Responsive for Maintenance Popup */
+@media (max-width: 768px) {
+    .maintenance-popup {
+        padding: 15px;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .maintenance-content {
+        padding: 40px 30px;
+        max-width: 100%;
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    .maintenance-close {
+        top: 12px;
+        right: 12px;
+        width: 36px;
+        height: 36px;
+    }
+    
+    .maintenance-close svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .maintenance-logo-img {
+        height: 45px;
+    }
+    
+    .maintenance-title {
+        font-size: 32px;
+        letter-spacing: 1px;
+    }
+    
+    .maintenance-description {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+    
+    .maintenance-icon svg {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .maintenance-time-label {
+        font-size: 12px;
+    }
+    
+    .time-from,
+    .time-to {
+        font-size: 16px;
+        padding: 6px 12px;
+        min-width: 90px;
+    }
+    
+    .time-separator {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .maintenance-popup {
+        padding: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .maintenance-content {
+        padding: 30px 20px 35px;
+        max-width: 100%;
+        width: 100%;
+        margin: 0 auto;
+    }
+    
+    .maintenance-close {
+        top: 10px;
+        right: 10px;
+        width: 32px;
+        height: 32px;
+    }
+    
+    .maintenance-close svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .maintenance-logo-img {
+        height: 40px;
+    }
+    
+    .maintenance-title {
+        font-size: 28px;
+    }
+    
+    .maintenance-description {
+        font-size: 14px;
+    }
+    
+    .maintenance-icon svg {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .maintenance-time-label {
+        font-size: 11px;
+    }
+    
+    .time-from,
+    .time-to {
+        font-size: 14px;
+        padding: 5px 10px;
+        min-width: 75px;
+    }
+    
+    .time-separator {
+        font-size: 18px;
+    }
+}

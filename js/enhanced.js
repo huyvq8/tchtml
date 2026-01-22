@@ -151,4 +151,52 @@
 
     window.addEventListener('scroll', optimizedScrollHandler, { passive: true });
 
+    // Maintenance Popup - Auto show on page load
+    const maintenancePopup = document.getElementById('maintenancePopup');
+    const maintenanceClose = document.getElementById('maintenanceClose');
+    
+    if (maintenancePopup) {
+        // Function to close popup
+        const closePopup = () => {
+            maintenancePopup.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        // Close button click handler
+        if (maintenanceClose) {
+            maintenanceClose.addEventListener('click', closePopup);
+        }
+
+        // Close on overlay click
+        const overlay = maintenancePopup.querySelector('.maintenance-overlay');
+        if (overlay) {
+            overlay.addEventListener('click', closePopup);
+        }
+
+        // Show popup after page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                maintenancePopup.classList.add('active');
+            }, 500);
+        });
+
+        // Prevent body scroll when popup is active
+        const body = document.body;
+        const updateBodyScroll = () => {
+            if (maintenancePopup.classList.contains('active')) {
+                body.style.overflow = 'hidden';
+            } else {
+                body.style.overflow = '';
+            }
+        };
+
+        // Watch for class changes
+        const observer = new MutationObserver(updateBodyScroll);
+        observer.observe(maintenancePopup, {
+            attributes: true,
+            attributeFilter: ['class']
+        });
+        updateBodyScroll();
+    }
+
 })();

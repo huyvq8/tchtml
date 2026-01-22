@@ -330,6 +330,74 @@
         </div>
     </footer>
 
+    <!-- Maintenance Popup -->
+    <div class="maintenance-popup" id="maintenancePopup">
+        <div class="maintenance-overlay"></div>
+        <div class="maintenance-content">
+            <button class="maintenance-close" id="maintenanceClose" aria-label="Close maintenance popup">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
+            <div class="maintenance-logo">
+                <img src="../images/logo_tradecoin88.png" alt="TradeCoin88" class="maintenance-logo-img">
+            </div>
+            <div class="maintenance-icon">
+                <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="60" cy="60" r="55" stroke="url(#gradient1)" stroke-width="4" stroke-dasharray="10 5" opacity="0.6">
+                        <animateTransform attributeName="transform" type="rotate" from="0 60 60" to="360 60 60" dur="20s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="60" cy="60" r="45" stroke="url(#gradient2)" stroke-width="3" stroke-dasharray="8 4" opacity="0.4">
+                        <animateTransform attributeName="transform" type="rotate" from="360 60 60" to="0 60 60" dur="15s" repeatCount="indefinite"/>
+                    </circle>
+                    <g transform="translate(60, 60)">
+                        <path d="M-30 -20 L-20 -30 L10 -10 L0 0 Z" fill="url(#gradient3)" opacity="0.8">
+                            <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="8s" repeatCount="indefinite"/>
+                        </path>
+                        <path d="M20 -30 L30 -20 L10 0 L0 -10 Z" fill="url(#gradient3)" opacity="0.8">
+                            <animateTransform attributeName="transform" type="rotate" from="360 0 0" to="0 0 0" dur="10s" repeatCount="indefinite"/>
+                        </path>
+                        <circle cx="0" cy="0" r="12" fill="url(#gradient4)" opacity="0.9">
+                            <animate attributeName="opacity" values="0.9;0.6;0.9" dur="2s" repeatCount="indefinite"/>
+                        </circle>
+                    </g>
+                    <defs>
+                        <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#FFC83B;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#492DE1;stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#492DE1;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#FFC83B;stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#FFC83B;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#717FFF;stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="gradient4" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#FFC83B;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#EF9000;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <h2 class="maintenance-title">UNDER MAINTENANCE</h2>
+            <p class="maintenance-description">
+                We're currently performing scheduled maintenance to improve our services.<br/>
+                We'll be back online shortly. Thank you for your patience.
+            </p>
+            <div class="maintenance-divider"></div>
+            <div class="maintenance-time">
+                <p class="maintenance-time-label">Maintenance Period (GMT+0):</p>
+                <p class="maintenance-time-range">
+                    <span class="time-from">From: 00:00</span>
+                    <span class="time-separator">→</span>
+                    <span class="time-to">To: 02:00</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
     <script src="../js/script.js"></script>
     <script src="../js/enhanced.js"></script>
 </body>

@@ -27,7 +27,7 @@
         /* Header theo mẫu: 3 cột (menu | live account | bell) */
         .dashboard-header .header-content {
             display: grid;
-            grid-template-columns: 46px 1fr 46px;
+            grid-template-columns: 1fr 46px; /* Desktop: không có menu button */
             align-items: center;
             width: 100%;
             column-gap: 10px;
@@ -45,12 +45,23 @@
             border: none;
             cursor: pointer;
             padding: 0;
-            display: flex;
+            display: none; /* Ẩn trên desktop */
             align-items: center;
             justify-content: center;
             width: 46px;
             height: 46px;
             min-width: 46px;
+        }
+
+        /* Hiện menu button trên mobile */
+        @media (max-width: 768px) {
+            .dashboard-header .menu-button {
+                display: flex;
+            }
+
+            .dashboard-header .header-content {
+                grid-template-columns: 46px 1fr 46px;
+            }
         }
 
         .dashboard-header .hamburger-icon {
@@ -72,9 +83,8 @@
 
         /* live-account nằm giữa, tự co nội dung */
         .dashboard-header .live-account {
-            justify-self: end;
+            justify-self: end; /* Luôn căn phải, nằm cạnh notification button */
             min-width: 0;
-            /* Theo mẫu: box lệch về phía chuông (căn phải trong cột giữa) */
             margin-right: 10px;
         }
 

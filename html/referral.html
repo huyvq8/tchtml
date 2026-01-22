@@ -4,29 +4,236 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Referral - TradeCoin88</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/dashboard.css">
     <style>
+        /* Header theo mẫu FAQ: 3 cột (menu | live account | bell) */
+        .dashboard-header {
+            padding: 12px 16px !important;
+            background: rgba(34, 20, 87, 0.95) !important;
+            border-bottom: 1px solid rgba(124, 105, 255, 0.18) !important;
+        }
+
+        .dashboard-header .header-content {
+            display: grid;
+            grid-template-columns: 1fr 46px; /* Desktop: không có menu button */
+            align-items: center;
+            width: 100%;
+            column-gap: 10px;
+            max-width: 100% !important;
+            margin: 0 !important;
+            flex-wrap: nowrap !important;
+        }
+
+        .dashboard-header .menu-button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: none; /* Ẩn trên desktop */
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+            min-width: 46px;
+        }
+
+        /* Hiện menu button trên mobile */
+        @media (max-width: 768px) {
+            .dashboard-header .menu-button {
+                display: flex;
+            }
+
+            .dashboard-header .header-content {
+                grid-template-columns: 46px 1fr 46px;
+            }
+        }
+
+        .dashboard-header .hamburger-icon {
+            width: 26px;
+            height: 19px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dashboard-header .hamburger-line {
+            width: 26px;
+            height: 3px;
+            background-color: #ffffff;
+            border-radius: 2px;
+            display: block;
+        }
+
+        .dashboard-header .live-account {
+            justify-self: end; /* Luôn căn phải, nằm cạnh notification button */
+            min-width: 0;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            height: 46px;
+            background: #181537;
+            border-radius: 8px;
+            border: 1px solid rgba(124, 105, 255, 0.35);
+            cursor: pointer;
+            transition: background 0.18s ease-out, border-color 0.18s ease-out;
+            flex-wrap: nowrap;
+            box-sizing: border-box;
+            position: relative;
+            max-width: 260px;
+        }
+
+        .dashboard-header .live-account:hover {
+            background: rgba(34, 20, 87, 0.9);
+            border-color: rgba(124, 105, 255, 0.6);
+        }
+
+        .dashboard-header .wallet-icon {
+            width: 16px;
+            height: 16px;
+            object-fit: contain;
+            display: inline-block;
+            flex-shrink: 0;
+            filter: brightness(0) invert(1);
+        }
+
+        .dashboard-header .live-divider {
+            width: 1px;
+            height: 24px;
+            background-color: rgba(124, 105, 255, 0.35);
+            flex-shrink: 0;
+            margin: 0 2px;
+        }
+
+        .dashboard-header .live-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .dashboard-header .live-label-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .dashboard-header .live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #FFC83B;
+            flex-shrink: 0;
+            display: inline-block;
+        }
+
+        .dashboard-header .live-label {
+            font-size: 12px;
+            color: #ffffff;
+            font-weight: 400;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .dashboard-header .live-amount {
+            font-size: 14px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .dashboard-header .dropdown-icon {
+            font-size: 28px;
+            color: #FFC83B;
+            transform: scaleY(0.6);
+            display: block;
+            text-align: center;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .dashboard-header .notification-button {
+            justify-self: end;
+            background: #181537;
+            border: 1px solid rgba(124, 105, 255, 0.35);
+            border-radius: 8px;
+            cursor: pointer;
+            padding: 0;
+            width: 46px;
+            height: 46px;
+            min-width: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.18s ease-out, border-color 0.18s ease-out;
+        }
+
+        .dashboard-header .notification-button:hover {
+            background: rgba(34, 20, 87, 0.9);
+            border-color: rgba(124, 105, 255, 0.6);
+        }
+
+        .dashboard-header .bell-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dashboard-header .bell-icon {
+            width: 20px;
+            height: 22px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        .dashboard-header .notification-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 14px;
+            height: 14px;
+            background: #181537;
+            border: 1px solid #FFC83B;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            font-weight: 700;
+            color: #FFC83B;
+        }
+
         /* Referral Page Specific Styles */
         .referral-header {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             margin-bottom: 24px;
-            flex-wrap: wrap;
-            gap: 16px;
         }
 
         .referral-tabs {
             display: flex;
             gap: 8px;
+            justify-content: center;
         }
 
         .referral-tab {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
+            background: rgba(24, 21, 55, 0.8);
+            border: none;
             border-radius: 8px;
             padding: 12px 24px;
-            color: var(--text-gray);
+            color: var(--text-white);
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
@@ -34,9 +241,46 @@
         }
 
         .referral-tab.active {
-            background: rgba(73, 45, 225, 0.3);
+            background: rgba(34, 20, 87, 0.9);
+            color: var(--yellow-main);
+            border: none;
+        }
+
+        .referral-tab:hover {
+            background: rgba(34, 20, 87, 0.7);
             color: var(--text-white);
-            border-color: var(--purple);
+        }
+
+        .tab-content {
+            width: 100%;
+        }
+
+        .commission-section,
+        .trader-management-section {
+            width: 100%;
+        }
+
+        .filter-select,
+        .filter-date,
+        .filter-input {
+            background: #181537;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 10px 16px;
+            color: var(--text-white);
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .filter-select:focus,
+        .filter-date:focus,
+        .filter-input:focus {
+            outline: none;
+            border-color: rgba(124, 105, 255, 0.5);
+        }
+
+        .filter-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
         }
 
         .back-to-trade {
@@ -56,69 +300,165 @@
         }
 
         .upgrade-banner {
-            background: linear-gradient(135deg, rgba(74, 64, 154, 0.8) 0%, rgba(5, 15, 45, 0.8) 100%);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 32px;
-            margin-bottom: 24px;
+            /* Background hero (vault door với charts) - đã đúng kích thước hero */
+            background-image: url('../images/referent bannẻ 1 background 1.png');
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: 1px solid #FFC83B;
+            border-radius: 1.5%;
+            padding: 2.5% 3%;
+            margin-bottom: 60px;
+            margin-left: auto;
+            margin-right: auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 24px;
+            gap: 2%;
+            position: relative;
+            min-height: 22vh;
+            max-width: 56%;
+            clear: both;
         }
 
         .banner-content {
-            flex: 1;
+            flex: 0 1 auto;
+            position: relative;
+            z-index: 1;
+            max-width: 60%;
         }
 
         .banner-title {
-            font-size: 32px;
+            font-size: clamp(1rem, 1.5vw, 1.5rem);
             font-weight: 700;
             color: var(--text-white);
-            margin-bottom: 8px;
+            margin-bottom: 0.5%;
+            line-height: 1.3;
         }
 
         .banner-amount {
-            font-size: 48px;
+            font-size: clamp(2rem, 3vw, 3rem);
             font-weight: 700;
             color: var(--yellow-main);
+            line-height: 1;
         }
 
         .banner-image {
-            width: 200px;
-            height: 200px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 25%;
+            height: auto;
+            aspect-ratio: 1 / 1;
             flex-shrink: 0;
+            position: absolute;
+            z-index: 1;
+            /* Vị trí sẽ được tính toán bởi JavaScript */
+        }
+
+        .banner-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: bottom right;
         }
 
         .referral-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 24px;
-            margin-bottom: 24px;
+            gap: 2%;
+            margin-top: 60px;
+            margin-bottom: 60px;
+            max-width: 56%;
+            margin-left: auto;
+            margin-right: auto;
+            clear: both;
         }
 
         .referral-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
+            background: linear-gradient(to bottom, rgba(68, 47, 115, 0.65) 0%, rgba(12, 10, 60, 1) 100%);
+            border: 1px solid #FFFFFF;
+            border-radius: 24px;
             padding: 24px;
-            backdrop-filter: blur(10px);
+            font-family: 'Inter', 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
         .card-header {
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: auto auto;
+            grid-template-rows: auto auto;
+            gap: 8px;
+            margin-bottom: 20px;
             align-items: center;
-            margin-bottom: 16px;
+            justify-content: space-between;
+        }
+        
+        .user-info-btn {
+            grid-column: 1;
+            grid-row: 1;
+            display: inline-flex;
+            align-items: center;
+            gap: 0;
+            background: #181537;
+            padding: 6px 6px 6px 10px;
+            border-radius: 6px;
+            color: var(--text-white);
+            font-size: 14px;
+            width: max-content;
+        }
+        
+        .user-icon-small {
+            width: 18px;
+            height: 18px;
+            object-fit: contain;
+            flex-shrink: 0;
+            margin: 0;
+        }
+        
+        .user-separator {
+            width: 1px;
+            height: 16px;
+            background: rgba(255, 255, 255, 0.3);
+            margin: 0 6px;
+            flex-shrink: 0;
+            padding: 0;
+        }
+        
+        .user-info-btn span {
+            margin: 0;
+            padding: 0;
+            display: inline-block;
+        }
+        
+        .header-right {
+            grid-column: 2;
+            grid-row: 1 / 3;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: flex-end;
+        }
+        
+        .info-btn {
+            background: #181537;
+            padding: 6px 10px;
+            border-radius: 6px;
+            color: var(--text-white);
+            font-size: 13px;
+            white-space: nowrap;
+            width: auto;
+            display: inline-block;
+        }
+        
+        .upline-text {
+            grid-column: 1;
+            grid-row: 2;
+            text-align: left;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 400;
+            margin: 0;
         }
 
         .card-title {
-            font-size: 18px;
+            font-size: clamp(0.9rem, 1.2vw, 1.125rem);
             font-weight: 700;
             color: var(--text-white);
         }
@@ -127,36 +467,64 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 24px;
+            margin-bottom: 8px;
         }
 
         .rank-icon {
             width: 48px;
             height: 48px;
-            background: var(--yellow-main);
-            border-radius: 50%;
+            flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-            font-weight: 700;
-            color: #000;
+        }
+
+        .rank-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .rank-text {
             flex: 1;
+            display: flex;
+            align-items: center;
         }
-
+        
         .rank-status {
             font-size: 18px;
             font-weight: 700;
-            color: var(--yellow-main);
-            margin-bottom: 4px;
+            color: var(--text-white);
+            line-height: 1.2;
         }
 
         .rank-message {
-            font-size: 14px;
-            color: var(--text-gray);
+            font-size: 13px;
+            color: #FFD700;
+            line-height: 1.4;
+            margin-top: 8px;
+            margin-left: 0;
+            padding-left: 0;
+        }
+        
+        .rank-container {
+            margin-bottom: 24px;
+        }
+        
+        .requirements-container {
+            background: #271E54;
+            border-radius: 24px;
+            padding: 20px;
+            margin-bottom: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .requirements-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 16px;
         }
 
         .requirements-list {
@@ -169,86 +537,155 @@
             display: flex;
             flex-direction: column;
             gap: 8px;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            cursor: pointer;
         }
-
+        
+        .requirement-item.active {
+            border: 1px solid #FFD700;
+            background: rgba(0, 0, 0, 0.2);
+            width: 100%;
+            border-radius: 0;
+            box-sizing: border-box;
+        }
+        
+        .requirement-item:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        
+        .requirement-header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .requirement-number {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #5047C2;
+            color: var(--text-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
         .requirement-label {
-            font-size: 14px;
-            color: var(--text-gray);
+            flex: 1;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
             display: flex;
             justify-content: space-between;
+            line-height: 1.4;
+            align-items: center;
+        }
+        
+        .requirement-label span:last-child {
+            color: #FFD700;
+            font-weight: 600;
         }
 
         .progress-bar {
             width: 100%;
-            height: 12px;
+            height: 6px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 6px;
+            border-radius: 3px;
             overflow: hidden;
         }
 
         .progress-fill {
             height: 100%;
-            background: var(--yellow-main);
-            border-radius: 6px;
+            background: #FFD700;
+            border-radius: 3px;
             transition: width 0.3s ease;
         }
 
-        .rank-link {
-            margin-top: 24px;
-            padding-top: 24px;
-            border-top: 1px solid var(--border-color);
-            color: #60A5FA;
-            font-size: 14px;
-            text-decoration: underline;
-            cursor: pointer;
+        .requirements-footer {
+            margin-top: 20px;
+            padding-top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            text-align: center;
         }
-
-        .invite-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 24px;
-            backdrop-filter: blur(10px);
+        
+        .footer-text {
+            font-size: 13px;
+            color: var(--text-white);
+            line-height: 1.4;
+            text-align: center;
+        }
+        
+        .rank-link {
+            color: #FFD700;
+            font-size: 13px;
+            text-decoration: none;
+            cursor: pointer;
+            line-height: 1.4;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
             text-align: center;
         }
 
+        .invite-card {
+            background: linear-gradient(to bottom, rgba(68, 47, 115, 0.65) 0%, rgba(12, 10, 60, 1) 100%);
+            border: 1px solid #FFFFFF;
+            border-radius: 24px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+        }
+
         .invite-image {
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 24px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
+        .invite-image img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
         .invite-title {
-            font-size: 24px;
+            font-size: clamp(1.25rem, 2vw, 1.75rem);
             font-weight: 700;
-            color: var(--yellow-main);
+            color: #FFD700;
             margin-bottom: 16px;
+            text-align: center;
+            text-transform: uppercase;
         }
 
         .invite-benefits {
             text-align: left;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .invite-benefit {
             font-size: 14px;
             color: var(--text-white);
-            margin-bottom: 8px;
-            padding-left: 24px;
+            margin-bottom: 12px;
+            padding-left: 28px;
             position: relative;
+            line-height: 1.5;
         }
 
         .invite-benefit::before {
-            content: '•';
+            content: '👉';
             position: absolute;
-            left: 8px;
-            color: var(--yellow-main);
-            font-size: 18px;
+            left: 0;
+            font-size: 16px;
         }
 
         .invite-field {
@@ -258,7 +695,7 @@
 
         .invite-field-label {
             font-size: 14px;
-            color: var(--text-gray);
+            color: var(--text-white);
             margin-bottom: 8px;
         }
 
@@ -270,41 +707,65 @@
         .invite-input {
             flex: 1;
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 8px;
-            padding: 12px 16px;
+            padding: 10px 12px;
             color: var(--text-white);
             font-size: 14px;
         }
 
         .copy-btn {
-            background: var(--purple);
+            background: linear-gradient(to bottom, #5047C2 0%, #11096B 100%);
             border: none;
             border-radius: 8px;
-            padding: 12px 24px;
+            padding: 10px 20px;
             color: var(--text-white);
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            white-space: nowrap;
         }
 
         .copy-btn:hover {
-            background: #5a3ef0;
+            background: linear-gradient(to bottom, #6057D2 0%, #21197B 100%);
         }
 
         .invite-footer {
-            margin-top: 24px;
-            padding-top: 24px;
-            border-top: 1px solid var(--border-color);
-            font-size: 14px;
-            color: var(--text-gray);
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .invite-footer-text {
+            flex: 1;
+            font-size: 13px;
+            color: var(--text-white);
+            line-height: 1.5;
+        }
+
+        .qr-code-container {
+            flex-shrink: 0;
+        }
+
+        .qr-code-image {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
         }
 
         .volume-tables {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 24px;
+            gap: 2%;
+            max-width: 56%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 60px;
+            margin-bottom: 60px;
+            clear: both;
         }
 
         .volume-table {
@@ -314,25 +775,149 @@
 
         .volume-table th {
             padding: 12px;
-            text-align: left;
-            font-size: 12px;
+            text-align: center;
+            font-size: 14px;
             font-weight: 600;
-            color: var(--text-gray);
+            color: var(--text-white);
             text-transform: uppercase;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .volume-table th:first-child {
+            border-right: 2px solid rgba(255, 255, 255, 0.3);
+            padding-right: 20px;
+        }
+
+        .volume-table th:last-child {
+            padding-left: 20px;
         }
 
         .volume-table td {
             padding: 12px;
             font-size: 14px;
             color: var(--text-white);
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
         }
 
-        .volume-table tr:last-child td {
+        .volume-table td > span {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .volume-table tbody tr {
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .volume-table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .volume-table td:first-child {
+            border-right: 2px solid rgba(255, 255, 255, 0.3);
+            padding-right: 20px;
+        }
+
+        .volume-table td:last-child {
+            padding-left: 20px;
+        }
+
+        /* Commission và Trader Management table - không có border-right */
+        .commission-table,
+        .trader-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .commission-table th,
+        .trader-table th {
+            padding: 12px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            color: #FFD700;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .commission-table td,
+        .trader-table td {
+            padding: 12px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-white);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .commission-table tbody tr:hover,
+        .trader-table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .commission-table-wrapper,
+        .trader-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        /* Trader Management Filter Layout - Desktop: tất cả trong 1 hàng */
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .reset-filter-mobile {
+            display: none;
+        }
+
+        .trader-filter-container {
+            display: flex;
+            flex-direction: row;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .trader-filter-row {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .trader-filter-row-1 {
+            display: flex;
+            gap: 12px;
+        }
+
+        .trader-filter-row-2 {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .volume-table tbody tr:last-child {
+            background: linear-gradient(to right, rgba(122, 60, 255, 0.5) 0%, rgba(90, 44, 239, 0.5) 100%);
+            border-radius: 0 0 8px 8px;
+        }
+
+        .volume-table tbody tr:last-child td {
             border-bottom: none;
             font-weight: 700;
             font-size: 16px;
+            padding: 16px 12px;
+        }
+
+        .volume-table tbody tr:last-child td:first-child {
+            color: var(--text-white);
+        }
+
+        .volume-table tbody tr:last-child td:last-child {
+            color: #FFD700;
         }
 
         @media (max-width: 1024px) {
@@ -349,24 +934,253 @@
             .upgrade-banner {
                 flex-direction: column;
                 text-align: center;
+                padding: 3% 4% 0 4%;
+                min-height: 30vh;
+                background-image: none !important;
+                background: linear-gradient(to bottom, rgba(68, 47, 115, 0.65) 0%, rgba(12, 10, 60, 1) 100%) !important;
+                background-size: 100% 100%;
+                align-items: center;
+                max-width: 100%;
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+                box-sizing: border-box;
+                border: none !important;
+                position: relative;
+                overflow: visible;
+            }
+
+            .banner-content {
+                max-width: 100%;
             }
 
             .banner-title {
-                font-size: 24px;
+                font-size: clamp(0.9rem, 4vw, 1.125rem);
             }
 
             .banner-amount {
-                font-size: 36px;
+                font-size: clamp(1.5rem, 8vw, 2rem);
             }
 
             .banner-image {
-                width: 150px;
-                height: 150px;
+                width: 50%;
+                max-width: 240px;
+                height: auto;
+                aspect-ratio: 1 / 1;
+                position: absolute;
+                bottom: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                margin: 0;
+            }
+
+            .banner-image img {
+                object-position: center bottom;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+            
+            .upgrade-banner {
+                margin-bottom: 40px !important;
+                clear: both !important;
+            }
+
+            .referral-grid {
+                max-width: 100%;
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 40px !important;
+                margin-bottom: 40px !important;
+                padding-left: 0;
+                padding-right: 0;
+                box-sizing: border-box;
+                clear: both !important;
+            }
+
+            .volume-tables {
+                max-width: 100%;
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 40px !important;
+                margin-bottom: 40px !important;
+                padding-left: 0;
+                padding-right: 0;
+                box-sizing: border-box;
+                clear: both !important;
+            }
+            
+            .referral-card {
+                padding: 20px;
+                border-radius: 16px;
+                border: none !important;
+            }
+            
+            .invite-card {
+                padding: 4%;
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box;
+                border: none !important;
+            }
+            
+            .requirements-container {
+                padding: 16px;
+                border-radius: 16px;
+            }
+            
+            .card-header {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+                gap: 8px;
+            }
+            
+            .header-right {
+                grid-column: 1;
+                grid-row: 2;
+                width: 100%;
+                align-items: flex-start;
+            }
+            
+            .upline-text {
+                grid-column: 1;
+                grid-row: 3;
+            }
+            
+            .requirement-item {
+                padding: 10px;
+                gap: 10px;
+            }
+            
+            .requirement-number {
+                width: 28px;
+                height: 28px;
+                font-size: 12px;
             }
 
             .referral-tabs {
                 width: 100%;
-                flex-wrap: wrap;
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: nowrap !important;
+                justify-content: center;
+                gap: 8px;
+                overflow-x: auto;
+            }
+
+            .referral-tab {
+                padding: 10px 16px !important;
+                font-size: 12px;
+                flex-shrink: 0;
+                white-space: nowrap;
+                min-width: auto;
+            }
+
+            .commission-section,
+            .trader-management-section {
+                max-width: 100% !important;
+                padding-left: 2% !important;
+                padding-right: 2% !important;
+            }
+
+            .commission-filters {
+                flex-direction: row;
+                flex-wrap: nowrap;
+                justify-content: flex-start !important;
+            }
+
+            .commission-filters > * {
+                flex: 0 0 auto;
+            }
+
+            /* Trader Management filter - Mobile: 4 hàng */
+            .filter-header .reset-filter-btn {
+                display: none !important;
+            }
+
+            .reset-filter-mobile {
+                display: flex !important;
+            }
+
+            .trader-filter-container {
+                flex-direction: column !important;
+            }
+
+            .trader-filter-row-1 {
+                display: grid !important;
+                grid-template-columns: 1fr auto !important;
+                width: 100% !important;
+                gap: 8px !important;
+            }
+
+            .trader-filter-row-2 {
+                display: grid !important;
+                grid-template-columns: auto auto auto 1fr !important;
+                width: 100% !important;
+                gap: 8px !important;
+            }
+
+            .trader-filter-row-2 .copy-btn {
+                justify-self: end;
+            }
+
+            /* Giảm kích thước input và button trên mobile */
+            .trader-management-section .filter-input,
+            .trader-management-section .filter-select {
+                padding: 8px 12px !important;
+                font-size: 13px !important;
+                min-width: auto !important;
+            }
+
+            .trader-management-section .filter-input {
+                padding-left: 36px !important;
+            }
+
+            .trader-management-section .copy-btn {
+                padding: 8px 16px !important;
+                font-size: 13px !important;
+                white-space: nowrap !important;
+            }
+
+            .trader-filter-row-2 .filter-select {
+                min-width: 100px !important;
+            }
+
+            .commission-table,
+            .trader-table {
+                font-size: 11px;
+                width: 100%;
+                display: table;
+            }
+
+            .commission-table th,
+            .commission-table td,
+            .trader-table th,
+            .trader-table td {
+                padding: 8px 4px;
+                font-size: 11px;
+            }
+
+            .commission-table-wrapper,
+            .trader-table-wrapper {
+                overflow-x: auto;
+                width: 100%;
+            }
+
+            .referral-card {
+                max-width: 100% !important;
+                width: 100% !important;
+                box-sizing: border-box;
+                border: none !important;
+            }
+
+            .volume-tables {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+                padding-left: 2%;
+                padding-right: 2%;
             }
         }
     </style>
@@ -375,34 +1189,31 @@
     <!-- Header -->
     <header class="dashboard-header">
         <div class="header-content">
-            <div class="header-logo">
-                <img src="../images/logo_tradecoin88.png" alt="Trade Coin88" class="logo-img">
-            </div>
-            <div class="header-right">
-                <div class="account-dropdown">
-                    <button class="account-toggle">
-                        <span class="account-type">Live account</span>
-                        <span class="account-balance">$10.200,50</span>
+            <button class="menu-button" aria-label="Menu">
+                <span class="hamburger-icon">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </span>
+            </button>
+            <div class="live-account">
+                <img src="../images/a3 3.png" alt="Wallet" class="wallet-icon" />
+                <div class="live-divider"></div>
+                <div class="live-content">
+                    <div class="live-label-wrapper">
                         <span class="live-dot"></span>
-                        <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                            <path d="M1 1L6 6L11 1" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </button>
-                </div>
-                <div class="user-info">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" fill="white"/>
-                        <path d="M10 12C5.58172 12 2 13.7909 2 16V20H18V16C18 13.7909 14.4183 12 10 12Z" fill="white"/>
-                    </svg>
-                    <span class="username">Abc123</span>
-                </div>
-                <button class="icon-btn notification-btn notification-button">
-                    <div class="bell-wrapper">
-                        <img src="../images/Vector.png" alt="Notifications" class="bell-icon" />
-                        <span class="notification-badge">0</span>
+                        <span class="live-label">Live account</span>
                     </div>
-                </button>
+                    <span class="live-amount">$10.200,50</span>
+                </div>
+                <span class="dropdown-icon">⌄</span>
             </div>
+            <button class="notification-button" aria-label="Notifications">
+                <div class="bell-wrapper">
+                    <img src="../images/Vector.png" alt="Notifications" class="bell-icon" />
+                    <span class="notification-badge">0</span>
+                </div>
+            </button>
         </div>
     </header>
 
@@ -418,101 +1229,119 @@
         <main class="dashboard-main">
             <div class="referral-header">
                 <div class="referral-tabs">
-                    <button class="referral-tab active">OVERVIEW</button>
-                    <button class="referral-tab">COMMISSION</button>
-                    <button class="referral-tab">TRADER MANAGEMENT</button>
+                    <button class="referral-tab active" data-tab="overview">OVERVIEW</button>
+                    <button class="referral-tab" data-tab="commission">COMMISSION</button>
+                    <button class="referral-tab" data-tab="trader-management">TRADER MANAGEMENT</button>
                 </div>
-                <button class="back-to-trade">Back to trade</button>
             </div>
 
+            <!-- Overview Tab Content -->
+            <div class="tab-content" id="overview-tab">
             <div class="upgrade-banner">
                 <div class="banner-content">
                     <div class="banner-title">UPGRADE YOUR RANK TO GET REWARDS UP TO</div>
                     <div class="banner-amount">$236,760</div>
                 </div>
                 <div class="banner-image">
-                    <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
-                        <circle cx="50" cy="50" r="40" fill="#FFC83B"/>
-                        <text x="50" y="55" text-anchor="middle" font-size="40" font-weight="700" fill="#000">B</text>
-                    </svg>
+                    <img src="../images/hình chính 1.png" alt="Robotic Hand with Bitcoin" />
                 </div>
             </div>
 
             <div class="referral-grid">
                 <div class="referral-card">
                     <div class="card-header">
-                        <div>
-                            <div style="font-size: 14px; color: var(--text-white); margin-bottom: 4px;">Abc123</div>
-                            <div style="font-size: 12px; color: var(--text-gray);">Total member 5</div>
+                        <div class="user-info-btn">
+                            <img src="../images/Group 16.png" alt="User" class="user-icon-small" />
+                            <div class="user-separator"></div>
+                            <span>Abc123</span>
                         </div>
-                    </div>
-                    <div style="font-size: 14px; color: var(--text-gray); margin-bottom: 16px;">
-                        Your upline is User123
-                    </div>
-                    <div style="font-size: 14px; color: var(--text-gray); margin-bottom: 24px;">
-                        Total direct members 2
-                    </div>
-
-                    <div class="rank-info">
-                        <div class="rank-icon">VIP</div>
-                        <div class="rank-text">
-                            <div class="rank-status">You're VIP</div>
-                            <div class="rank-message">Time to upgrade to Bronze and get $500 Ranking Reward!</div>
+                        <div class="header-right">
+                            <div class="info-btn">Total member 5</div>
+                            <div class="info-btn">Total direct members 2</div>
+                        </div>
+                        <div class="upline-text">
+                            Your upline is User123
                         </div>
                     </div>
 
-                    <div style="font-size: 16px; font-weight: 700; color: var(--text-white); margin-bottom: 16px;">
-                        Requirements to reach Bronze rank
+                    <div class="rank-container">
+                        <div class="rank-info">
+                            <div class="rank-icon">
+                                <img src="../images/vip 1.png" alt="VIP Badge" />
+                            </div>
+                            <div class="rank-text">
+                                <div class="rank-status">You're VIP</div>
+                            </div>
+                        </div>
+                        <div class="rank-message">Time to upgrade to Bronze and get $500 Ranking Reward!</div>
                     </div>
 
-                    <div class="requirements-list">
-                        <div class="requirement-item">
-                            <div class="requirement-label">
-                                <span>Direct members</span>
-                                <span>2/6</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 33.33%;"></div>
-                            </div>
+                    <div class="requirements-container">
+                        <div class="requirements-title">
+                            Requirements to reach Bronze rank
                         </div>
-                        <div class="requirement-item">
-                            <div class="requirement-label">
-                                <span>Team volume</span>
-                                <span>$10,000/$30,000</span>
+
+                        <div class="requirements-list">
+                            <div class="requirement-item active">
+                                <div class="requirement-header">
+                                    <div class="requirement-number">1</div>
+                                    <div class="requirement-label">
+                                        <span>Direct members</span>
+                                        <span>2/6</span>
+                                    </div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 33.33%;"></div>
+                                </div>
                             </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 33.33%;"></div>
+                            <div class="requirement-item">
+                                <div class="requirement-header">
+                                    <div class="requirement-number">2</div>
+                                    <div class="requirement-label">
+                                        <span>Team volume</span>
+                                        <span>$10.000/$30.000</span>
+                                    </div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 33.33%;"></div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="requirement-item">
-                            <div class="requirement-label">
-                                <span>Direct members volume</span>
-                                <span>$15,000/$15,000</span>
+                            <div class="requirement-item">
+                                <div class="requirement-header">
+                                    <div class="requirement-number">3</div>
+                                    <div class="requirement-label">
+                                        <span>Direct members volume</span>
+                                        <span>$15.000/$15.000</span>
+                                    </div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 100%;"></div>
+                                </div>
                             </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 100%;"></div>
-                            </div>
-                        </div>
-                        <div class="requirement-item">
-                            <div class="requirement-label">
-                                <span>Previous rank F1</span>
-                                <span>0</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 0%;"></div>
+                            <div class="requirement-item">
+                                <div class="requirement-header">
+                                    <div class="requirement-number">4</div>
+                                    <div class="requirement-label">
+                                        <span>Previous rank F1</span>
+                                        <span>0</span>
+                                    </div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%;"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="rank-link">RANK EVALUATION & MAINTENANCE</div>
+                    <div class="requirements-footer">
+                        <div class="footer-text">Finish all missions to reach the Bronze rank</div>
+                        <div class="rank-link">RANK EVALUATION & MAINTENANCE</div>
+                    </div>
                 </div>
 
                 <div class="invite-card">
                     <div class="invite-image">
-                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-                            <circle cx="40" cy="40" r="35" fill="#FFC83B"/>
-                            <text x="40" y="50" text-anchor="middle" font-size="35" font-weight="700" fill="#000">B</text>
-                        </svg>
+                        <img src="../images/giới-thiệu-bạn-bè 1.png" alt="Invite Friends" />
                     </div>
                     <div class="invite-title">INVITE YOUR FRIENDS</div>
                     <div class="invite-benefits">
@@ -534,7 +1363,13 @@
                         </div>
                     </div>
                     <div class="invite-footer">
-                        This is an invite from Abc123 Join TradeCoin88 with my referral code
+                        <div class="invite-footer-text">
+                            This is an invite from Abc123<br>
+                            Join TradeCoin88 with my referral code
+                        </div>
+                        <div class="qr-code-container">
+                            <img src="../images/image 46.png" alt="QR Code" class="qr-code-image" />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -545,7 +1380,7 @@
                     <table class="volume-table">
                         <thead>
                             <tr>
-                                <th>Time</th>
+                                <th>Time <span style="font-size: 12px;">▼</span></th>
                                 <th>Total</th>
                             </tr>
                         </thead>
@@ -575,7 +1410,7 @@
                     <table class="volume-table">
                         <thead>
                             <tr>
-                                <th>Time</th>
+                                <th>Time <span style="font-size: 12px;">▼</span></th>
                                 <th>Total</th>
                             </tr>
                         </thead>
@@ -600,11 +1435,317 @@
                     </table>
                 </div>
             </div>
+            </div>
+            <!-- End Overview Tab -->
+
+            <!-- Commission Tab Content -->
+            <div class="tab-content" id="commission-tab" style="display: none;">
+                <div class="commission-section" style="max-width: 56%; margin: 0 auto;">
+                    <div style="padding: 24px;">
+                        <div style="margin-bottom: 24px;">
+                            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px;">
+                                <h2 style="font-size: 24px; font-weight: 700; color: var(--text-white); margin: 0;">Comission</h2>
+                                <span style="color: #FFD700; font-size: 24px; font-weight: 400;">?</span>
+                            </div>
+                            <div style="color: #FFD700; font-size: 14px;">
+                                Notice: you will receive trading comission from your downline immediately
+                            </div>
+                        </div>
+
+                        <div class="commission-filters" style="display: flex; gap: 12px; margin-bottom: 24px; align-items: center; justify-content: flex-end; flex-wrap: wrap;">
+                            <select class="filter-select" style="background: #181537; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 10px 16px; color: var(--text-white); font-size: 14px; min-width: 150px;">
+                                <option>11/2025</option>
+                                <option>10/2025</option>
+                                <option>09/2025</option>
+                            </select>
+                            <button class="copy-btn" style="white-space: nowrap;">Seach</button>
+                        </div>
+
+                        <div style="text-align: center; margin-bottom: 16px; font-size: 16px; font-weight: 600; color: var(--text-white);">
+                            Trading profit details
+                        </div>
+
+                        <div class="commission-table-wrapper">
+                            <table class="commission-table">
+                                <thead>
+                                    <tr>
+                                        <th>Time</th>
+                                        <th>Trading volume</th>
+                                        <th>Trade commission</th>
+                                        <th>VIP commission</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>11/2025</td>
+                                        <td>$10.000</td>
+                                        <td>
+                                            $160
+                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display: inline-block; margin-left: 4px; opacity: 0.6; vertical-align: middle;">
+                                                <path d="M6 2C4.89543 2 4 2.89543 4 4C4 5.10457 4.89543 6 6 6C7.10457 6 8 5.10457 8 4C8 2.89543 7.10457 2 6 2Z" fill="#C0C0C0"/>
+                                                <path d="M6 7C3.79086 7 2 8.79086 2 11V12H10V11C10 8.79086 8.20914 7 6 7Z" fill="#C0C0C0"/>
+                                            </svg>
+                                        </td>
+                                        <td>
+                                            300
+                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display: inline-block; margin-left: 4px; opacity: 0.6; vertical-align: middle;">
+                                                <path d="M6 2C4.89543 2 4 2.89543 4 4C4 5.10457 4.89543 6 6 6C7.10457 6 8 5.10457 8 4C8 2.89543 7.10457 2 6 2Z" fill="#C0C0C0"/>
+                                                <path d="M6 7C3.79086 7 2 8.79086 2 11V12H10V11C10 8.79086 8.20914 7 6 7Z" fill="#C0C0C0"/>
+                                            </svg>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>11/2025</td>
+                                        <td>$10.000</td>
+                                        <td>
+                                            $160
+                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display: inline-block; margin-left: 4px; opacity: 0.6; vertical-align: middle;">
+                                                <path d="M6 2C4.89543 2 4 2.89543 4 4C4 5.10457 4.89543 6 6 6C7.10457 6 8 5.10457 8 4C8 2.89543 7.10457 2 6 2Z" fill="#C0C0C0"/>
+                                                <path d="M6 7C3.79086 7 2 8.79086 2 11V12H10V11C10 8.79086 8.20914 7 6 7Z" fill="#C0C0C0"/>
+                                            </svg>
+                                        </td>
+                                        <td>
+                                            300
+                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="display: inline-block; margin-left: 4px; opacity: 0.6; vertical-align: middle;">
+                                                <path d="M6 2C4.89543 2 4 2.89543 4 4C4 5.10457 4.89543 6 6 6C7.10457 6 8 5.10457 8 4C8 2.89543 7.10457 2 6 2Z" fill="#C0C0C0"/>
+                                                <path d="M6 7C3.79086 7 2 8.79086 2 11V12H10V11C10 8.79086 8.20914 7 6 7Z" fill="#C0C0C0"/>
+                                            </svg>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Commission Tab -->
+
+            <!-- Trader Management Tab Content -->
+            <div class="tab-content" id="trader-management-tab" style="display: none;">
+                <div class="trader-management-section" style="max-width: 56%; margin: 0 auto;">
+                    <div style="padding: 24px;">
+                        <div style="margin-bottom: 24px;">
+                            <h2 class="card-title" style="margin-bottom: 24px;">Trader Management</h2>
+                        </div>
+                        
+                        <div style="margin-bottom: 24px;">
+                            <div class="filter-header">
+                                <div style="font-size: 14px; font-weight: 600; color: var(--text-white);">Filter</div>
+                                <button class="copy-btn reset-filter-btn" style="white-space: nowrap;">Reset Filter</button>
+                            </div>
+                            <div class="trader-filter-container">
+                                <div class="trader-filter-row trader-filter-row-1">
+                                    <div style="position: relative; flex: 1;">
+                                        <input type="text" placeholder="Nick name" class="filter-input" style="background: #181537; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 10px 16px 10px 40px; color: var(--text-white); font-size: 14px; width: 100%;">
+                                        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); opacity: 0.6;">
+                                            <path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" fill="white"/>
+                                            <path d="M10 12C5.58172 12 2 13.7909 2 16V20H18V16C18 13.7909 14.4183 12 10 12Z" fill="white"/>
+                                        </svg>
+                                    </div>
+                                    <select class="filter-select" style="background: #181537; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 10px 16px; color: var(--text-white); font-size: 14px; min-width: 100px; width: auto;">
+                                        <option>All</option>
+                                        <option>Member</option>
+                                        <option>VIP</option>
+                                        <option>Silver</option>
+                                        <option>Gold</option>
+                                        <option>Platinum</option>
+                                        <option>Diamond</option>
+                                    </select>
+                                </div>
+                                <div class="trader-filter-row trader-filter-row-2">
+                                    <select class="filter-select" style="background: #181537; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 10px 16px; color: var(--text-white); font-size: 14px; min-width: 120px;">
+                                        <option>11/2025</option>
+                                        <option>10/2025</option>
+                                        <option>09/2025</option>
+                                    </select>
+                                    <span style="color: var(--text-white); font-size: 16px;">-</span>
+                                    <select class="filter-select" style="background: #181537; border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 8px; padding: 10px 16px; color: var(--text-white); font-size: 14px; min-width: 120px;">
+                                        <option>11/2025</option>
+                                        <option>10/2025</option>
+                                        <option>09/2025</option>
+                                    </select>
+                                    <button class="copy-btn" style="white-space: nowrap; display: flex; align-items: center; gap: 6px;">
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="opacity: 0.8;">
+                                            <path d="M7.333 12.667A5.333 5.333 0 1 0 7.333 2a5.333 5.333 0 0 0 0 10.667zM14 14l-3.333-3.333" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        Search
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 16px;">
+                            <div style="font-size: 18px; font-weight: 700; color: var(--text-white); margin-bottom: 8px;">Search Result</div>
+                            <div style="font-size: 13px; color: rgba(255, 255, 255, 0.7); margin-bottom: 16px;">
+                                Note: Click on each user line to display detailed information.
+                            </div>
+                        </div>
+
+                        <div style="text-align: center; margin-bottom: 16px; font-size: 16px; font-weight: 600; color: var(--text-white);">
+                            profit details
+                        </div>
+
+                        <div class="trader-table-wrapper">
+                            <table class="trader-table">
+                                <thead>
+                                    <tr>
+                                        <th>Nick name</th>
+                                        <th>Rank</th>
+                                        <th>Trading volume</th>
+                                        <th>Total revenue</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="cursor: pointer;">
+                                        <td>abc123</td>
+                                        <td style="text-align: center;">
+                                            <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+                                                <span>Trader</span>
+                                                <span style="background: #FFD700; color: #000; font-size: 10px; font-weight: 700; padding: 2px 5px; border-radius: 3px; display: inline-block;">F2</span>
+                                            </div>
+                                        </td>
+                                        <td>$10.000</td>
+                                        <td>$5000</td>
+                                    </tr>
+                                    <tr style="cursor: pointer;">
+                                        <td>F1test2027_gmail_com</td>
+                                        <td style="text-align: center;">
+                                            <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+                                                <span>Gold</span>
+                                                <span style="background: #FFD700; color: #000; font-size: 10px; font-weight: 700; padding: 2px 5px; border-radius: 3px; display: inline-block;">F2</span>
+                                            </div>
+                                        </td>
+                                        <td>$500.000</td>
+                                        <td>$5000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="reset-filter-mobile" style="display: flex; justify-content: flex-end; margin-top: 16px;">
+                            <button class="copy-btn" style="white-space: nowrap;">Reset Filter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Trader Management Tab -->
         </main>
     </div>
 
     <script src="../js/sidebar-menu-template.js"></script>
     <script src="../js/menu-loader.js"></script>
     <script src="../js/dashboard.js"></script>
+    <script>
+        // Tự động tính toán và đặt vị trí hình banner
+        function positionBannerImage() {
+            const banner = document.querySelector('.upgrade-banner');
+            const bannerImage = document.querySelector('.banner-image');
+            const bannerContent = document.querySelector('.banner-content');
+            
+            if (!banner || !bannerImage) return;
+
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile) {
+                // Mobile: center và bottom
+                bannerImage.style.position = 'relative';
+                bannerImage.style.right = 'auto';
+                bannerImage.style.bottom = 'auto';
+                bannerImage.style.left = 'auto';
+                bannerImage.style.top = 'auto';
+                bannerImage.style.transform = 'none';
+                bannerImage.style.margin = '0 auto';
+            } else {
+                // Desktop: Tính toán vị trí ở 70% chiều ngang của hero
+                const bannerRect = banner.getBoundingClientRect();
+                const bannerWidth = bannerRect.width;
+                const bannerHeight = bannerRect.height;
+                
+                // Reset để lấy kích thước thực tế
+                bannerImage.style.position = 'static';
+                const imageRect = bannerImage.getBoundingClientRect();
+                const imageWidth = imageRect.width || 320;
+                const imageHeight = imageRect.height || 320;
+                
+                // Tính toán vị trí: 80% từ trái của banner
+                // Sử dụng left: 80% và transform để căn giữa hình tại vị trí đó
+                const horizontalPosition = 80; // 80% từ trái
+                const bottomOffset = 0; // Sát dưới cùng
+                
+                // Áp dụng vị trí
+                bannerImage.style.position = 'absolute';
+                bannerImage.style.left = horizontalPosition + '%';
+                bannerImage.style.bottom = bottomOffset + 'px';
+                bannerImage.style.right = 'auto';
+                bannerImage.style.top = 'auto';
+                // Dịch sang trái 50% chiều rộng của hình để căn giữa tại vị trí 70%
+                bannerImage.style.transform = 'translateX(-50%)';
+                bannerImage.style.margin = '0';
+            }
+        }
+
+        // Debounce để tối ưu hiệu suất
+        let resizeTimeout;
+        function debouncedPosition() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(positionBannerImage, 100);
+        }
+
+        // Chạy khi load và khi resize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Đợi để layout render xong
+            setTimeout(positionBannerImage, 200);
+        });
+
+        window.addEventListener('resize', debouncedPosition);
+        window.addEventListener('load', function() {
+            setTimeout(positionBannerImage, 100);
+        });
+
+        // Xử lý click cho requirement-item
+        document.addEventListener('DOMContentLoaded', function() {
+            const requirementItems = document.querySelectorAll('.requirement-item');
+            
+            requirementItems.forEach(function(item) {
+                item.addEventListener('click', function() {
+                    // Xóa active class từ tất cả items
+                    requirementItems.forEach(function(ri) {
+                        ri.classList.remove('active');
+                    });
+                    
+                    // Thêm active class cho item được click
+                    this.classList.add('active');
+                });
+            });
+
+            // Tab switching functionality
+            const tabs = document.querySelectorAll('.referral-tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(function(tab) {
+                tab.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+
+                    // Remove active class from all tabs
+                    tabs.forEach(function(t) {
+                        t.classList.remove('active');
+                    });
+
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+
+                    // Hide all tab contents
+                    tabContents.forEach(function(content) {
+                        content.style.display = 'none';
+                    });
+
+                    // Show selected tab content
+                    const targetContent = document.getElementById(targetTab + '-tab');
+                    if (targetContent) {
+                        targetContent.style.display = 'block';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

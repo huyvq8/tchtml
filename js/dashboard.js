@@ -3,11 +3,14 @@
 // Mobile menu toggle
 document.addEventListener('DOMContentLoaded', function() {
     // Some pages manage their own header layout and must NOT get an auto-injected mobile menu button.
+    // Check if page already has a menu-button in header
+    const hasExistingMenuButton = document.querySelector('.dashboard-header .menu-button') !== null;
     const disableAutoMobileMenu =
         document.body.classList.contains('no-auto-mobile-menu') ||
-        /(^|\/)faq\.html$/i.test(window.location.pathname.replace(/\\/g, '/'));
+        /(^|\/)faq\.html$/i.test(window.location.pathname.replace(/\\/g, '/')) ||
+        hasExistingMenuButton;
 
-    // Add mobile menu button if on mobile
+    // Add mobile menu button if on mobile and page doesn't have one
     if (!disableAutoMobileMenu && window.innerWidth <= 768) {
         createMobileMenuButton();
     } else if (disableAutoMobileMenu) {
@@ -19,10 +22,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Handle window resize
     window.addEventListener('resize', function() {
+        // Re-check if page has menu button
+        const hasMenuButton = document.querySelector('.dashboard-header .menu-button') !== null;
+        const shouldDisable = document.body.classList.contains('no-auto-mobile-menu') ||
+            /(^|\/)faq\.html$/i.test(window.location.pathname.replace(/\\/g, '/')) ||
+            hasMenuButton;
+        
         // If page disables auto mobile menu, do not interfere with sidebar state.
-        if (disableAutoMobileMenu) return;
+        if (shouldDisable) {
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            if (menuBtn) menuBtn.remove();
+            return;
+        }
 
-        if (!disableAutoMobileMenu && window.innerWidth <= 768) {
+        if (window.innerWidth <= 768) {
             if (!document.querySelector('.mobile-menu-btn')) {
                 createMobileMenuButton();
             }
@@ -54,6 +67,26 @@ document.addEventListener('DOMContentLoaded', function() {
             e.stopPropagation();
             // Dropdown functionality can be added here
         });
+    }
+
+    // Handle menu-button click to toggle sidebar (for pages with existing menu-button)
+    const menuButton = document.querySelector('.dashboard-header .menu-button');
+    if (menuButton) {
+        const sidebar = document.querySelector('.sidebar');
+        if (sidebar) {
+            menuButton.addEventListener('click', function() {
+                sidebar.classList.toggle('open');
+            });
+
+            // Close sidebar when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!sidebar.contains(e.target) && 
+                    !menuButton.contains(e.target) && 
+                    sidebar.classList.contains('open')) {
+                    sidebar.classList.remove('open');
+                }
+            });
+        }
     }
 });
 

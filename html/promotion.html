@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promotion Center - TradeCoin88</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <style>
+        /* Header theo mẫu FAQ */
+        .dashboard-header {
+            padding: 12px 16px !important;
+            background: rgba(34, 20, 87, 0.95) !important;
+            border-bottom: 1px solid rgba(124, 105, 255, 0.18) !important;
+        }
+
+        .dashboard-header .header-content {
+            display: grid;
+            grid-template-columns: 1fr 46px;
+            align-items: center;
+            width: 100%;
+            column-gap: 10px;
+            max-width: 100% !important;
+            margin: 0 !important;
+            flex-wrap: nowrap !important;
+        }
+
+        .dashboard-header .menu-button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+            min-width: 46px;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-header .menu-button {
+                display: flex;
+            }
+
+            .dashboard-header .header-content {
+                grid-template-columns: 46px 1fr 46px;
+            }
+        }
+
+        .dashboard-header .hamburger-icon {
+            width: 26px;
+            height: 19px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dashboard-header .hamburger-line {
+            width: 26px;
+            height: 3px;
+            background-color: #ffffff;
+            border-radius: 2px;
+            display: block;
+        }
+
+        .dashboard-header .live-account {
+            justify-self: end;
+            min-width: 0;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            height: 46px;
+            background: #181537;
+            border-radius: 8px;
+            border: 1px solid rgba(124, 105, 255, 0.35);
+            cursor: pointer;
+            transition: background 0.18s ease-out, border-color 0.18s ease-out;
+            flex-wrap: nowrap;
+            box-sizing: border-box;
+            position: relative;
+            max-width: 260px;
+        }
+
+        .dashboard-header .wallet-icon {
+            width: 16px;
+            height: 16px;
+            object-fit: contain;
+            display: inline-block;
+            flex-shrink: 0;
+            filter: brightness(0) invert(1);
+        }
+
+        .dashboard-header .live-divider {
+            width: 1px;
+            height: 24px;
+            background-color: rgba(124, 105, 255, 0.35);
+            flex-shrink: 0;
+            margin: 0 2px;
+        }
+
+        .dashboard-header .live-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .dashboard-header .live-label-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .dashboard-header .live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #FFC83B;
+            flex-shrink: 0;
+            display: inline-block;
+        }
+
+        .dashboard-header .live-label {
+            font-size: 12px;
+            color: #ffffff;
+            font-weight: 400;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .dashboard-header .live-amount {
+            font-size: 14px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .dashboard-header .dropdown-icon {
+            color: #ffffff;
+            font-size: 14px;
+            margin-left: 4px;
+            flex-shrink: 0;
+        }
+
+        .dashboard-header .notification-button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+            position: relative;
+        }
+
+        .dashboard-header .bell-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dashboard-header .bell-icon {
+            width: 20px;
+            height: 20px;
+            filter: brightness(0) invert(1);
+        }
+
+        .dashboard-header .notification-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: #FF4444;
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 700;
+            border-radius: 10px;
+            min-width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 4px;
+        }
+
+        /* Promotion Center Styles */
+        .promotion-container {
+            padding: 32px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .promotion-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-white);
+            margin-bottom: 20px;
+            font-family: 'Inter', 'Montserrat', sans-serif;
+        }
+
+        .promotion-filters {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            background: rgba(24, 21, 55, 0.8);
+            color: var(--text-white);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', 'Montserrat', sans-serif;
+        }
+
+        .filter-btn:hover {
+            background: rgba(34, 20, 87, 0.9);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(to bottom, #5047C2 0%, #11096B 100%);
+            color: var(--text-white);
+        }
+
+        .promotion-card {
+            background: linear-gradient(to bottom, rgba(68, 47, 115, 0.65) 0%, rgba(12, 10, 60, 1) 100%);
+            background-image: url('../images/promotion 1.png');
+            background-size: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            border: none;
+            border-radius: 0;
+            padding: 32px;
+            margin-bottom: 24px;
+            position: relative;
+            overflow: hidden;
+            min-height: 280px;
+        }
+
+
+
+        .promotion-card-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            min-height: 220px;
+        }
+
+        .promotion-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #FFFFFF;
+            flex-shrink: 0;
+        }
+
+        .status-text {
+            font-size: 14px;
+            color: var(--text-white);
+            font-weight: 600;
+            font-family: 'Inter', 'Montserrat', sans-serif;
+        }
+
+        .promotion-headline {
+            font-size: 36px;
+            font-weight: 700;
+            color: #CCCCCC;
+            margin-bottom: 12px;
+            font-family: 'Inter', 'Montserrat', sans-serif;
+            line-height: 1.3;
+        }
+
+        .promotion-description {
+            font-size: 18px;
+            color: #CCCCCC;
+            margin-bottom: 24px;
+            line-height: 1.5;
+            font-family: 'Inter', 'Montserrat', sans-serif;
+            flex: 1;
+        }
+
+        .promotion-details {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 40px;
+            margin-top: auto;
+        }
+
+        .promotion-bonus-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .promotion-bonus-label {
+            font-size: 13px;
+            color: #CCCCCC;
+            font-family: 'Inter', 'Montserrat', sans-serif;
+        }
+
+        .promotion-bonus {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-white);
+            font-family: 'Inter', 'Montserrat', sans-serif;
+        }
+
+        .promotion-date-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .promotion-date-label {
+            font-size: 13px;
+            color: #CCCCCC;
+            font-family: 'Inter', 'Montserrat', sans-serif;
+        }
+
+        .promotion-date {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-white);
+            font-family: 'Inter', 'Montserrat', sans-serif;
+        }
+
+        .trading-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 11.2px;
+            margin-top: 16.8px;
+            max-width: 70%;
+            margin-left: 0;
+            margin-right: auto;
+        }
+
+        .trading-card {
+            background: rgba(39, 30, 84, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 11.2px;
+            padding: 11.2px;
+            transition: all 0.3s ease;
+            font-family: 'Inter', 'Montserrat', sans-serif;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .trading-card:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .trading-card.highlighted {
+            background: rgba(73, 45, 214, 0.8);
+            border-color: rgba(255, 200, 59, 0.5);
+        }
+
+        .trading-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .trading-row-left {
+            display: flex;
+            align-items: center;
+            gap: 4.2px;
+        }
+
+        .trading-row-right {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .trading-account-type {
+            display: flex;
+            align-items: center;
+            gap: 4.2px;
+        }
+
+        .account-dot {
+            width: 4.2px;
+            height: 4.2px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .account-dot.live {
+            background: #FFC83B;
+        }
+
+        .account-dot.demo {
+            background: #666666;
+        }
+
+        .account-type-text {
+            font-size: 9.5px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
+        }
+
+        .trading-action {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-white);
+            line-height: 1.2;
+        }
+
+        .trading-amount {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-white);
+            line-height: 1.2;
+        }
+
+        .trading-date {
+            font-size: 9.5px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .trading-profit {
+            font-size: 15.5px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .trading-profit.positive {
+            color: #4CAF50;
+        }
+
+        .trading-profit.negative {
+            color: #FF4444;
+        }
+
+        .trading-values {
+            font-size: 9.5px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.4;
+        }
+
+        .trading-id {
+            font-size: 8.5px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .trend-icon {
+            display: inline-block;
+            margin-left: 2.8px;
+            font-size: 10.5px;
+        }
+
+        @media (max-width: 900px) {
+            .trading-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .promotion-container {
+                padding: 16px;
+            }
+
+            .promotion-title {
+                font-size: 24px;
+                margin-bottom: 16px;
+            }
+
+            .promotion-filters {
+                gap: 8px;
+                margin-bottom: 20px;
+            }
+
+            .filter-btn {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+
+            .promotion-card {
+                padding: 20px;
+                margin-bottom: 20px;
+                background-image: none !important;
+                background: linear-gradient(to bottom, rgba(68, 47, 115, 0.65) 0%, rgba(12, 10, 60, 1) 100%) !important;
+            }
+
+            .promotion-headline {
+                font-size: 20px;
+            }
+
+            .trading-grid {
+                grid-template-columns: 1fr;
+                gap: 8.4px;
+                margin-top: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="header-content">
+            <button class="menu-button" aria-label="Menu">
+                <span class="hamburger-icon">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </span>
+            </button>
+            <div class="live-account">
+                <img src="../images/a3 3.png" alt="Wallet" class="wallet-icon" />
+                <div class="live-divider"></div>
+                <div class="live-content">
+                    <div class="live-label-wrapper">
+                        <span class="live-dot"></span>
+                        <span class="live-label">Live account</span>
+                    </div>
+                    <span class="live-amount">$10.200,50</span>
+                </div>
+                <span class="dropdown-icon">⌄</span>
+            </div>
+            <button class="notification-button" aria-label="Notifications">
+                <div class="bell-wrapper">
+                    <img src="../images/Vector.png" alt="Notifications" class="bell-icon" />
+                    <span class="notification-badge">0</span>
+                </div>
+            </button>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <!-- Menu will be loaded dynamically by menu-loader.js -->
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <div class="promotion-container">
+                <h1 class="promotion-title">Promotion Center</h1>
+
+                <!-- Filter Buttons -->
+                <div class="promotion-filters">
+                    <button class="filter-btn active">All</button>
+                    <button class="filter-btn">Claim Now</button>
+                    <button class="filter-btn">Claimed</button>
+                    <button class="filter-btn">Rejected</button>
+                    <button class="filter-btn">Expired</button>
+                </div>
+
+                <!-- Promotion Card -->
+                <div class="promotion-card">
+                    <div class="promotion-card-content">
+                        <div class="promotion-status">
+                            <span class="status-dot"></span>
+                            <span class="status-text">Claimed</span>
+                        </div>
+                        <h2 class="promotion-headline">FIRST DEPOSIT BONUS 10%</h2>
+                        <p class="promotion-description">First Deposit Bonus +10% on your first deposit, Max N2,000,000</p>
+                        <div class="promotion-details">
+                            <div class="promotion-bonus-wrapper">
+                                <div class="promotion-bonus-label">Bonus</div>
+                                <div class="promotion-bonus">N100</div>
+                            </div>
+                            <div class="promotion-date-wrapper">
+                                <div class="promotion-date-label">Sent at</div>
+                                <div class="promotion-date">10/14/2025, 17:04:39</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trading Activity Grid -->
+                <div class="trading-grid">
+                    <div class="trading-card highlighted">
+                        <div class="trading-row">
+                            <div class="trading-row-left">
+                                <div class="trading-account-type">
+                                    <span class="account-dot live"></span>
+                                    <span class="account-type-text">Live account</span>
+                                </div>
+                            </div>
+                            <div class="trading-row-right">
+                                <div class="trading-id">ID:185983</div>
+                            </div>
+                        </div>
+                        <div class="trading-row">
+                            <div class="trading-row-left">
+                                <div class="trading-action">BUY</div>
+                            </div>
+                            <div class="trading-row-right">
+                                <div class="trading-amount">$100.00</div>
+                            </div>
+                        </div>
+                        <div class="trading-row">
+                            <div class="trading-row-left">
+                                <div class="trading-date">02/12/2025 21:02:04</div>
+                            </div>
+                            <div class="trading-row-right">
+                                <div class="trading-profit positive">+$95.00</div>
+                            </div>
+                        </div>
+                        <div class="trading-values">Open:89,934.35 Close:89,934.50</div>
+                    </div>
+
+                    <div class="trading-card">
+                        <div class="trading-row">
+                            <div class="trading-row-left">
+                                <div class="trading-account-type">
+                                    <span class="account-dot demo"></span>
+                                    <span class="account-type-text">Demo account</span>
+                                </div>
+                            </div>
+                            <div class="trading-row-right">
+                                <div class="trading-id">ID:185982</div>
+                            </div>
+                        </div>
+                        <div class="trading-row">
+                            <div class="trading-row-left">
+                                <div class="trading-action">SELL</div>
+                            </div>
+                            <div class="trading-row-right">
+                                <div class="trading-amount">$100.00</div>
+                            </div>
+                        </div>
+                        <div class="trading-row">
+                            <div class="trading-row-left">
+                                <div class="trading-date">02/12/2025 21:02:04</div>
+                            </div>
+                            <div class="trading-row-right">
+                                <div class="trading-profit negative">-$100.00 <span class="trend-icon negative">▼</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trading-card">
+                        <div class="trading-row">
+                            <div class="trading-row-left">
+                                <div class="trading-account-type">
+                                    <span class="account-dot demo"></span>
+                                    <span class="account-type-text">Demo account</span>
+                                </div>
+                            </div>
+                            <div class="trading-row-right">
+                                <div class="trading-id">ID:185981</div>
+                            </div>
+                        </div>
+                        <div class="trading-row">
+                            <div class="trading-row-left">
+                                <div class="trading-action">BUY</div>
+                            </div>
+                            <div class="trading-row-right">
+                                <div class="trading-amount">$100.00</div>
+                            </div>
+                        </div>
+                        <div class="trading-row">
+                            <div class="trading-row-left">
+                                <div class="trading-date">02/12/2025 21:02:04</div>
+                            </div>
+                            <div class="trading-row-right">
+                                <div class="trading-profit negative">-$100.00 <span class="trend-icon negative">▼</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trading-card">
+                        <div class="trading-row">
+                            <div class="trading-row-left">
+                                <div class="trading-account-type">
+                                    <span class="account-dot demo"></span>
+                                    <span class="account-type-text">Demo account</span>
+                                </div>
+                            </div>
+                            <div class="trading-row-right">
+                                <div class="trading-id">ID:185982</div>
+                            </div>
+                        </div>
+                        <div class="trading-row">
+                            <div class="trading-row-left">
+                                <div class="trading-action">SELL</div>
+                            </div>
+                            <div class="trading-row-right">
+                                <div class="trading-amount">$100.00</div>
+                            </div>
+                        </div>
+                        <div class="trading-row">
+                            <div class="trading-row-left">
+                                <div class="trading-date">02/12/2025 21:02:04</div>
+                            </div>
+                            <div class="trading-row-right">
+                                <div class="trading-profit negative">-$100.00 <span class="trend-icon positive">▲</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trading-card">
+                        <div class="trading-row">
+                            <div class="trading-row-left">
+                                <div class="trading-account-type">
+                                    <span class="account-dot demo"></span>
+                                    <span class="account-type-text">Demo account</span>
+                                </div>
+                            </div>
+                            <div class="trading-row-right">
+                                <div class="trading-id">ID:185981</div>
+                            </div>
+                        </div>
+                        <div class="trading-row">
+                            <div class="trading-row-left">
+                                <div class="trading-action">BUY</div>
+                            </div>
+                            <div class="trading-row-right">
+                                <div class="trading-amount">$100.00</div>
+                            </div>
+                        </div>
+                        <div class="trading-row">
+                            <div class="trading-row-left">
+                                <div class="trading-date">02/12/2025 21:02:04</div>
+                            </div>
+                            <div class="trading-row-right">
+                                <div class="trading-profit positive">+$95.00 <span class="trend-icon positive">▲</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trading-card">
+                        <div class="trading-row">
+                            <div class="trading-row-left">
+                                <div class="trading-account-type">
+                                    <span class="account-dot live"></span>
+                                    <span class="account-type-text">Live account</span>
+                                </div>
+                            </div>
+                            <div class="trading-row-right">
+                                <div class="trading-id">ID:185982</div>
+                            </div>
+                        </div>
+                        <div class="trading-row">
+                            <div class="trading-row-left">
+                                <div class="trading-action">SELL</div>
+                            </div>
+                            <div class="trading-row-right">
+                                <div class="trading-amount">$100.00</div>
+                            </div>
+                        </div>
+                        <div class="trading-row">
+                            <div class="trading-row-left">
+                                <div class="trading-date">02/12/2025 21:02:04</div>
+                            </div>
+                            <div class="trading-row-right">
+                                <div class="trading-profit negative">-$100.00</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="trading-card">
+                        <div class="trading-row">
+                            <div class="trading-row-left">
+                                <div class="trading-account-type">
+                                    <span class="account-dot demo"></span>
+                                    <span class="account-type-text">Demo account</span>
+                                </div>
+                            </div>
+                            <div class="trading-row-right">
+                                <div class="trading-id">ID:185981</div>
+                            </div>
+                        </div>
+                        <div class="trading-row">
+                            <div class="trading-row-left">
+                                <div class="trading-action">BUY</div>
+                            </div>
+                            <div class="trading-row-right">
+                                <div class="trading-amount">$100.00</div>
+                            </div>
+                        </div>
+                        <div class="trading-row">
+                            <div class="trading-row-left">
+                                <div class="trading-date">02/12/2025 21:02:04</div>
+                            </div>
+                            <div class="trading-row-right">
+                                <div class="trading-profit positive">+$95.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/sidebar-menu-template.js"></script>
+    <script src="../js/menu-loader.js"></script>
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>
+

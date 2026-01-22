@@ -6,6 +6,211 @@
     <title>Wallet - TradeCoin88</title>
     <link rel="stylesheet" href="../css/dashboard.css">
     <style>
+        /* Header theo mẫu FAQ: 3 cột (menu | live account | bell) */
+        .dashboard-header {
+            padding: 12px 16px !important;
+            background: rgba(34, 20, 87, 0.95) !important;
+            border-bottom: 1px solid rgba(124, 105, 255, 0.18) !important;
+        }
+
+        .dashboard-header .header-content {
+            display: grid;
+            grid-template-columns: 1fr 46px; /* Desktop: không có menu button */
+            align-items: center;
+            width: 100%;
+            column-gap: 10px;
+            max-width: 100% !important;
+            margin: 0 !important;
+            flex-wrap: nowrap !important;
+        }
+
+        .dashboard-header .menu-button {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: none; /* Ẩn trên desktop */
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+            min-width: 46px;
+        }
+
+        /* Hiện menu button trên mobile */
+        @media (max-width: 768px) {
+            .dashboard-header .menu-button {
+                display: flex;
+            }
+
+            .dashboard-header .header-content {
+                grid-template-columns: 46px 1fr 46px;
+            }
+        }
+
+        .dashboard-header .hamburger-icon {
+            width: 26px;
+            height: 19px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dashboard-header .hamburger-line {
+            width: 26px;
+            height: 3px;
+            background-color: #ffffff;
+            border-radius: 2px;
+            display: block;
+        }
+
+        .dashboard-header .live-account {
+            justify-self: end; /* Luôn căn phải, nằm cạnh notification button */
+            min-width: 0;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            height: 46px;
+            background: #181537;
+            border-radius: 8px;
+            border: 1px solid rgba(124, 105, 255, 0.35);
+            cursor: pointer;
+            transition: background 0.18s ease-out, border-color 0.18s ease-out;
+            flex-wrap: nowrap;
+            box-sizing: border-box;
+            position: relative;
+            max-width: 260px;
+        }
+
+        .dashboard-header .live-account:hover {
+            background: rgba(34, 20, 87, 0.9);
+            border-color: rgba(124, 105, 255, 0.6);
+        }
+
+        .dashboard-header .wallet-icon {
+            width: 16px;
+            height: 16px;
+            object-fit: contain;
+            display: inline-block;
+            flex-shrink: 0;
+            filter: brightness(0) invert(1);
+        }
+
+        .dashboard-header .live-divider {
+            width: 1px;
+            height: 24px;
+            background-color: rgba(124, 105, 255, 0.35);
+            flex-shrink: 0;
+            margin: 0 2px;
+        }
+
+        .dashboard-header .live-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .dashboard-header .live-label-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .dashboard-header .live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #FFC83B;
+            flex-shrink: 0;
+            display: inline-block;
+        }
+
+        .dashboard-header .live-label {
+            font-size: 12px;
+            color: #ffffff;
+            font-weight: 400;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .dashboard-header .live-amount {
+            font-size: 14px;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .dashboard-header .dropdown-icon {
+            font-size: 28px;
+            color: #FFC83B;
+            transform: scaleY(0.6);
+            display: block;
+            text-align: center;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .dashboard-header .notification-button {
+            justify-self: end;
+            background: #181537;
+            border: 1px solid rgba(124, 105, 255, 0.35);
+            border-radius: 8px;
+            cursor: pointer;
+            padding: 0;
+            width: 46px;
+            height: 46px;
+            min-width: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.18s ease-out, border-color 0.18s ease-out;
+        }
+
+        .dashboard-header .notification-button:hover {
+            background: rgba(34, 20, 87, 0.9);
+            border-color: rgba(124, 105, 255, 0.6);
+        }
+
+        .dashboard-header .bell-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dashboard-header .bell-icon {
+            width: 20px;
+            height: 22px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        .dashboard-header .notification-badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            width: 14px;
+            height: 14px;
+            background: #181537;
+            border: 1px solid #FFC83B;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            font-weight: 700;
+            color: #FFC83B;
+        }
+
         /* Wallet Page Specific Styles */
         .wallet-header {
             margin-bottom: 24px;
@@ -916,39 +1121,31 @@
     <!-- Header -->
     <header class="dashboard-header">
         <div class="header-content">
-            <div class="header-logo">
-                <img src="../images/logo_tradecoin88.png" alt="Trade Coin88" class="logo-img">
-            </div>
-            <div class="header-right">
-                <div class="account-dropdown">
-                    <button class="account-toggle">
-                        <img src="../images/a3 3.png" alt="Wallet" class="account-wallet-icon">
-                        <div class="account-info">
-                            <span class="account-type">
-                                <span class="live-dot"></span>
-                                Live account
-                            </span>
-                            <span class="account-balance">$10.200,50</span>
-                        </div>
-                        <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
-                            <path d="M1 1L6 6L11 1" stroke="white" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </button>
-                </div>
-                <div class="user-info">
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" fill="white"/>
-                        <path d="M10 12C5.58172 12 2 13.7909 2 16V20H18V16C18 13.7909 14.4183 12 10 12Z" fill="white"/>
-                    </svg>
-                    <span class="username">Abc123</span>
-                </div>
-                <button class="icon-btn notification-btn notification-button">
-                    <div class="bell-wrapper">
-                        <img src="../images/Vector.png" alt="Notifications" class="bell-icon" />
-                        <span class="notification-badge">0</span>
+            <button class="menu-button" aria-label="Menu">
+                <span class="hamburger-icon">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </span>
+            </button>
+            <div class="live-account">
+                <img src="../images/a3 3.png" alt="Wallet" class="wallet-icon" />
+                <div class="live-divider"></div>
+                <div class="live-content">
+                    <div class="live-label-wrapper">
+                        <span class="live-dot"></span>
+                        <span class="live-label">Live account</span>
                     </div>
-                </button>
+                    <span class="live-amount">$10.200,50</span>
+                </div>
+                <span class="dropdown-icon">⌄</span>
             </div>
+            <button class="notification-button" aria-label="Notifications">
+                <div class="bell-wrapper">
+                    <img src="../images/Vector.png" alt="Notifications" class="bell-icon" />
+                    <span class="notification-badge">0</span>
+                </div>
+            </button>
         </div>
     </header>
 

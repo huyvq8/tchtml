@@ -10,6 +10,7 @@
         'referral.html': 'referral',
         'wallet.html': 'wallet',
         'dashboard.html': 'dashboard',
+        'promotion.html': 'promotion',
         'faq.html': 'faq',
         'about.html': 'about',
         'command.html': 'command',
